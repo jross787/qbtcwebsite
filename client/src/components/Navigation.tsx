@@ -4,7 +4,7 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTheme } from "./ThemeProvider";
-import logoImage from "@assets/LOGO PROFILE PIC_1750368337113.png";
+import logoImage from "@assets/Symbol@4x copy 5_1750368885450.png";
 
 import Symbol_4x from "@assets/Symbol@4x.png";
 
@@ -31,7 +31,11 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-4">
-            <div className="text-2xl font-bold text-gradient">qBTC</div>
+            <img 
+              src={logoImage} 
+              alt="qBTC Logo" 
+              className="h-12 w-12"
+            />
           </Link>
 
           {/* Desktop Navigation */}
