@@ -164,8 +164,9 @@ export default function Home() {
             </p>
           </motion.div>
           
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-stretch">
             <motion.div
+              className="h-full"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -178,6 +179,7 @@ export default function Home() {
             </motion.div>
             
             <motion.div
+              className="h-full"
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
