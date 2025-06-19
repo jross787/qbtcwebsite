@@ -228,7 +228,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 orange-gradient">
+      <section className="py-24 bg-card">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -236,17 +236,17 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Join the Quantum-Safe Revolution
             </h2>
-            <p className="text-xl text-white/90 mb-8">
+            <p className="text-xl text-muted-foreground mb-8">
               Don't wait for Q-Day. Secure your Bitcoin with quantum-resistant technology today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" variant="secondary" className="bg-white text-primary hover:bg-gray-100 px-8 py-4 text-lg">
+              <Button asChild size="lg" className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white px-8 py-4 text-lg">
                 <Link href="/docs">Start Building on qBTC</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg">
+              <Button asChild size="lg" variant="outline" className="border-muted-foreground text-muted-foreground hover:bg-muted-foreground hover:text-background px-8 py-4 text-lg">
                 <Link href="/contact">Get Developer Access</Link>
               </Button>
             </div>
