@@ -1,0 +1,105 @@
+You are a senior front-end engineer building the public marketing site for **qBTC** – a quantum-safe Bitcoin side-chain designed as a fallback if Q-day arrives before Bitcoin L1 is upgraded.
+
+Stack & tooling
+---------------
+* **Framework:** Next.js 14 (app directory, React 18, server components).
+* **Styling:** Tailwind CSS 3 with `@tailwindcss/typography` and `tailwind-animate`.
+* **Component lib:** shadcn/ui. Prefabs: Button, Card, Tabs, Accordion, Tooltip, Dialog, Sheet, Navbar.
+* **Icons:** Lucide React.
+* **Animation:** Framer Motion for entrance fades / staggered reveals. Keep animation subtle and prefers-reduced-motion aware.
+* **Fonts:** Inter for body, JetBrains Mono for code snippets. Serve via Google Fonts.
+* **Lint/format:** ESLint (next/core-web-vitals) + Prettier.
+* **Testing:** Playwright basic smoke test for all routes.
+
+Design system
+-------------
+* **Color mode:** Dark by default, toggle to light.  
+  – `primary` #0DF1BC (teal-mint)  
+  – `surface-dark` #0B0E11, `surface-light` #FFFFFF  
+  – `accent` gradient 180deg from #0DF1BC to #1E90FF (used in hero text fill).
+* Rounded-xl cards, soft drop shadows (`shadow-lg/25`), 12-col responsive grid.
+* Section spacing: `py-24 md:py-32`; max-width prose 72 ch.
+
+Site map
+--------
+1. `/` **Home**
+   * Hero: “Quantum-Safe Bitcoin, Ready Today.”
+   * CTA buttons: “Read the Whitepaper”, “Bridge Testnet”.
+   * Quantum countdown component (placeholder JS timer).
+   * Three-column benefits: Post-quantum signatures (Dilithium), Miner-aligned PoW, Seamless BTC peg-in/out.
+   * Animated SVG line showing migration path from BTC → qBTC → BTC-PQ.
+   * Logos of advisors/VCs (placeholder).
+
+2. `/technology`
+   * Sections: Consensus (modified Nakamoto PoW), Signature scheme (Dilithium), Bridge security (2-of-2 MSC + zk-attest), Economic incentives.
+   * Code tabs with sample `taproot_v2` and `dilithium_p2wsh` scripts.
+
+3. `/whitepaper`
+   * Markdown rendered via `next-mdx-remote`.  
+   * Placeholder MDX file in `/content/whitepaper.mdx`.
+
+4. `/docs`
+   * Quick-start, API, Node setup.  
+   * Sidebar nav, search (Fuse.js).
+
+5. `/roadmap`
+   * Vertical timeline component: MVP live ✔, External audit Q3 2025, Mainnet launch Q1 2026.
+
+6. `/team`
+   * Grid of avatar cards with social links. Dummy data file `/data/team.ts`.
+
+7. `/blog/[slug]`
+   * MDX posts in `/content/blog`.  
+   * Generate RSS feed on build.
+
+8. `/contact`
+   * Simple form → POST `/api/contact` (stub) and Mailchimp embed.
+
+Functional requirements
+-----------------------
+* **SEO & social:** Unique `<title>`, meta description, OpenGraph, Twitter cards per page. JSON-LD `Organization`.
+* **Accessibility:** All interactive elements keyboard reachable, focus-ring visible, aria-labels.
+* **Performance:** Lighthouse ≥ 90 for Performance, SEO, a11y.
+* **CI:** GitHub Actions workflow to run lint, test, and `next build`.
+* **Deploy:** Vercel config file plus `README.md` with one-command deploy instructions.
+
+Assets & placeholders
+---------------------
+* Generate abstract “quantum mesh” hero background (SVG) and three matching section illustrations.
+* Include favicon, apple-touch-icon, and `/manifest.json`.
+* Use `env.example` for Mailchimp API key & Vercel analytics token.
+
+Deliverables
+------------
+* Full Next.js repo with the above pages populated with **draft copy** below.  
+* All nav links wired, 404 page, custom `_app.tsx` theme provider, and color-mode toggle.
+
+========================================================
+### Draft copy snippets the site should insert
+
+**Hero headline:**  
+> Quantum-Safe Bitcoin, Ready Today.
+
+**Sub-headline:**  
+> qBTC is a proof-of-work side-chain that inherits Bitcoin’s economics while upgrading its cryptography to survive the first large-scale quantum computer.
+
+**Three key benefits:**  
+1. **Post-Quantum Signatures** – Each UTXO is protected by Dilithium 5, immune to Shor’s algorithm.  
+2. **Aligned Mining Incentives** – Mining rewards are BTC-denominated, keeping hash power loyal to Bitcoin.  
+3. **Seamless Migration** – A trust-minimized bridge lets holders peg-in BTC now and redeem 1:1 later or move back after Bitcoin L1 is upgraded.
+
+**Call-to-action copy:**  
+*Button 1:* “Read the Whitepaper”  
+*Button 2:* “Join the Testnet”
+
+**Roadmap bullets:**  
+* Q3 2025 – Third-party audit complete (Halborn / Trail of Bits).  
+* Q4 2025 – Testnet public stress test.  
+* Q1 2026 – Mainnet launch + safety bounty.
+
+========================================================
+
+Output
+------
+Return the complete project as a ZIP or straight directory tree, ready to `npm install && npm run dev`.  
+Make sure every page builds without TypeScript errors and passes the Playwright smoke test.
