@@ -6,30 +6,30 @@
 
 :root {
   --background: hsl(0, 0%, 100%);
-  --foreground: hsl(220, 14.3%, 4.1%);
-  --muted: hsl(220, 4.8%, 95.9%);
-  --muted-foreground: hsl(220, 5.3%, 44.7%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(220, 14.3%, 4.1%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
   --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(220, 14.3%, 4.1%);
-  --border: hsl(220, 5.9%, 90%);
-  --input: hsl(220, 5.9%, 90%);
-  --primary: hsl(28, 60%, 45%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(28, 100%, 50%);
   --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(220, 4.8%, 95.9%);
-  --secondary-foreground: hsl(220, 9.8%, 10%);
-  --accent: hsl(220, 4.8%, 95.9%);
-  --accent-foreground: hsl(220, 9.8%, 10%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
   --destructive: hsl(0, 84.2%, 60.2%);
-  --destructive-foreground: hsl(220, 9.1%, 97.8%);
-  --ring: hsl(220, 14.3%, 4.1%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
   --radius: 0.75rem;
   
-  /* qBTC Custom Colors - More neutral */
-  --bitcoin-orange: hsl(28, 60%, 45%);
-  --bitcoin-orange-light: hsl(28, 70%, 55%);
-  --bitcoin-orange-dark: hsl(20, 80%, 35%);
+  /* qBTC Custom Colors */
+  --bitcoin-orange: hsl(28, 100%, 50%);
+  --bitcoin-orange-light: hsl(28, 100%, 60%);
+  --bitcoin-orange-dark: hsl(20, 100%, 40%);
   --dark-bg: hsl(220, 26%, 6%);
   --dark-surface: hsl(220, 19%, 11%);
   --text-secondary: hsl(0, 0%, 63%);
@@ -46,7 +46,7 @@
   --card-foreground: hsl(0, 0%, 98%);
   --border: hsl(220, 19%, 15%);
   --input: hsl(220, 19%, 15%);
-  --primary: hsl(28, 60%, 45%);
+  --primary: hsl(28, 100%, 50%);
   --primary-foreground: hsl(0, 0%, 100%);
   --secondary: hsl(220, 19%, 11%);
   --secondary-foreground: hsl(0, 0%, 98%);
@@ -54,7 +54,7 @@
   --accent-foreground: hsl(0, 0%, 98%);
   --destructive: hsl(0, 62.8%, 30.6%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(28, 60%, 45%);
+  --ring: hsl(240, 4.9%, 83.9%);
 }
 
 @layer base {
@@ -75,8 +75,8 @@
 @layer components {
   .quantum-grid {
     background-image: 
-      linear-gradient(rgba(255, 153, 0, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 153, 0, 0.05) 1px, transparent 1px);
+      linear-gradient(rgba(255, 153, 0, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 153, 0, 0.1) 1px, transparent 1px);
     background-size: 50px 50px;
   }
   
@@ -87,13 +87,13 @@
   }
   
   .orange-gradient {
-    background: linear-gradient(135deg, hsl(28, 60%, 45%) 0%, hsl(20, 80%, 35%) 100%);
+    background: linear-gradient(135deg, hsl(28, 100%, 50%) 0%, hsl(20, 100%, 40%) 100%);
   }
   
   .quantum-mesh {
     background: 
-      radial-gradient(circle at 25% 25%, rgba(255, 153, 0, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, rgba(255, 107, 0, 0.03) 0%, transparent 50%);
+      radial-gradient(circle at 25% 25%, rgba(255, 153, 0, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(255, 107, 0, 0.1) 0%, transparent 50%);
   }
 }
 
