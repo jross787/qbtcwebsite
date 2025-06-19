@@ -4,6 +4,7 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTheme } from "./ThemeProvider";
+import logoImage from "@assets/LOGO PROFILE PIC_1750368337113.png";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -26,6 +27,11 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-4">
+            <img 
+              src={logoImage} 
+              alt="qBTC Logo" 
+              className="h-10 w-10"
+            />
             <div className="text-2xl font-bold text-gradient">qBTC</div>
           </Link>
 
