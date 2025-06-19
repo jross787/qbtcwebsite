@@ -6,6 +6,7 @@ import { Link } from "wouter";
 import { QuantumCountdown } from "@/components/QuantumCountdown";
 import { MigrationPath } from "@/components/MigrationPath";
 import { CodeBlock } from "@/components/CodeBlock";
+import { OrbitingBitcoin } from "@/components/OrbitingBitcoin";
 
 const benefits = [
   {
@@ -68,33 +69,44 @@ export default function Home() {
         <div className="absolute inset-0 quantum-mesh"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div 
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="text-gradient">Quantum-Safe Bitcoin,</span>
-              <br />
-              <span className="text-foreground">Ready Today.</span>
-            </h1>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div 
+              className="text-center lg:text-left"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                <span className="text-gradient">Quantum-Safe Bitcoin,</span>
+                <br />
+                <span className="text-foreground">Ready Today.</span>
+              </h1>
+              
+              <p className="text-lg md:text-xl text-muted-foreground mb-8">
+                qBTC is a proof-of-work side-chain that inherits Bitcoin's economics while upgrading its cryptography to survive the first large-scale quantum computer.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+                <Button asChild size="lg" className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white px-8 py-4 text-lg">
+                  <Link href="/whitepaper">Read the Whitepaper</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="border-muted-foreground text-muted-foreground hover:bg-muted-foreground hover:text-background px-8 py-4 text-lg">
+                  <Link href="/docs">Join the Testnet</Link>
+                </Button>
+              </div>
+              
+              <QuantumCountdown />
+            </motion.div>
             
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-4xl mx-auto">
-              qBTC is a proof-of-work side-chain that inherits Bitcoin's economics while upgrading its cryptography to survive the first large-scale quantum computer.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button asChild size="lg" className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white px-8 py-4 text-lg">
-                <Link href="/whitepaper">Read the Whitepaper</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-muted-foreground text-muted-foreground hover:bg-muted-foreground hover:text-background px-8 py-4 text-lg">
-                <Link href="/docs">Join the Testnet</Link>
-              </Button>
-            </div>
-            
-            <QuantumCountdown />
-          </motion.div>
+            <motion.div 
+              className="flex justify-center"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.2 }}
+            >
+              <OrbitingBitcoin />
+            </motion.div>
+          </div>
         </div>
       </section>
 
