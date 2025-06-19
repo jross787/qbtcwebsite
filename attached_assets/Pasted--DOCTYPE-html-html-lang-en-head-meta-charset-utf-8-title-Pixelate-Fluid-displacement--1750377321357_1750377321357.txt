@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pixelate + Fluid‑displacement hover effect</title>
+<style>
+    html,body{margin:0;height:100%;overflow:hidden;background:#000;}
+    #fluidCanvas{/* sits under the Pixi canvas */position:fixed;top:0;left:0;width:100%;height:100%;}
+    #pixiCanvas{/* created by PixiJS; we style it for clarity */position:fixed;top:0;left:0;}
+</style>
+</head>
+<body>
+
+<canvas id="fluidCanvas"></canvas> <!-- WebGL fluid sim runs here -->
+
+<!-- PixiJS will inject its own <canvas>; we attach an id later for CSS -->
+
+<script src="https://cdn.jsdelivr.net/npm/webgl-fluid@0.0.4/dist/webgl-fluid.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pixi.js@7/dist/pixi.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pixi-filters/dist/pixi-filters.js"></script>
+
+<script>
+/* ---------- 1. Fluid simulation (velocity + dye) ------------ */
+const fluidCanvas = document.getElementById('fluidCanvas');
+fluidCanvas.width  = window.innerWidth;
+fluidCanvas.height = window.innerHeight;
+
+const sim = WebGLFluid.init({
+    canvas: fluidCanvas,
+    DENSITY_DISSIPATION : 0.96,
+    VELOCITY_DISSIPATION: 0.97,
+    SPLAT_RADIUS       : 0.0025,
+    CURL               : 25
+});
+
+/* feed pointer movement into simulation */
+function splat(e){
+    // speed vector
+    const dx = (e.movementX || 0) * 5;
+    const dy = (e.movementY || 0) * 5;
+    // white dye keeps displacement field grayscale (no tinting)
+    sim.splat(e.clientX, e.clientY, dx, dy, [1,1,1]);
+}
+window.addEventListener('pointermove', splat);
+window.addEventListener('pointerdown', splat); // first click
+
+/* ---------- 2. PixiJS stage & filters ----------------------- */
+const app = new PIXI.Application({
+    resizeTo   : window,        // full‑screen, auto‑resize
+    backgroundAlpha: 0          // transparent so we see fluid canvas below if desired
+});
+app.view.id = 'pixiCanvas';     // for the CSS rule above
+document.body.appendChild(app.view);
+
+/* sprite from your image */
+const sprite = PIXI.Sprite.from('photo.jpg');
+sprite.anchor.set(0.5);
+function center(){              // also handles resize
+    sprite.x = app.renderer.width  / 2;
+    sprite.y = app.renderer.height / 2;
+}
+center();
+app.stage.addChild(sprite);
+
+/* pixelation: simple nearest‑neighbour blockiness */
+const pixelate = new PIXI.filters.PixelateFilter();
+pixelate.size = 8;              // starting block size (px)
+
+/* displacement: use the fluid canvas as a height/normal map */
+const dispSprite  = PIXI.Sprite.from(fluidCanvas); // updates every frame
+const dispFilter  = new PIXI.filters.DisplacementFilter(dispSprite);
+dispFilter.scale.set(220);      // tweak strength here
+dispSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+dispSprite.renderable = false;  // we only need it as a texture
+
+/* attach both filters to the sprite */
+sprite.filters = [pixelate, dispFilter];
+
+/* ---------- 3. Per‑frame adjustments ------------------------ */
+let lastPointer = {x:0,y:0,time:0};
+window.addEventListener('pointermove', e=>{
+    /* optional: vary pixel size with pointer speed */
+    const now   = performance.now();
+    const dt    = now - lastPointer.time || 16;
+    const speed = Math.hypot(e.clientX - lastPointer.x, e.clientY - lastPointer.y) / dt;
+    pixelate.size = Math.max(2, Math.min(40, 40 * speed)); // 2–40 px
+    lastPointer = {x:e.clientX, y:e.clientY, time:now};
+});
+
+app.ticker.add(()=>{
+    /* because dispSprite is tied to the fluid canvas,
+       we must call .update() so the texture stays in sync */
+    dispSprite.texture.update();
+});
+
+/* ---------- 4. Handle resize ------------------------------- */
+window.addEventListener('resize', ()=>{
+    fluidCanvas.width  = window.innerWidth;
+    fluidCanvas.height = window.innerHeight;
+    center();
+});
+</script>
+</body>
+</html>
