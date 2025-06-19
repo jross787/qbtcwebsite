@@ -33,20 +33,20 @@ const advisors = [
 ];
 
 const dilithiumCode = `<span class="text-muted-foreground">// Post-quantum signature scheme</span>
-<span class="text-primary">const</span> <span class="text-orange-400">signature</span> = <span class="text-foreground">dilithium.sign(</span>
+<span class="text-primary">const</span> <span class="text-slate-300">signature</span> = <span class="text-foreground">dilithium.sign(</span>
   <span class="text-foreground">privateKey,</span>
   <span class="text-foreground">messageHash</span>
 <span class="text-foreground">);</span>
 
 <span class="text-muted-foreground">// Quantum-resistant verification</span>
-<span class="text-primary">const</span> <span class="text-orange-400">isValid</span> = <span class="text-foreground">dilithium.verify(</span>
+<span class="text-primary">const</span> <span class="text-slate-300">isValid</span> = <span class="text-foreground">dilithium.verify(</span>
   <span class="text-foreground">publicKey,</span>
   <span class="text-foreground">signature,</span>
   <span class="text-foreground">messageHash</span>
 <span class="text-foreground">);</span>`;
 
 const bridgeCode = `<span class="text-muted-foreground">// 2-of-2 multisig with zk-attestation</span>
-<span class="text-primary">struct</span> <span class="text-orange-400">BridgeProof</span> <span class="text-foreground">{</span>
+<span class="text-primary">struct</span> <span class="text-slate-300">BridgeProof</span> <span class="text-foreground">{</span>
   <span class="text-foreground">btc_txid: Hash256,</span>
   <span class="text-foreground">amount: Satoshis,</span>
   <span class="text-foreground">zk_proof: ZKProof,</span>
@@ -54,7 +54,7 @@ const bridgeCode = `<span class="text-muted-foreground">// 2-of-2 multisig with 
 <span class="text-foreground">}</span>
 
 <span class="text-muted-foreground">// Trust-minimized peg-in</span>
-<span class="text-primary">fn</span> <span class="text-orange-400">peg_in</span><span class="text-foreground">(proof: BridgeProof) {</span>
+<span class="text-primary">fn</span> <span class="text-slate-300">peg_in</span><span class="text-foreground">(proof: BridgeProof) {</span>
   <span class="text-foreground">verify_zk_proof(proof.zk_proof);</span>
   <span class="text-foreground">mint_qbtc(proof.amount);</span>
 <span class="text-foreground">}</span>`;
@@ -88,7 +88,7 @@ export default function Home() {
               <Button asChild size="lg" className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white px-8 py-4 text-lg">
                 <Link href="/whitepaper">Read the Whitepaper</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 text-lg">
+              <Button asChild variant="outline" size="lg" className="border-muted-foreground text-muted-foreground hover:bg-muted-foreground hover:text-background px-8 py-4 text-lg">
                 <Link href="/docs">Join the Testnet</Link>
               </Button>
             </div>
@@ -109,7 +109,7 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Built for the <span className="text-primary">Quantum Era</span>
+              Built for the <span className="text-muted-foreground">Quantum Era</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Three core innovations that make qBTC the most secure Bitcoin side-chain for the post-quantum world.
@@ -125,14 +125,14 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
               >
-                <Card className="glass-card p-8 rounded-2xl hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 group h-full">
+                <Card className="glass-card p-8 rounded-2xl hover:shadow-lg hover:shadow-muted/10 transition-all duration-300 group h-full">
                   <CardContent className="p-0">
                     <div className="w-16 h-16 orange-gradient rounded-xl flex items-center justify-center mb-6 group-hover:animate-glow">
                       <benefit.icon className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold mb-4 text-foreground">{benefit.title}</h3>
                     <p className="text-muted-foreground mb-4">{benefit.description}</p>
-                    <div className="bg-card border border-primary/30 p-4 rounded-lg font-mono text-sm">
+                    <div className="bg-card border border-muted/30 p-4 rounded-lg font-mono text-sm">
                       <div dangerouslySetInnerHTML={{ __html: benefit.code }} />
                     </div>
                   </CardContent>
