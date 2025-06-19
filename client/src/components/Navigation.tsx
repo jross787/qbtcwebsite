@@ -6,6 +6,8 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTheme } from "./ThemeProvider";
 import logoImage from "@assets/LOGO PROFILE PIC_1750368337113.png";
 
+import Symbol_4x from "@assets/Symbol@4x.png";
+
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/technology", label: "Technology" },
@@ -28,7 +30,7 @@ export function Navigation() {
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-4">
             <img 
-              src={logoImage} 
+              src={Symbol_4x} 
               alt="qBTC Logo" 
               className="h-10 w-10"
             />
