@@ -8,6 +8,8 @@ import logoImage from "@assets/LOGO PROFILE PIC_1750368337113.png";
 
 import Symbol_4x from "@assets/Symbol@4x.png";
 
+import Symbol_4x_copy_4 from "@assets/Symbol@4x copy 4.png";
+
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/technology", label: "Technology" },
@@ -30,7 +32,7 @@ export function Navigation() {
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-4">
             <img 
-              src={Symbol_4x} 
+              src={Symbol_4x_copy_4} 
               alt="qBTC Logo" 
               className="h-10 w-10"
             />
