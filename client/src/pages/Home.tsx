@@ -6,6 +6,7 @@ import { Link } from "wouter";
 import { QuantumCountdown } from "@/components/QuantumCountdown";
 import { MigrationPath } from "@/components/MigrationPath";
 import { CodeBlock } from "@/components/CodeBlock";
+import { FluidBackground } from "@/components/FluidBackground";
 import logoImage from "@assets/Symbol@4x copy 5_1750377305965.png";
 
 const benefits = [
@@ -65,8 +66,9 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
-        <div className="absolute inset-0 quantum-grid opacity-30"></div>
-        <div className="absolute inset-0 quantum-mesh"></div>
+        <FluidBackground />
+        <div className="absolute inset-0 quantum-grid opacity-20"></div>
+        <div className="absolute inset-0 quantum-mesh opacity-30"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div 
