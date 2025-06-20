@@ -184,7 +184,7 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <CodeBlock
-                title="Bridge Security"
+                title="Institutional Grade Security"
                 code={bridgeSecurityCode}
               />
             </motion.div>
