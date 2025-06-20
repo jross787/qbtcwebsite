@@ -17,7 +17,7 @@ export function MigrationPath() {
         <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12">
           {/* BTC */}
           <motion.div
-            className="text-center"
+            className="text-center max-w-48"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -42,7 +42,7 @@ export function MigrationPath() {
 
           {/* qBTC */}
           <motion.div
-            className="text-center"
+            className="text-center max-w-48"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
@@ -67,7 +67,7 @@ export function MigrationPath() {
 
           {/* BTC-PQ */}
           <motion.div
-            className="text-center"
+            className="text-center max-w-48"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0 }}
