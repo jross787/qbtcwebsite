@@ -77,21 +77,21 @@ export default function Home() {
           >
             
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <h1 className="text-5xl md:text-7xl font-bold mb-10">
               <span className="text-gradient">Quantum-Safe Bitcoin,</span>
               <br />
               <span className="text-foreground">Ready Today.</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-4xl mx-auto">
+            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed">
               qBTC is a proof-of-work side-chain that inherits Bitcoin's economics while upgrading its cryptography to survive the first large-scale quantum computer.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button asChild size="lg" className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white px-8 py-4 text-lg">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+              <Button asChild size="lg" className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white px-10 py-5 text-lg">
                 <Link href="/whitepaper">Read the Whitepaper</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-muted-foreground text-muted-foreground hover:bg-muted-foreground hover:text-background px-8 py-4 text-lg">
+              <Button asChild variant="outline" size="lg" className="border-muted-foreground text-muted-foreground hover:bg-muted-foreground hover:text-background px-10 py-5 text-lg">
                 <Link href="/docs">Join the Testnet</Link>
               </Button>
             </div>
