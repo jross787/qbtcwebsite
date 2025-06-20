@@ -18,7 +18,7 @@ const navItems = [
   { href: "/roadmap", label: "Roadmap" },
   { href: "/team", label: "Team" },
   { href: "/blog", label: "Blog" },
-  { href: "/wallet", label: "Wallet" },
+  { href: "/wallet-setup", label: "Wallet" },
   { href: "/contact", label: "Contact" },
 ];
 
