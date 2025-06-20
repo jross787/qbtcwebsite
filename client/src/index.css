@@ -108,21 +108,22 @@
 
   .nav-fade {
     position: relative;
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1), 0 1px 40px rgba(0, 0, 0, 0.05);
   }
 
   .nav-fade::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -20px;
     left: 0;
     right: 0;
     height: 20px;
     background: linear-gradient(to bottom, 
-      hsl(var(--primary) / 0.15) 0%, 
-      hsl(var(--primary) / 0.08) 30%, 
-      hsl(var(--primary) / 0.03) 60%, 
+      rgba(0, 0, 0, 0.05) 0%, 
+      rgba(0, 0, 0, 0.02) 40%, 
       transparent 100%);
     pointer-events: none;
+    z-index: -1;
   }
 }
 
