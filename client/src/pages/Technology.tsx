@@ -47,7 +47,7 @@ const taprootCode = `<span class="text-muted-foreground">// Enhanced Taproot wit
   <span class="text-foreground">dilithium_verify(sig, msg, self.dilithium_pubkey)</span>
 <span class="text-foreground">}</span>`;
 
-const dilithiumCode = `<span class="text-muted-foreground">// Dilithium P2WSH implementation</span>
+const dilithiumP2wshCode = `<span class="text-muted-foreground">// Dilithium P2WSH implementation</span>
 <span class="text-primary">struct</span> <span class="text-orange-400">DilithiumP2WSH</span> <span class="text-foreground">{</span>
   <span class="text-foreground">witness_version: u8,</span>  <span class="text-muted-foreground">// Version 1</span>
   <span class="text-foreground">witness_program: [u8; 32],</span> <span class="text-muted-foreground">// Script hash</span>
@@ -191,7 +191,7 @@ export default function Technology() {
                   >
                     <CodeBlock
                       title="Dilithium P2WSH"
-                      code={dilithiumCode}
+                      code={dilithiumP2wshCode}
                     />
                   </motion.div>
                 </div>

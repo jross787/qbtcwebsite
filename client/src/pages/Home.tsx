@@ -33,7 +33,7 @@ const advisors = [
   "Paradigm", "a16z crypto", "Polychain", "Jump Crypto", "Coinbase", "Binance Labs"
 ];
 
-const dilithiumCode = `<span class="text-muted-foreground">// Post-quantum signature scheme</span>
+const mlDsaSignatureCode = `<span class="text-muted-foreground">// Post-quantum signature scheme</span>
 <span class="text-primary">const</span> <span class="text-slate-300">signature</span> = <span class="text-foreground">dilithium.sign(</span>
   <span class="text-foreground">privateKey,</span>
   <span class="text-foreground">messageHash</span>
@@ -46,7 +46,7 @@ const dilithiumCode = `<span class="text-muted-foreground">// Post-quantum signa
   <span class="text-foreground">messageHash</span>
 <span class="text-foreground">);</span>`;
 
-const bridgeCode = `<span class="text-muted-foreground">// 2-of-2 multisig with zk-attestation</span>
+const bridgeSecurityCode = `<span class="text-muted-foreground">// 2-of-2 multisig with zk-attestation</span>
 <span class="text-primary">struct</span> <span class="text-slate-300">BridgeProof</span> <span class="text-foreground">{</span>
   <span class="text-foreground">btc_txid: Hash256,</span>
   <span class="text-foreground">amount: Satoshis,</span>
@@ -171,8 +171,8 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <CodeBlock
-                title="Dilithium Signatures"
-                code={dilithiumCode}
+                title="ML-DSA-87 Signatures"
+                code={mlDsaSignatureCode}
               />
             </motion.div>
             
@@ -185,7 +185,7 @@ export default function Home() {
             >
               <CodeBlock
                 title="Bridge Security"
-                code={bridgeCode}
+                code={bridgeSecurityCode}
               />
             </motion.div>
           </div>
