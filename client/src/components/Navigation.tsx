@@ -28,9 +28,9 @@ export function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full z-50 glass-card nav-fade">
+    <nav className="fixed top-0 w-full z-50 glass-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 relative z-10">
+        <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-4">
             <img 
               src={logoImage} 
