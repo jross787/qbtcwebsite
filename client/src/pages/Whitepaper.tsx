@@ -99,7 +99,7 @@ export default function Whitepaper() {
                   <div id="why-qbtc">
                     <h2 className="text-3xl font-bold text-primary mb-4">Why qBTC?</h2>
                     <p className="text-muted-foreground mb-6">
-                      Quantum computers pose a potential threat to Bitcoin's elliptic-curve signatures; a sufficiently advanced quantum attacker could derive private keys from public keys, breaking Bitcoin's security. qBTC addresses this risk proactively by integrating NIST-approved post-quantum signatures and new address types that hide public keys until they are used (mitigating quantum exposure).
+                      Quantum computers pose a potential threat to Bitcoin’s elliptic-curve signatures; a sufficiently advanced quantum attacker could derive private keys from public keys, breaking Bitcoin’s security (anduro.io). qBTC addresses this risk proactively by integrating NIST-approved post-quantum signatures and new address types that hide public keys until they are used (mitigating quantum exposure). 
                     </p>
                     <p className="text-muted-foreground mb-6">
                       By acting as an opt-in sidechain, qBTC lets users safeguard their BTC holdings against quantum risks without requiring disruptive changes to Bitcoin mainnet. Unlike speculative altcoins, qBTC maintains a 1:1 peg with Bitcoin, ensuring that quantum-safe storage doesn't require exposure to new tokens or economic models.
