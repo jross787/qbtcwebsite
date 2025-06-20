@@ -21,7 +21,7 @@ export default function Whitepaper() {
       <section className="py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            className="text-center mb-16"
+            className="text-center mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -32,10 +32,10 @@ export default function Whitepaper() {
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               qBTC: Quantum Secure <span className="text-primary">Bitcoin Sidechain</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
               A Bitcoin sidechain designed to protect Bitcoin users against quantum attacks while preserving Bitcoin's core principles of decentralization and security.
             </p>
-            <div className="flex justify-center">
+            <div className="flex justify-center mb-8">
               <Button size="lg" className="orange-gradient text-white">
                 <Download className="w-5 h-5 mr-2" />
                 Download PDF
