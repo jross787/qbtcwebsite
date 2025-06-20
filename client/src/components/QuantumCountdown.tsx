@@ -19,7 +19,7 @@ export function QuantumCountdown() {
   useEffect(() => {
     const calculateCountdown = () => {
       const now = new Date();
-      const targetDate = new Date(2028, 11, 31, 23, 59, 59); // December 31, 2028, 11:59:59 PM
+      const targetDate = new Date(2028, 5, 1, 0, 0, 0); // June 1, 2028, 12:00:00 AM
 
       const difference = targetDate.getTime() - now.getTime();
 
