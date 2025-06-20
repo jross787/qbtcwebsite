@@ -63,9 +63,7 @@ export function QuantumCountdown() {
           <div className="text-muted-foreground text-base font-semibold">Minutes</div>
         </div>
       </div>
-      <p className="text-muted-foreground text-base mt-4 text-center max-w-2xl mx-auto">
-        Estimated time until cryptographically relevant quantum computer
-      </p>
+      <p className="text-muted-foreground text-base mt-4 text-center max-w-2xl mx-auto">Estimated date that a cryptographically relevant quantum computer may arrive</p>
     </Card>
   );
 }
