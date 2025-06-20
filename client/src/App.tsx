@@ -15,6 +15,7 @@ import Roadmap from "@/pages/Roadmap";
 import Team from "@/pages/Team";
 import Blog from "@/pages/Blog";
 import Contact from "@/pages/Contact";
+import Wallet from "@/pages/Wallet";
 
 function Router() {
   return (
@@ -28,6 +29,7 @@ function Router() {
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={Blog} />
       <Route path="/contact" component={Contact} />
+      <Route path="/wallet" component={Wallet} />
       <Route component={NotFound} />
     </Switch>
   );
