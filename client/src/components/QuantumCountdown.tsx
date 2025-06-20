@@ -44,7 +44,7 @@ export function QuantumCountdown() {
 
   return (
     <Card className="glass-card p-8 rounded-3xl inline-block animate-pulse-orange shadow-xl border-2 border-primary/20">
-      <h3 className="text-primary mb-6 text-[38px] font-bold text-center">Q-Day Countdown</h3>
+      <h3 className="text-primary mb-6 font-bold text-center text-[42px]">Q-Day Countdown</h3>
       <div className="flex justify-center space-x-8 text-3xl font-mono">
         <div className="text-center">
           <div className="text-primary font-bold text-4xl mb-2">{countdown.years}</div>
