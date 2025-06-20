@@ -6,7 +6,7 @@ import { Link } from "wouter";
 import { QuantumCountdown } from "@/components/QuantumCountdown";
 import { MigrationPath } from "@/components/MigrationPath";
 import { CodeBlock } from "@/components/CodeBlock";
-import logoImage from "@assets/Symbol@4x copy 5_1750377305965.png";
+
 
 const benefits = [
   {
@@ -75,18 +75,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.div
-              className="flex justify-center mb-8"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
-            >
-              <img 
-                src={logoImage} 
-                alt="qBTC Logo" 
-                className="h-32 w-32 md:h-40 md:w-40 animate-glow"
-              />
-            </motion.div>
+            
             
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               <span className="text-gradient">Quantum-Safe Bitcoin,</span>
