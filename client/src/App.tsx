@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { QuantumSecurityWidget } from "@/components/QuantumSecurityWidget";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Technology from "@/pages/Technology";
@@ -48,6 +49,7 @@ function App() {
               <Router />
             </main>
             <Footer />
+            <QuantumSecurityWidget />
           </div>
           <Toaster />
         </TooltipProvider>

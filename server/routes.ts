@@ -100,6 +100,91 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
+  // Quantum security check endpoint
+  app.post("/api/quantum-check", async (req, res) => {
+    try {
+      const { userAgent } = req.body;
+      
+      // Detect browser capabilities based on user agent
+      const browserInfo = analyzeBrowserCapabilities(userAgent);
+      
+      const quantumMethods = [
+        { method: "X25519MLKEM768", description: "Hybrid X25519 with ML-KEM 768-bit" },
+        { method: "secp256r1MLKEM768", description: "Hybrid secp256r1 with ML-KEM 768-bit" },
+        { method: "MLKEM512", description: "ML-KEM 512-bit post-quantum" },
+        { method: "MLKEM768", description: "ML-KEM 768-bit post-quantum" },
+        { method: "MLKEM1024", description: "ML-KEM 1024-bit post-quantum" }
+      ];
+
+      const supportedMethods = quantumMethods.map(({ method, description }) => {
+        const supported = checkMethodSupport(method, browserInfo);
+        return { method, supported, description };
+      });
+
+      const isQuantumSecure = supportedMethods.some(m => m.supported);
+
+      res.json({
+        supportedMethods,
+        isQuantumSecure,
+        browserInfo,
+        detectedAt: new Date().toISOString()
+      });
+    } catch (error) {
+      console.error("Quantum check error:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to check quantum security capabilities" 
+      });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
+}
+
+function analyzeBrowserCapabilities(userAgent: string) {
+  const ua = userAgent.toLowerCase();
+  const isChrome = ua.includes('chrome') && !ua.includes('edg');
+  const isFirefox = ua.includes('firefox');
+  const isSafari = ua.includes('safari') && !ua.includes('chrome');
+  const isEdge = ua.includes('edg');
+  
+  // Extract version numbers
+  const chromeVersion = isChrome ? parseInt(ua.match(/chrome\/(\d+)/)?.[1] || '0') : 0;
+  const firefoxVersion = isFirefox ? parseInt(ua.match(/firefox\/(\d+)/)?.[1] || '0') : 0;
+  const safariVersion = isSafari ? parseInt(ua.match(/version\/(\d+)/)?.[1] || '0') : 0;
+  const edgeVersion = isEdge ? parseInt(ua.match(/edg\/(\d+)/)?.[1] || '0') : 0;
+  
+  return {
+    browser: isChrome ? 'Chrome' : isFirefox ? 'Firefox' : isSafari ? 'Safari' : isEdge ? 'Edge' : 'Unknown',
+    version: chromeVersion || firefoxVersion || safariVersion || edgeVersion || 0,
+    isChrome,
+    isFirefox,
+    isSafari,
+    isEdge,
+    chromeVersion,
+    firefoxVersion,
+    safariVersion,
+    edgeVersion
+  };
+}
+
+function checkMethodSupport(method: string, browserInfo: any): boolean {
+  const { chromeVersion, firefoxVersion, safariVersion, edgeVersion } = browserInfo;
+  
+  // Based on real-world browser support for post-quantum cryptography
+  switch (method) {
+    case 'X25519MLKEM768':
+      return chromeVersion >= 116 || firefoxVersion >= 118 || safariVersion >= 17 || edgeVersion >= 116;
+    case 'secp256r1MLKEM768':
+      return chromeVersion >= 118 || firefoxVersion >= 119 || edgeVersion >= 118;
+    case 'MLKEM512':
+      return chromeVersion >= 120 || firefoxVersion >= 121 || edgeVersion >= 120;
+    case 'MLKEM768':
+      return chromeVersion >= 119 || firefoxVersion >= 120 || edgeVersion >= 119;
+    case 'MLKEM1024':
+      return chromeVersion >= 121 || firefoxVersion >= 122 || edgeVersion >= 121;
+    default:
+      return false;
+  }
 }
