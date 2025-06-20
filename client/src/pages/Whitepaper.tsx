@@ -18,7 +18,7 @@ export default function Whitepaper() {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="py-24 md:py-32">
+      <section className="py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
@@ -35,14 +35,10 @@ export default function Whitepaper() {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
               A Bitcoin sidechain designed to protect Bitcoin users against quantum attacks while preserving Bitcoin's core principles of decentralization and security.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button size="lg" className="orange-gradient text-white">
                 <Download className="w-5 h-5 mr-2" />
                 Download PDF
-              </Button>
-              <Button size="lg" variant="outline">
-                <ExternalLink className="w-5 h-5 mr-2" />
-                View on ArXiv
               </Button>
             </div>
           </motion.div>
@@ -50,7 +46,7 @@ export default function Whitepaper() {
       </section>
 
       {/* Content */}
-      <section className="py-12">
+      <section className="py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-4 gap-8">
             {/* Table of Contents */}
