@@ -19,10 +19,7 @@ export function QuantumCountdown() {
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
-      const targetDate = new Date();
-      targetDate.setFullYear(targetDate.getFullYear() + 7);
-      targetDate.setMonth(5); // June
-      targetDate.setDate(19); // 19th
+      const targetDate = new Date(2028, 11, 31); // December 31, 2028
 
       const difference = targetDate.getTime() - now.getTime();
 
