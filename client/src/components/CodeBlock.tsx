@@ -23,47 +23,54 @@ export function CodeBlock({ title, code, language = "javascript" }: CodeBlockPro
   useEffect(() => {
     if (isInView && !isTyping) {
       setIsTyping(true);
+      setDisplayedCode("");
       const plainText = stripHtml(code);
       let currentIndex = 0;
-      let currentHtml = "";
       
       const typewriter = () => {
-        if (currentIndex < plainText.length) {
-          // Find the next character position in the original HTML
-          let htmlIndex = 0;
+        if (currentIndex <= plainText.length) {
+          // Build HTML progressively by matching visible characters
+          let htmlResult = "";
           let textCount = 0;
-          let insideTag = false;
+          let i = 0;
           
-          while (htmlIndex < code.length && textCount <= currentIndex) {
-            if (code[htmlIndex] === '<') {
-              insideTag = true;
-            } else if (code[htmlIndex] === '>') {
-              insideTag = false;
-            } else if (!insideTag) {
+          while (i < code.length && textCount < currentIndex) {
+            if (code[i] === '<') {
+              // Include entire HTML tag
+              const tagEnd = code.indexOf('>', i);
+              if (tagEnd !== -1) {
+                htmlResult += code.substring(i, tagEnd + 1);
+                i = tagEnd + 1;
+              } else {
+                i++;
+              }
+            } else {
+              htmlResult += code[i];
               textCount++;
+              i++;
             }
-            
-            if (textCount <= currentIndex + 1) {
-              currentHtml += code[htmlIndex];
-            }
-            htmlIndex++;
           }
           
-          setDisplayedCode(currentHtml);
+          setDisplayedCode(htmlResult);
+          
+          if (currentIndex >= plainText.length) {
+            setIsTyping(false);
+            setDisplayedCode(code); // Ensure final state shows complete code
+            return;
+          }
+          
           currentIndex++;
           
           // Variable typing speed for more realistic effect
-          const delay = Math.random() * 30 + 10;
+          const delay = Math.random() * 50 + 20;
           setTimeout(typewriter, delay);
-        } else {
-          setIsTyping(false);
         }
       };
       
       // Start typing after a brief delay
-      setTimeout(typewriter, 300);
+      setTimeout(typewriter, 500);
     }
-  }, [isInView, code, isTyping]);
+  }, [isInView, code]);
 
   return (
     <div ref={ref} className="glass-card p-8 rounded-2xl h-full flex flex-col">
