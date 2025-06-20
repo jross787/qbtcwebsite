@@ -10,28 +10,34 @@ interface CountdownState {
 
 export function QuantumCountdown() {
   const [countdown, setCountdown] = useState<CountdownState>({
-    years: 7,
-    days: 142,
-    hours: 18,
-    minutes: 33,
+    years: 0,
+    days: 0,
+    hours: 0,
+    minutes: 0,
   });
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const calculateCountdown = () => {
       const now = new Date();
-      const targetDate = new Date(2028, 11, 31); // December 31, 2028
+      const targetDate = new Date(2028, 11, 31, 23, 59, 59); // December 31, 2028, 11:59:59 PM
 
       const difference = targetDate.getTime() - now.getTime();
 
       if (difference > 0) {
-        const years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
-        const days = Math.floor((difference % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365.25));
+        const remainingAfterYears = difference % (1000 * 60 * 60 * 24 * 365.25);
+        const days = Math.floor(remainingAfterYears / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((remainingAfterYears % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((remainingAfterYears % (1000 * 60 * 60)) / (1000 * 60));
 
         setCountdown({ years, days, hours, minutes });
       }
-    }, 60000); // Update every minute
+    };
+
+    // Calculate immediately
+    calculateCountdown();
+
+    const interval = setInterval(calculateCountdown, 60000); // Update every minute
 
     return () => clearInterval(interval);
   }, []);
