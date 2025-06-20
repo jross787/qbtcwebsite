@@ -21,58 +21,151 @@ export function MigrationPath() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-          {/* Connecting Lines */}
-          <div className="hidden md:block absolute top-16 left-1/3 right-1/3 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
-          <div className="hidden md:block absolute top-16 left-2/3 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+          {/* Connecting Lines - Animated */}
+          <motion.div 
+            className="hidden md:block absolute top-10 left-1/3 w-1/3 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          ></motion.div>
+          <motion.div 
+            className="hidden md:block absolute top-10 left-2/3 w-1/3 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            viewport={{ once: true }}
+          ></motion.div>
           
           {/* Step 1: Bitcoin Today */}
           <motion.div
             className="relative"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.1,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
             viewport={{ once: true }}
           >
             <div className="text-center">
-              <div className="w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 relative z-10">
+              <motion.div 
+                className="w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 relative z-10 shadow-lg"
+                whileInView={{ 
+                  boxShadow: ["0 0 0 0 rgba(249, 115, 22, 0.4)", "0 0 0 20px rgba(249, 115, 22, 0)", "0 0 0 0 rgba(249, 115, 22, 0)"]
+                }}
+                transition={{ duration: 2, delay: 0.2, repeat: Infinity, repeatDelay: 3 }}
+                viewport={{ once: false }}
+              >
                 <span className="text-white font-bold text-lg">BTC</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Bitcoin Today</h3>
-              <p className="text-muted-foreground text-sm">Current Bitcoin network</p>
+              </motion.div>
+              <motion.h3 
+                className="text-xl font-semibold mb-3"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                Bitcoin Today
+              </motion.h3>
+              <motion.p 
+                className="text-muted-foreground text-sm"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                Current Bitcoin network
+              </motion.p>
             </div>
           </motion.div>
 
           {/* Step 2: Bridge */}
           <motion.div
             className="relative"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.3,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
             viewport={{ once: true }}
           >
             <div className="text-center">
-              <div className="w-20 h-20 bg-slate-400 rounded-full flex items-center justify-center mx-auto mb-4 relative z-10">
+              <motion.div 
+                className="w-20 h-20 bg-slate-400 rounded-full flex items-center justify-center mx-auto mb-4 relative z-10 shadow-lg"
+                whileInView={{ 
+                  boxShadow: ["0 0 0 0 rgba(148, 163, 184, 0.4)", "0 0 0 20px rgba(148, 163, 184, 0)", "0 0 0 0 rgba(148, 163, 184, 0)"]
+                }}
+                transition={{ duration: 2, delay: 0.6, repeat: Infinity, repeatDelay: 3 }}
+                viewport={{ once: false }}
+              >
                 <span className="text-white font-bold text-sm">qBTC</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Bridge Now or Pre Commit</h3>
-              <p className="text-muted-foreground text-sm">Quantum-safe transition</p>
+              </motion.div>
+              <motion.h3 
+                className="text-xl font-semibold mb-3"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                viewport={{ once: true }}
+              >
+                Bridge Now or Pre Commit
+              </motion.h3>
+              <motion.p 
+                className="text-muted-foreground text-sm"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                viewport={{ once: true }}
+              >
+                Quantum-safe transition
+              </motion.p>
             </div>
           </motion.div>
 
           {/* Step 3: Future */}
           <motion.div
             className="relative"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.5,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
             viewport={{ once: true }}
           >
             <div className="text-center">
-              <div className="w-20 h-20 bg-orange-300 rounded-full flex items-center justify-center mx-auto mb-4 relative z-10">
+              <motion.div 
+                className="w-20 h-20 bg-orange-300 rounded-full flex items-center justify-center mx-auto mb-4 relative z-10 shadow-lg"
+                whileInView={{ 
+                  boxShadow: ["0 0 0 0 rgba(253, 186, 116, 0.4)", "0 0 0 20px rgba(253, 186, 116, 0)", "0 0 0 0 rgba(253, 186, 116, 0)"]
+                }}
+                transition={{ duration: 2, delay: 1.0, repeat: Infinity, repeatDelay: 3 }}
+                viewport={{ once: false }}
+              >
                 <span className="text-white font-bold text-xs">BTC-PQ</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Bitcoin L1 Upgraded</h3>
-              <p className="text-muted-foreground text-sm">Quantum safety without any upgrades needed on Bitcoin L1</p>
+              </motion.div>
+              <motion.h3 
+                className="text-xl font-semibold mb-3"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                viewport={{ once: true }}
+              >
+                Bitcoin L1 Upgraded
+              </motion.h3>
+              <motion.p 
+                className="text-muted-foreground text-sm"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                viewport={{ once: true }}
+              >
+                Quantum safety without any upgrades needed on Bitcoin L1
+              </motion.p>
             </div>
           </motion.div>
         </div>

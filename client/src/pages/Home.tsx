@@ -100,7 +100,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
       {/* Key Benefits Section */}
       <section className="py-24 md:py-32 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -112,7 +111,7 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Built for the <span className="text-muted-foreground">Quantum Era</span>
+              Built for the <span className="text-[#f79619]">Quantum Era</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Three core innovations that make qBTC the most secure Bitcoin side-chain for the post-quantum world.
@@ -145,10 +144,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Migration Path */}
       <MigrationPath />
-
       {/* Technology Preview */}
       <section className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -196,7 +193,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Advisors/VCs Section */}
       <section className="py-24 bg-muted/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -231,7 +227,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="py-24 bg-accent/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
