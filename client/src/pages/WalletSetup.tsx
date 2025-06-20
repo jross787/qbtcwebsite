@@ -56,7 +56,7 @@ export default function WalletSetup() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <Card className="glass-card h-full">
+              <Card className="glass-card h-full border-0">
                 <CardHeader className="text-center pb-4">
                   <div className="w-16 h-16 orange-gradient rounded-xl flex items-center justify-center mx-auto mb-4">
                     <Plus className="w-8 h-8 text-white" />
@@ -147,7 +147,7 @@ export default function WalletSetup() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <Card className="glass-card h-full">
+              <Card className="glass-card h-full border-0">
                 <CardHeader className="text-center pb-4">
                   <div className="w-16 h-16 bg-slate-500 rounded-xl flex items-center justify-center mx-auto mb-4">
                     <Link className="w-8 h-8 text-white" />
