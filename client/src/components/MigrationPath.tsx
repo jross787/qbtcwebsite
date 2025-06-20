@@ -14,24 +14,24 @@ export function MigrationPath() {
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12">
+        <div className="flex flex-col md:flex-row items-start justify-center space-y-8 md:space-y-0 md:space-x-12">
           {/* BTC */}
           <motion.div
-            className="text-center max-w-48"
+            className="text-center max-w-48 flex flex-col items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <div className="w-24 h-24 bg-orange-500 rounded-full flex items-center justify-center mb-4 mx-auto">
+            <div className="w-24 h-24 bg-orange-500 rounded-full flex items-center justify-center mb-6 mx-auto">
               <span className="text-white font-bold text-lg">BTC</span>
             </div>
             <h3 className="text-xl font-semibold mb-2">Bitcoin Today</h3>
-            <p className="text-muted-foreground">Current Bitcoin network</p>
+            <p className="text-muted-foreground mt-4">Current Bitcoin network</p>
           </motion.div>
 
           {/* Arrow 1 */}
           <motion.div
-            className="text-primary"
+            className="text-primary mt-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
@@ -42,21 +42,21 @@ export function MigrationPath() {
 
           {/* qBTC */}
           <motion.div
-            className="text-center max-w-48"
+            className="text-center max-w-48 flex flex-col items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            <div className="w-24 h-24 bg-slate-400 rounded-full flex items-center justify-center mb-4 mx-auto">
+            <div className="w-24 h-24 bg-slate-400 rounded-full flex items-center justify-center mb-6 mx-auto">
               <span className="text-white font-bold text-lg">qBTC</span>
             </div>
             <h3 className="text-xl font-semibold mb-2">Bridge Now or Pre Commit</h3>
-            <p className="text-muted-foreground">Quantum-safe transition</p>
+            <p className="text-muted-foreground mt-4">Quantum-safe transition</p>
           </motion.div>
 
           {/* Arrow 2 */}
           <motion.div
-            className="text-primary"
+            className="text-primary mt-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
@@ -67,16 +67,16 @@ export function MigrationPath() {
 
           {/* BTC-PQ */}
           <motion.div
-            className="text-center max-w-48"
+            className="text-center max-w-48 flex flex-col items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0 }}
           >
-            <div className="w-24 h-24 bg-orange-300 rounded-full flex items-center justify-center mb-4 mx-auto">
+            <div className="w-24 h-24 bg-orange-300 rounded-full flex items-center justify-center mb-6 mx-auto">
               <span className="text-white font-bold text-sm">BTC-PQ</span>
             </div>
             <h3 className="text-xl font-semibold mb-2">Bitcoin L1 Upgraded</h3>
-            <p className="text-muted-foreground">Quantum safety without any upgrades needed on Bitcoin L1</p>
+            <p className="text-muted-foreground mt-4">Quantum safety without any upgrades needed on Bitcoin L1</p>
           </motion.div>
         </div>
       </div>
