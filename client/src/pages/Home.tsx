@@ -69,58 +69,35 @@ export default function Home() {
         <div className="absolute inset-0 quantum-mesh"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left side - Hero content */}
-            <motion.div 
-              className="text-left"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                <span className="text-gradient">Quantum-Safe Bitcoin,</span>
-                <br />
-                <span className="text-foreground">Ready Today.</span>
-              </h1>
-              
-              <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg">
-                qBTC is a proof-of-work side-chain that inherits Bitcoin's economics while upgrading its cryptography to survive the first large-scale quantum computer.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <Button asChild size="lg" className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white px-8 py-4 text-lg">
-                  <Link href="/whitepaper">Read the Whitepaper</Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="border-muted-foreground text-muted-foreground hover:bg-muted-foreground hover:text-background px-8 py-4 text-lg">
-                  <Link href="/docs">Join the Testnet</Link>
-                </Button>
-              </div>
-              
-              <QuantumCountdown />
-            </motion.div>
-
-            {/* Right side - Interactive fluid animation */}
-            <motion.div 
-              className="relative h-[600px] w-full"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <div className="relative w-full h-full bg-gradient-to-br from-card via-background to-card rounded-2xl shadow-2xl border border-muted/20 overflow-hidden flex items-center justify-center">
-                <div className="w-64 h-64 flex items-center justify-center">
-                  <svg width="256" height="256" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" className="animate-pulse opacity-80 hover:opacity-100 transition-opacity duration-300">
-                    <rect width="500" height="500" fill="#1a1a1a"/>
-                    <circle cx="250" cy="250" r="150" stroke="#FF9900" strokeWidth="12" fill="none"/>
-                    <ellipse cx="250" cy="250" rx="240" ry="50" stroke="#FF9900" strokeWidth="8" fill="none"/>
-                    <circle cx="120" cy="180" r="15" fill="#FF9900"/>
-                    <circle cx="380" cy="320" r="15" fill="#FF9900"/>
-                    <text x="250" y="280" textAnchor="middle" fill="#FF9900" fontFamily="Arial, sans-serif" fontSize="80" fontWeight="bold">₿</text>
-                  </svg>
-                </div>
-                <div className="absolute inset-0 quantum-grid opacity-20"></div>
-              </div>
-            </motion.div>
-          </div>
+          <motion.div 
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            
+            
+            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+              <span className="text-gradient">Quantum-Safe Bitcoin,</span>
+              <br />
+              <span className="text-foreground">Ready Today.</span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-4xl mx-auto">
+              qBTC is a proof-of-work side-chain that inherits Bitcoin's economics while upgrading its cryptography to survive the first large-scale quantum computer.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <Button asChild size="lg" className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white px-8 py-4 text-lg">
+                <Link href="/whitepaper">Read the Whitepaper</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="border-muted-foreground text-muted-foreground hover:bg-muted-foreground hover:text-background px-8 py-4 text-lg">
+                <Link href="/docs">Join the Testnet</Link>
+              </Button>
+            </div>
+            
+            <QuantumCountdown />
+          </motion.div>
         </div>
       </section>
 
