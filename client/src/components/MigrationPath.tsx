@@ -22,7 +22,7 @@ export function MigrationPath() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <div className="w-24 h-24 orange-gradient rounded-full flex items-center justify-center mb-4 mx-auto animate-glow">
+            <div className="w-24 h-24 bg-orange-500 rounded-full flex items-center justify-center mb-4 mx-auto">
               <span className="text-white font-bold text-lg">BTC</span>
             </div>
             <h3 className="text-xl font-semibold mb-2">Bitcoin Today</h3>
@@ -47,10 +47,10 @@ export function MigrationPath() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            <div className="w-24 h-24 bg-primary rounded-full flex items-center justify-center mb-4 mx-auto animate-pulse-orange">
+            <div className="w-24 h-24 bg-slate-400 rounded-full flex items-center justify-center mb-4 mx-auto">
               <span className="text-white font-bold text-lg">qBTC</span>
             </div>
-            <h3 className="text-xl font-semibold mb-2">qBTC Bridge</h3>
+            <h3 className="text-xl font-semibold mb-2">Bridge Now or Pre Commit</h3>
             <p className="text-muted-foreground">Quantum-safe transition</p>
           </motion.div>
 
@@ -72,11 +72,11 @@ export function MigrationPath() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0 }}
           >
-            <div className="w-24 h-24 bg-gradient-to-r from-primary to-orange-400 rounded-full flex items-center justify-center mb-4 mx-auto">
+            <div className="w-24 h-24 bg-orange-300 rounded-full flex items-center justify-center mb-4 mx-auto">
               <span className="text-white font-bold text-sm">BTC-PQ</span>
             </div>
             <h3 className="text-xl font-semibold mb-2">Bitcoin L1 Upgraded</h3>
-            <p className="text-muted-foreground">Future quantum-safe Bitcoin</p>
+            <p className="text-muted-foreground">Quantum safety without any upgrades needed on Bitcoin L1</p>
           </motion.div>
         </div>
       </div>
