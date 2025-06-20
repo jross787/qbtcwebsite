@@ -160,9 +160,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-primary/20 mt-12 pt-8 text-center">
-          <p className="text-muted-foreground">
-            © 2024 qBTC Network. Building the quantum-safe future of Bitcoin.
-          </p>
+          <p className="text-muted-foreground">© 2025 Quantum Safe Technologies Corp.  All rights reserved.</p>
         </div>
       </div>
     </footer>
