@@ -43,27 +43,27 @@ export function QuantumCountdown() {
   }, []);
 
   return (
-    <Card className="glass-card p-6 rounded-2xl inline-block animate-pulse-orange">
-      <h3 className="text-primary mb-4 text-[30px] font-bold">Q-Day Countdown</h3>
-      <div className="flex justify-center space-x-6 text-2xl font-mono">
+    <Card className="glass-card p-12 rounded-3xl inline-block animate-pulse-orange shadow-2xl border-2 border-primary/20">
+      <h3 className="text-primary mb-8 text-[48px] font-bold text-center">Q-Day Countdown</h3>
+      <div className="flex justify-center space-x-12 text-5xl font-mono">
         <div className="text-center">
-          <div className="text-primary font-bold">{countdown.years}</div>
-          <div className="text-muted-foreground text-sm">Years</div>
+          <div className="text-primary font-bold text-6xl mb-2">{countdown.years}</div>
+          <div className="text-muted-foreground text-lg font-semibold">Years</div>
         </div>
         <div className="text-center">
-          <div className="text-primary font-bold">{countdown.days}</div>
-          <div className="text-muted-foreground text-sm">Days</div>
+          <div className="text-primary font-bold text-6xl mb-2">{countdown.days}</div>
+          <div className="text-muted-foreground text-lg font-semibold">Days</div>
         </div>
         <div className="text-center">
-          <div className="text-primary font-bold">{countdown.hours}</div>
-          <div className="text-muted-foreground text-sm">Hours</div>
+          <div className="text-primary font-bold text-6xl mb-2">{countdown.hours}</div>
+          <div className="text-muted-foreground text-lg font-semibold">Hours</div>
         </div>
         <div className="text-center">
-          <div className="text-primary font-bold">{countdown.minutes}</div>
-          <div className="text-muted-foreground text-sm">Minutes</div>
+          <div className="text-primary font-bold text-6xl mb-2">{countdown.minutes}</div>
+          <div className="text-muted-foreground text-lg font-semibold">Minutes</div>
         </div>
       </div>
-      <p className="text-muted-foreground text-sm mt-2">
+      <p className="text-muted-foreground text-lg mt-6 text-center max-w-2xl mx-auto">
         Estimated time until cryptographically relevant quantum computer
       </p>
     </Card>
