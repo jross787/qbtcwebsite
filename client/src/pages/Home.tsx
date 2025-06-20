@@ -156,7 +156,9 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            
+            <h2 className="text-4xl font-bold mb-6">
+              Advanced <span className="text-primary">Cryptography</span>
+            </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Built on proven post-quantum algorithms and battle-tested consensus mechanisms.
             </p>
