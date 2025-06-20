@@ -95,6 +95,16 @@
     background-color: hsl(var(--card) / 0.8);
     border: none;
   }
+
+  .glass-card.nav-fade {
+    background: linear-gradient(to bottom,
+      hsl(var(--card) / 0.95) 0%,
+      hsl(var(--card) / 0.8) 70%,
+      hsl(var(--card) / 0.4) 90%,
+      hsl(var(--card) / 0.1) 100%
+    );
+    backdrop-filter: blur(12px);
+  }
   
   .orange-gradient {
     background: linear-gradient(135deg, hsl(28, 100%, 50%) 0%, hsl(20, 100%, 40%) 100%);
@@ -108,22 +118,7 @@
 
   .nav-fade {
     position: relative;
-    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1), 0 1px 40px rgba(0, 0, 0, 0.05);
-  }
-
-  .nav-fade::after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 0;
-    right: 0;
-    height: 20px;
-    background: linear-gradient(to bottom, 
-      rgba(0, 0, 0, 0.05) 0%, 
-      rgba(0, 0, 0, 0.02) 40%, 
-      transparent 100%);
-    pointer-events: none;
-    z-index: -1;
+    height: 80px;
   }
 }
 
