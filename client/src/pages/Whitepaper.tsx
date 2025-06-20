@@ -49,7 +49,6 @@ export default function Whitepaper() {
           </motion.div>
         </div>
       </section>
-
       {/* Content */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,9 +91,7 @@ export default function Whitepaper() {
                 <CardContent className="p-8 prose prose-invert max-w-none">
                   <div id="overview">
                     <h2 className="text-3xl font-bold text-primary mb-4">Overview</h2>
-                    <p className="text-muted-foreground mb-6">
-                      qBTC is a Bitcoin sidechain designed to protect Bitcoin users against quantum attacks while preserving Bitcoin's core principles of decentralization and security. It implements post-quantum cryptography for transactions, uses Bitcoin's Proof-of-Work via merged mining, and enables a two-way peg so that BTC can move between Bitcoin and qBTC. The project is open-sourced (MIT licensed) and implemented in Rust for high performance and security. The goal is to offer a quantum-resistant option for Bitcoin users before quantum computers become capable of threatening Bitcoin's current cryptographic scheme.
-                    </p>
+                    <p className="text-muted-foreground mb-6">qBTC is a Bitcoin sidechain designed to protect Bitcoin users against quantum attacks while preserving Bitcoin’s core principles of decentralization and security. It implements post-quantum cryptography for transactions, uses Bitcoin’s Proof-of-Work via merged mining, and enables a two-way peg so that BTC can move between Bitcoin and qBTC. The project is open-sourced (MIT licensed) and implemented in Rust for high performance and security. The goal is to offer a quantum-resistant environment for Bitcoin users without altering Bitcoin itself, instead providing a sidechain that mirrors Bitcoin’s model (UTXO, PoW) but with quantum-safe features.</p>
                   </div>
 
                   <Separator className="my-8" />
