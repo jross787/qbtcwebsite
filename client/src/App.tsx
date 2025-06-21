@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { QuantumSecurityWidget } from "@/components/QuantumSecurityWidget";
+import { MouseTrail } from "@/components/MouseTrail";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Technology from "@/pages/Technology";
@@ -50,6 +51,7 @@ function App() {
             </main>
             <Footer />
             <QuantumSecurityWidget />
+            <MouseTrail />
           </div>
           <Toaster />
         </TooltipProvider>
