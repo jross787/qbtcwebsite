@@ -1,47 +1,48 @@
 import { useEffect, useState } from 'react';
 
-interface Particle {
+interface Ripple {
   id: number;
   x: number;
   y: number;
-  opacity: number;
   size: number;
+  opacity: number;
 }
 
 export function MouseTrail() {
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [ripples, setRipples] = useState<Ripple[]>([]);
 
   useEffect(() => {
-    let particleId = 0;
+    let rippleId = 0;
 
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      // Create ripple on every 5th mouse movement for better responsiveness
+      if (rippleId % 5 === 0) {
+        const newRipple: Ripple = {
+          id: rippleId++,
+          x: e.clientX,
+          y: e.clientY,
+          size: 0,
+          opacity: 0.6,
+        };
 
-      // Create new particle
-      const newParticle: Particle = {
-        id: particleId++,
-        x: e.clientX,
-        y: e.clientY,
-        opacity: 0.8,
-        size: Math.random() * 8 + 4,
-      };
-
-      setParticles(prev => [...prev.slice(-20), newParticle]);
+        setRipples(prev => [...prev.slice(-6), newRipple]);
+      } else {
+        rippleId++;
+      }
     };
 
     document.addEventListener('mousemove', handleMouseMove);
 
-    // Animate particles
+    // Animate ripples with smooth expansion
     const interval = setInterval(() => {
-      setParticles(prev => 
+      setRipples(prev => 
         prev
-          .map(particle => ({
-            ...particle,
-            opacity: particle.opacity - 0.03,
-            size: particle.size * 0.98,
+          .map(ripple => ({
+            ...ripple,
+            size: ripple.size + 4,
+            opacity: ripple.opacity * 0.92,
           }))
-          .filter(particle => particle.opacity > 0.1)
+          .filter(ripple => ripple.opacity > 0.01 && ripple.size < 300)
       );
     }, 16);
 
@@ -52,51 +53,27 @@ export function MouseTrail() {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-50">
-      {/* Main cursor glow */}
-      <div
-        className="absolute w-6 h-6 rounded-full transition-all duration-100 ease-out"
-        style={{
-          left: mousePos.x - 12,
-          top: mousePos.y - 12,
-          background: 'radial-gradient(circle, rgba(255, 153, 0, 0.3) 0%, rgba(255, 153, 0, 0.1) 50%, transparent 100%)',
-          transform: 'scale(1)',
-        }}
-      />
-      
-      {/* Particle trail */}
-      {particles.map((particle) => (
+    <div className="fixed inset-0 pointer-events-none z-0">
+      {/* Background ripple wave effects */}
+      {ripples.map((ripple) => (
         <div
-          key={particle.id}
-          className="absolute rounded-full"
+          key={ripple.id}
+          className="absolute rounded-full transition-all ease-out"
           style={{
-            left: particle.x - particle.size / 2,
-            top: particle.y - particle.size / 2,
-            width: particle.size,
-            height: particle.size,
-            opacity: particle.opacity,
-            background: `radial-gradient(circle, rgba(255, 153, 0, ${particle.opacity * 0.6}) 0%, rgba(255, 107, 0, ${particle.opacity * 0.3}) 60%, transparent 100%)`,
-            pointerEvents: 'none',
+            left: ripple.x - ripple.size / 2,
+            top: ripple.y - ripple.size / 2,
+            width: ripple.size,
+            height: ripple.size,
+            opacity: ripple.opacity,
+            border: `2px solid rgba(255, 153, 0, ${ripple.opacity * 0.4})`,
+            background: `radial-gradient(circle, 
+              rgba(255, 153, 0, ${ripple.opacity * 0.08}) 0%, 
+              rgba(255, 107, 0, ${ripple.opacity * 0.04}) 40%, 
+              transparent 80%)`,
+            boxShadow: `0 0 ${ripple.size * 0.2}px rgba(255, 153, 0, ${ripple.opacity * 0.3})`,
           }}
         />
       ))}
-      
-      {/* Quantum rings effect */}
-      <div
-        className="absolute transition-all duration-200 ease-out"
-        style={{
-          left: mousePos.x - 20,
-          top: mousePos.y - 20,
-          width: 40,
-          height: 40,
-        }}
-      >
-        <div className="w-full h-full rounded-full border border-orange-400/20 animate-ping" />
-        <div 
-          className="absolute inset-2 rounded-full border border-orange-300/30"
-          style={{ animationDelay: '0.2s' }}
-        />
-      </div>
     </div>
   );
 }

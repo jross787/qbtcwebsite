@@ -147,6 +147,17 @@
   to { box-shadow: 0 0 30px rgba(255, 153, 0, 0.8); }
 }
 
+@keyframes rippleExpand {
+  from {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
