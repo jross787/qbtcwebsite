@@ -55,35 +55,35 @@ export function QuantumCountdown() {
             </h3>
             
             {/* Mobile Layout - Stack in 2 rows */}
-            <div className="block sm:hidden">
-              <div className="flex justify-center gap-4 mb-2 font-mono">
+            <div className="block md:hidden">
+              <div className="flex justify-center gap-3 mb-2 font-mono">
                 <div className="text-center">
-                  <div className="text-primary font-bold text-lg">{countdown.years}</div>
+                  <div className="text-primary font-bold text-base">{countdown.years}</div>
                   <div className="text-muted-foreground text-xs">Years</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-primary font-bold text-lg">{countdown.days}</div>
+                  <div className="text-primary font-bold text-base">{countdown.days}</div>
                   <div className="text-muted-foreground text-xs">Days</div>
                 </div>
               </div>
-              <div className="flex justify-center gap-4 font-mono">
+              <div className="flex justify-center gap-3 font-mono">
                 <div className="text-center">
-                  <div className="text-primary font-bold text-lg">{countdown.hours}</div>
-                  <div className="text-muted-foreground text-xs">Hours</div>
+                  <div className="text-primary font-bold text-base">{countdown.hours}</div>
+                  <div className="text-muted-foreground text-xs">Hr</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-primary font-bold text-lg">{countdown.minutes}</div>
+                  <div className="text-primary font-bold text-base">{countdown.minutes}</div>
                   <div className="text-muted-foreground text-xs">Min</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-primary font-bold text-lg">{countdown.seconds}</div>
+                  <div className="text-primary font-bold text-base">{countdown.seconds}</div>
                   <div className="text-muted-foreground text-xs">Sec</div>
                 </div>
               </div>
             </div>
 
             {/* Desktop Layout - Single row */}
-            <div className="hidden sm:flex justify-center gap-2 md:gap-4 lg:gap-6 font-mono">
+            <div className="hidden md:flex justify-center gap-2 lg:gap-4 xl:gap-6 font-mono">
               <div className="text-center">
                 <div className="text-primary font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-1">{countdown.years}</div>
                 <div className="text-muted-foreground text-sm md:text-base font-semibold">Years</div>
