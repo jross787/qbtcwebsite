@@ -4,6 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent horizontal overflow on mobile */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --background: hsl(0, 0%, 100%);
   --foreground: hsl(210, 6%, 15%);

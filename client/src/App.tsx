@@ -44,7 +44,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <TooltipProvider>
-          <div className="min-h-screen bg-background text-foreground">
+          <div className="min-h-screen bg-background text-foreground overflow-x-hidden w-full">
             <Navigation />
             <main>
               <Router />

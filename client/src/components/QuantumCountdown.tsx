@@ -46,27 +46,27 @@ export function QuantumCountdown() {
   }, []);
 
   return (
-    <Card className="glass-card p-3 sm:p-4 md:p-6 lg:p-8 rounded-2xl sm:rounded-3xl w-full max-w-[95vw] sm:max-w-2xl md:max-w-2xl lg:max-w-3xl animate-pulse-orange shadow-xl border-2 border-primary/20 mx-auto">
+    <Card className="glass-card p-2 sm:p-4 md:p-6 lg:p-8 rounded-2xl sm:rounded-3xl w-full max-w-[90vw] sm:max-w-2xl md:max-w-2xl lg:max-w-3xl animate-pulse-orange shadow-xl border-2 border-primary/20 mx-auto">
       <h3 className="text-primary mb-4 sm:mb-6 font-bold text-center text-2xl sm:text-3xl lg:text-4xl xl:text-5xl">Q-Day Countdown</h3>
       <div className="grid grid-cols-5 gap-1 sm:gap-2 md:gap-3 lg:gap-3 text-center font-mono max-w-xl mx-auto">
-        <div className="min-w-0 overflow-hidden">
-          <div className="text-primary font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.years.toString().padStart(2, '0')}</div>
+        <div className="min-w-0 overflow-hidden flex-1">
+          <div className="text-primary font-bold text-base sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.years.toString().padStart(2, '0')}</div>
           <div className="text-muted-foreground text-xs sm:text-sm lg:text-base font-semibold">Years</div>
         </div>
-        <div className="min-w-0 overflow-hidden">
-          <div className="text-primary font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.days.toString().padStart(3, '0')}</div>
+        <div className="min-w-0 overflow-hidden flex-1">
+          <div className="text-primary font-bold text-base sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.days.toString().padStart(3, '0')}</div>
           <div className="text-muted-foreground text-xs sm:text-sm lg:text-base font-semibold">Days</div>
         </div>
-        <div className="min-w-0 overflow-hidden">
-          <div className="text-primary font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.hours.toString().padStart(2, '0')}</div>
+        <div className="min-w-0 overflow-hidden flex-1">
+          <div className="text-primary font-bold text-base sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.hours.toString().padStart(2, '0')}</div>
           <div className="text-muted-foreground text-xs sm:text-sm lg:text-base font-semibold">Hours</div>
         </div>
-        <div className="min-w-0 overflow-hidden">
-          <div className="text-primary font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.minutes.toString().padStart(2, '0')}</div>
+        <div className="min-w-0 overflow-hidden flex-1">
+          <div className="text-primary font-bold text-base sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.minutes.toString().padStart(2, '0')}</div>
           <div className="text-muted-foreground text-xs sm:text-sm lg:text-base font-semibold">Minutes</div>
         </div>
-        <div className="min-w-0 overflow-hidden">
-          <div className="text-primary font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.seconds.toString().padStart(2, '0')}</div>
+        <div className="min-w-0 overflow-hidden flex-1">
+          <div className="text-primary font-bold text-base sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.seconds.toString().padStart(2, '0')}</div>
           <div className="text-muted-foreground text-xs sm:text-sm lg:text-base font-semibold">Seconds</div>
         </div>
       </div>
