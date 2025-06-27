@@ -46,31 +46,33 @@ export function QuantumCountdown() {
   }, []);
 
   return (
-    <Card className="glass-card p-4 sm:p-6 md:p-8 rounded-3xl inline-block animate-pulse-orange shadow-xl border-2 border-primary/20 max-w-full">
-      <h3 className="text-primary mb-4 sm:mb-6 font-bold text-center text-2xl sm:text-3xl md:text-[42px]">Q-Day Countdown</h3>
-      <div className="flex justify-center space-x-2 sm:space-x-4 md:space-x-6 text-lg sm:text-2xl md:text-3xl font-mono overflow-x-hidden">
-        <div className="text-center min-w-0 flex-1">
-          <div className="text-primary font-bold text-xl sm:text-2xl md:text-4xl mb-1 sm:mb-2">{countdown.years}</div>
-          <div className="text-muted-foreground text-xs sm:text-sm md:text-base font-semibold">Years</div>
+    <div className="flex justify-center w-full px-4">
+      <Card className="glass-card p-3 sm:p-4 md:p-6 lg:p-8 rounded-3xl animate-pulse-orange shadow-xl border-2 border-primary/20 w-full max-w-4xl">
+        <h3 className="text-primary mb-3 sm:mb-4 md:mb-6 font-bold text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px]">Q-Day Countdown</h3>
+        <div className="flex justify-center gap-1 sm:gap-2 md:gap-4 lg:gap-6 text-sm sm:text-lg md:text-2xl lg:text-3xl font-mono">
+          <div className="text-center flex-1 min-w-0">
+            <div className="text-primary font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-4xl mb-1">{countdown.years}</div>
+            <div className="text-muted-foreground text-xs sm:text-xs md:text-sm lg:text-base font-semibold">Years</div>
+          </div>
+          <div className="text-center flex-1 min-w-0">
+            <div className="text-primary font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-4xl mb-1">{countdown.days}</div>
+            <div className="text-muted-foreground text-xs sm:text-xs md:text-sm lg:text-base font-semibold">Days</div>
+          </div>
+          <div className="text-center flex-1 min-w-0">
+            <div className="text-primary font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-4xl mb-1">{countdown.hours}</div>
+            <div className="text-muted-foreground text-xs sm:text-xs md:text-sm lg:text-base font-semibold">Hours</div>
+          </div>
+          <div className="text-center flex-1 min-w-0">
+            <div className="text-primary font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-4xl mb-1">{countdown.minutes}</div>
+            <div className="text-muted-foreground text-xs sm:text-xs md:text-sm lg:text-base font-semibold">Minutes</div>
+          </div>
+          <div className="text-center flex-1 min-w-0">
+            <div className="text-primary font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-4xl mb-1">{countdown.seconds}</div>
+            <div className="text-muted-foreground text-xs sm:text-xs md:text-sm lg:text-base font-semibold">Seconds</div>
+          </div>
         </div>
-        <div className="text-center min-w-0 flex-1">
-          <div className="text-primary font-bold text-xl sm:text-2xl md:text-4xl mb-1 sm:mb-2">{countdown.days}</div>
-          <div className="text-muted-foreground text-xs sm:text-sm md:text-base font-semibold">Days</div>
-        </div>
-        <div className="text-center min-w-0 flex-1">
-          <div className="text-primary font-bold text-xl sm:text-2xl md:text-4xl mb-1 sm:mb-2">{countdown.hours}</div>
-          <div className="text-muted-foreground text-xs sm:text-sm md:text-base font-semibold">Hours</div>
-        </div>
-        <div className="text-center min-w-0 flex-1">
-          <div className="text-primary font-bold text-xl sm:text-2xl md:text-4xl mb-1 sm:mb-2">{countdown.minutes}</div>
-          <div className="text-muted-foreground text-xs sm:text-sm md:text-base font-semibold">Minutes</div>
-        </div>
-        <div className="text-center min-w-0 flex-1">
-          <div className="text-primary font-bold text-xl sm:text-2xl md:text-4xl mb-1 sm:mb-2">{countdown.seconds}</div>
-          <div className="text-muted-foreground text-xs sm:text-sm md:text-base font-semibold">Seconds</div>
-        </div>
-      </div>
-      <p className="text-muted-foreground text-sm sm:text-base mt-3 sm:mt-4 text-center max-w-2xl mx-auto px-2">Estimated date that a cryptographically relevant quantum computer may arrive</p>
-    </Card>
+        <p className="text-muted-foreground text-xs sm:text-sm md:text-base mt-2 sm:mt-3 md:mt-4 text-center max-w-2xl mx-auto px-1 sm:px-2">Estimated date that a cryptographically relevant quantum computer may arrive</p>
+      </Card>
+    </div>
   );
 }
