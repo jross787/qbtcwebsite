@@ -77,21 +77,21 @@ export default function Home() {
           >
             
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-10">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 sm:mb-8 md:mb-10 px-4">
               <span className="text-gradient">Quantum-Safe Bitcoin,</span>
               <br />
               <span className="text-foreground">Ready Today.</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 sm:mb-10 md:mb-12 max-w-4xl mx-auto leading-relaxed px-4">
               qBTC is a proof-of-work side-chain that inherits Bitcoin's economics while upgrading its cryptography to survive the first large-scale quantum computer.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-              <Button asChild size="lg" className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white px-10 py-5 text-lg">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-12 sm:mb-14 md:mb-16 px-4">
+              <Button asChild size="lg" className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-base sm:text-lg">
                 <Link href="/whitepaper">Read the Whitepaper</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-muted-foreground text-muted-foreground hover:bg-muted-foreground hover:text-background px-10 py-5 text-lg">
+              <Button asChild variant="outline" size="lg" className="border-muted-foreground text-muted-foreground hover:bg-muted-foreground hover:text-background px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-base sm:text-lg">
                 <Link href="/docs">Join the Testnet</Link>
               </Button>
             </div>
@@ -110,15 +110,15 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 px-4">
               Built for the <span className="text-[#f79619]">Quantum Era</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
               Three core innovations that make qBTC the most secure Bitcoin side-chain for the post-quantum world.
             </p>
           </motion.div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {benefits.map((benefit, index) => (
               <motion.div
                 key={benefit.title}
@@ -127,14 +127,14 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
               >
-                <Card className="glass-card p-8 rounded-2xl hover:shadow-lg hover:shadow-muted/10 transition-all duration-300 group h-full">
+                <Card className="glass-card p-4 sm:p-6 md:p-8 rounded-2xl hover:shadow-lg hover:shadow-muted/10 transition-all duration-300 group h-full">
                   <CardContent className="p-0">
-                    <div className="w-16 h-16 orange-gradient rounded-xl flex items-center justify-center mb-6 group-hover:animate-glow">
-                      <benefit.icon className="w-8 h-8 text-white" />
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 orange-gradient rounded-xl flex items-center justify-center mb-4 sm:mb-6 group-hover:animate-glow">
+                      <benefit.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold mb-4 text-foreground">{benefit.title}</h3>
-                    <p className="text-muted-foreground mb-4">{benefit.description}</p>
-                    <div className="bg-card border border-muted/30 p-4 rounded-lg font-mono text-sm">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 md:mb-4 text-foreground">{benefit.title}</h3>
+                    <p className="text-sm sm:text-base text-muted-foreground mb-3 md:mb-4">{benefit.description}</p>
+                    <div className="bg-card border border-muted/30 p-3 md:p-4 rounded-lg font-mono text-xs sm:text-sm overflow-x-auto">
                       <div dangerouslySetInnerHTML={{ __html: benefit.code }} />
                     </div>
                   </CardContent>
@@ -156,10 +156,10 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 px-4">
               Advanced <span className="text-primary">Cryptography</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Built with NIST approved post-quantum algorithms and battle-tested consensus mechanisms.</p>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">Built with NIST approved post-quantum algorithms and battle-tested consensus mechanisms.</p>
           </motion.div>
           
           <div className="grid lg:grid-cols-2 gap-12 items-stretch">

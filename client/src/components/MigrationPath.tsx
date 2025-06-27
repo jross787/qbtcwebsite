@@ -12,10 +12,10 @@ export function MigrationPath() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 px-4">
             The Migration Path to <span className="text-primary">Quantum Safety</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
             A clear, secure pathway from today's Bitcoin to tomorrow's quantum-resistant future.
           </p>
         </motion.div>

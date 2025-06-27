@@ -16,13 +16,13 @@ export default function Team() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="w-24 h-24 orange-gradient rounded-full flex items-center justify-center mx-auto mb-8">
-              <Users className="w-12 h-12 text-white" />
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 orange-gradient rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-8">
+              <Users className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 px-4">
               Our <span className="text-primary">Team</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
               World-class researchers, engineers, and cryptographers building the quantum-safe future of Bitcoin.
             </p>
           </motion.div>
@@ -32,7 +32,7 @@ export default function Team() {
       {/* Team Grid */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={member.name}
@@ -42,16 +42,16 @@ export default function Team() {
                 viewport={{ once: true }}
               >
                 <Card className="glass-card hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 group">
-                  <CardHeader className="text-center">
-                    <div className="w-32 h-32 mx-auto mb-4 relative">
-                      <div className="w-full h-full orange-gradient rounded-full flex items-center justify-center text-white text-3xl font-bold group-hover:animate-glow">
+                  <CardHeader className="text-center p-4 sm:p-6">
+                    <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto mb-3 sm:mb-4 relative">
+                      <div className="w-full h-full orange-gradient rounded-full flex items-center justify-center text-white text-xl sm:text-2xl md:text-3xl font-bold group-hover:animate-glow">
                         {member.name.split(' ').map(n => n[0]).join('')}
                       </div>
                     </div>
-                    <h3 className="text-xl font-bold text-foreground">{member.name}</h3>
-                    <p className="text-primary font-semibold">{member.role}</p>
+                    <h3 className="text-lg sm:text-xl font-bold text-foreground">{member.name}</h3>
+                    <p className="text-primary font-semibold text-sm sm:text-base">{member.role}</p>
                   </CardHeader>
-                  <CardContent className="text-center">
+                  <CardContent className="text-center p-4 sm:p-6 pt-0">
                     <p className="text-muted-foreground mb-4">{member.bio}</p>
                     
                     {member.expertise.length > 0 && (
