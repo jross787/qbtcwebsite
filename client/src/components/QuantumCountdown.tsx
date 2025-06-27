@@ -46,37 +46,72 @@ export function QuantumCountdown() {
   }, []);
 
   return (
-    <div className="w-full flex justify-center px-2">
-      <Card className="glass-card p-2 sm:p-3 md:p-4 lg:p-6 rounded-xl sm:rounded-2xl animate-pulse-orange shadow-xl border-2 border-primary/20 w-full max-w-[280px] sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-2xl">
-        <h3 className="text-primary mb-2 sm:mb-3 md:mb-4 font-bold text-center text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">Q-Day Countdown</h3>
-        <div className="flex justify-center items-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 font-mono text-center">
-          <div className="flex flex-col items-center min-w-0">
-            <span className="text-primary font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">{countdown.years}</span>
-            <span className="text-muted-foreground text-xs font-medium">Y</span>
+    <div className="w-full overflow-hidden">
+      <div className="mx-auto px-4 max-w-full">
+        <Card className="glass-card mx-auto animate-pulse-orange shadow-xl border-2 border-primary/20 max-w-full overflow-hidden">
+          <div className="p-3 sm:p-4 md:p-6">
+            <h3 className="text-primary mb-3 sm:mb-4 font-bold text-center text-base sm:text-lg md:text-xl lg:text-2xl">
+              Q-Day Countdown
+            </h3>
+            
+            {/* Mobile Layout - Stack in 2 rows */}
+            <div className="block sm:hidden">
+              <div className="flex justify-center gap-4 mb-2 font-mono">
+                <div className="text-center">
+                  <div className="text-primary font-bold text-lg">{countdown.years}</div>
+                  <div className="text-muted-foreground text-xs">Years</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-primary font-bold text-lg">{countdown.days}</div>
+                  <div className="text-muted-foreground text-xs">Days</div>
+                </div>
+              </div>
+              <div className="flex justify-center gap-4 font-mono">
+                <div className="text-center">
+                  <div className="text-primary font-bold text-lg">{countdown.hours}</div>
+                  <div className="text-muted-foreground text-xs">Hours</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-primary font-bold text-lg">{countdown.minutes}</div>
+                  <div className="text-muted-foreground text-xs">Min</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-primary font-bold text-lg">{countdown.seconds}</div>
+                  <div className="text-muted-foreground text-xs">Sec</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop Layout - Single row */}
+            <div className="hidden sm:flex justify-center gap-2 md:gap-4 lg:gap-6 font-mono">
+              <div className="text-center">
+                <div className="text-primary font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-1">{countdown.years}</div>
+                <div className="text-muted-foreground text-sm md:text-base font-semibold">Years</div>
+              </div>
+              <div className="text-center">
+                <div className="text-primary font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-1">{countdown.days}</div>
+                <div className="text-muted-foreground text-sm md:text-base font-semibold">Days</div>
+              </div>
+              <div className="text-center">
+                <div className="text-primary font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-1">{countdown.hours}</div>
+                <div className="text-muted-foreground text-sm md:text-base font-semibold">Hours</div>
+              </div>
+              <div className="text-center">
+                <div className="text-primary font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-1">{countdown.minutes}</div>
+                <div className="text-muted-foreground text-sm md:text-base font-semibold">Minutes</div>
+              </div>
+              <div className="text-center">
+                <div className="text-primary font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-1">{countdown.seconds}</div>
+                <div className="text-muted-foreground text-sm md:text-base font-semibold">Seconds</div>
+              </div>
+            </div>
+
+            <p className="text-muted-foreground text-xs sm:text-sm md:text-base mt-3 sm:mt-4 text-center leading-tight">
+              Estimated date that a cryptographically relevant quantum computer may arrive
+            </p>
           </div>
-          <span className="text-muted-foreground text-xs sm:text-sm">:</span>
-          <div className="flex flex-col items-center min-w-0">
-            <span className="text-primary font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">{countdown.days}</span>
-            <span className="text-muted-foreground text-xs font-medium">D</span>
-          </div>
-          <span className="text-muted-foreground text-xs sm:text-sm">:</span>
-          <div className="flex flex-col items-center min-w-0">
-            <span className="text-primary font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">{countdown.hours}</span>
-            <span className="text-muted-foreground text-xs font-medium">H</span>
-          </div>
-          <span className="text-muted-foreground text-xs sm:text-sm">:</span>
-          <div className="flex flex-col items-center min-w-0">
-            <span className="text-primary font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">{countdown.minutes}</span>
-            <span className="text-muted-foreground text-xs font-medium">M</span>
-          </div>
-          <span className="text-muted-foreground text-xs sm:text-sm">:</span>
-          <div className="flex flex-col items-center min-w-0">
-            <span className="text-primary font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">{countdown.seconds}</span>
-            <span className="text-muted-foreground text-xs font-medium">S</span>
-          </div>
-        </div>
-        <p className="text-muted-foreground text-xs sm:text-sm mt-2 sm:mt-3 text-center leading-tight px-1">Estimated date that a cryptographically relevant quantum computer may arrive</p>
-      </Card>
+        </Card>
+      </div>
     </div>
   );
 }
