@@ -46,32 +46,32 @@ export function QuantumCountdown() {
   }, []);
 
   return (
-    <div className="flex justify-center w-full px-4">
-      <Card className="glass-card p-3 sm:p-4 md:p-6 lg:p-8 rounded-3xl animate-pulse-orange shadow-xl border-2 border-primary/20 w-full max-w-4xl">
-        <h3 className="text-primary mb-3 sm:mb-4 md:mb-6 font-bold text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px]">Q-Day Countdown</h3>
-        <div className="flex justify-center gap-1 sm:gap-2 md:gap-4 lg:gap-6 text-sm sm:text-lg md:text-2xl lg:text-3xl font-mono">
-          <div className="text-center flex-1 min-w-0">
-            <div className="text-primary font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-4xl mb-1">{countdown.years}</div>
+    <div className="flex justify-center w-full px-2 sm:px-4">
+      <Card className="glass-card p-2 sm:p-3 md:p-4 lg:p-6 xl:p-8 rounded-2xl sm:rounded-3xl animate-pulse-orange shadow-xl border-2 border-primary/20 w-full max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl">
+        <h3 className="text-primary mb-2 sm:mb-3 md:mb-4 lg:mb-6 font-bold text-center text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-[42px]">Q-Day Countdown</h3>
+        <div className="flex justify-between gap-0.5 sm:gap-1 md:gap-2 lg:gap-4 xl:gap-6 font-mono">
+          <div className="text-center flex-1 min-w-0 px-0.5">
+            <div className="text-primary font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-4xl mb-0.5 sm:mb-1">{countdown.years}</div>
             <div className="text-muted-foreground text-xs sm:text-xs md:text-sm lg:text-base font-semibold">Years</div>
           </div>
-          <div className="text-center flex-1 min-w-0">
-            <div className="text-primary font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-4xl mb-1">{countdown.days}</div>
+          <div className="text-center flex-1 min-w-0 px-0.5">
+            <div className="text-primary font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-4xl mb-0.5 sm:mb-1">{countdown.days}</div>
             <div className="text-muted-foreground text-xs sm:text-xs md:text-sm lg:text-base font-semibold">Days</div>
           </div>
-          <div className="text-center flex-1 min-w-0">
-            <div className="text-primary font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-4xl mb-1">{countdown.hours}</div>
+          <div className="text-center flex-1 min-w-0 px-0.5">
+            <div className="text-primary font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-4xl mb-0.5 sm:mb-1">{countdown.hours}</div>
             <div className="text-muted-foreground text-xs sm:text-xs md:text-sm lg:text-base font-semibold">Hours</div>
           </div>
-          <div className="text-center flex-1 min-w-0">
-            <div className="text-primary font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-4xl mb-1">{countdown.minutes}</div>
+          <div className="text-center flex-1 min-w-0 px-0.5">
+            <div className="text-primary font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-4xl mb-0.5 sm:mb-1">{countdown.minutes}</div>
             <div className="text-muted-foreground text-xs sm:text-xs md:text-sm lg:text-base font-semibold">Minutes</div>
           </div>
-          <div className="text-center flex-1 min-w-0">
-            <div className="text-primary font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-4xl mb-1">{countdown.seconds}</div>
+          <div className="text-center flex-1 min-w-0 px-0.5">
+            <div className="text-primary font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-4xl mb-0.5 sm:mb-1">{countdown.seconds}</div>
             <div className="text-muted-foreground text-xs sm:text-xs md:text-sm lg:text-base font-semibold">Seconds</div>
           </div>
         </div>
-        <p className="text-muted-foreground text-xs sm:text-sm md:text-base mt-2 sm:mt-3 md:mt-4 text-center max-w-2xl mx-auto px-1 sm:px-2">Estimated date that a cryptographically relevant quantum computer may arrive</p>
+        <p className="text-muted-foreground text-xs sm:text-sm md:text-base mt-2 sm:mt-3 md:mt-4 text-center max-w-2xl mx-auto px-1 leading-tight">Estimated date that a cryptographically relevant quantum computer may arrive</p>
       </Card>
     </div>
   );
