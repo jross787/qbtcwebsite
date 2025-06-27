@@ -74,15 +74,15 @@ export default function Technology() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 px-4">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Quantum-Safe <span className="text-primary">Technology</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Advanced cryptographic protocols and consensus mechanisms designed to withstand quantum attacks while maintaining Bitcoin's security model.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {technologies.map((tech, index) => (
               <motion.div
                 key={tech.title}
@@ -91,15 +91,15 @@ export default function Technology() {
                 transition={{ duration: 0.8, delay: index * 0.1 }}
               >
                 <Card className="glass-card h-full hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
-                  <CardHeader className="p-4 sm:p-6">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 orange-gradient rounded-lg flex items-center justify-center mb-3 sm:mb-4">
-                      <tech.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  <CardHeader>
+                    <div className="w-12 h-12 orange-gradient rounded-lg flex items-center justify-center mb-4">
+                      <tech.icon className="w-6 h-6 text-white" />
                     </div>
-                    <CardTitle className="text-lg sm:text-xl">{tech.title}</CardTitle>
-                    <div className="text-primary font-semibold text-sm sm:text-base">{tech.subtitle}</div>
+                    <CardTitle className="text-xl">{tech.title}</CardTitle>
+                    <div className="text-primary font-semibold">{tech.subtitle}</div>
                   </CardHeader>
-                  <CardContent className="p-4 sm:p-6 pt-0">
-                    <p className="text-muted-foreground text-sm sm:text-base">{tech.description}</p>
+                  <CardContent>
+                    <p className="text-muted-foreground">{tech.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -118,31 +118,31 @@ export default function Technology() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 px-4">
+            <h2 className="text-4xl font-bold mb-6">
               Technical <span className="text-primary">Implementation</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Deep dive into the cryptographic primitives and protocol design that powers qBTC's quantum resistance.
             </p>
           </motion.div>
 
           <Tabs defaultValue="consensus" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-0">
-              <TabsTrigger value="consensus" className="text-xs sm:text-sm">Consensus</TabsTrigger>
-              <TabsTrigger value="signatures" className="text-xs sm:text-sm">Signatures</TabsTrigger>
-              <TabsTrigger value="bridge" className="text-xs sm:text-sm">Bridge</TabsTrigger>
-              <TabsTrigger value="economics" className="text-xs sm:text-sm">Economics</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-4">
+              <TabsTrigger value="consensus">Consensus</TabsTrigger>
+              <TabsTrigger value="signatures">Signatures</TabsTrigger>
+              <TabsTrigger value="bridge">Bridge</TabsTrigger>
+              <TabsTrigger value="economics">Economics</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="consensus" className="mt-6 sm:mt-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-                <Card className="glass-card p-4 sm:p-6 md:p-8">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4">Modified Nakamoto Consensus</h3>
-                  <div className="space-y-3 sm:space-y-4 text-muted-foreground text-sm sm:text-base">
+            <TabsContent value="consensus" className="mt-8">
+              <div className="grid lg:grid-cols-2 gap-8">
+                <Card className="glass-card p-8">
+                  <h3 className="text-2xl font-bold mb-4">Modified Nakamoto Consensus</h3>
+                  <div className="space-y-4 text-muted-foreground">
                     <p>
                       qBTC inherits Bitcoin's proven proof-of-work consensus mechanism with quantum-safe enhancements:
                     </p>
-                    <ul className="list-disc list-inside space-y-1 sm:space-y-2">
+                    <ul className="list-disc list-inside space-y-2">
                       <li>SHA-256 mining remains unchanged for hash power compatibility</li>
                       <li>Enhanced difficulty adjustment for side-chain stability</li>
                       <li>Quantum-resistant block validation</li>
@@ -151,8 +151,8 @@ export default function Technology() {
                   </div>
                 </Card>
                 <div>
-                  <h4 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-primary">Block Structure</h4>
-                  <div className="bg-card border border-primary/30 p-4 sm:p-6 rounded-lg font-mono text-xs sm:text-sm overflow-x-auto">
+                  <h4 className="text-xl font-semibold mb-4 text-primary">Block Structure</h4>
+                  <div className="bg-card border border-primary/30 p-6 rounded-lg font-mono text-sm">
                     <pre className="text-foreground">
 {`Block Header:
 - version: 0x20000000
@@ -168,9 +168,9 @@ export default function Technology() {
               </div>
             </TabsContent>
 
-            <TabsContent value="signatures" className="mt-6 sm:mt-8">
-              <div className="space-y-6 sm:space-y-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
+            <TabsContent value="signatures" className="mt-8">
+              <div className="space-y-8">
+                <div className="grid lg:grid-cols-2 gap-12">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}

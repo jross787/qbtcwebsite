@@ -26,18 +26,18 @@ export default function Whitepaper() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 orange-gradient rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-8">
-              <FileText className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
+            <div className="w-24 h-24 orange-gradient rounded-full flex items-center justify-center mx-auto mb-8">
+              <FileText className="w-12 h-12 text-white" />
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 px-4">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
               qBTC: Quantum Secure <span className="text-primary">Bitcoin Sidechain</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12 px-4">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
               A Bitcoin sidechain designed to protect Bitcoin users against quantum attacks while preserving Bitcoin's core principles of decentralization and security.
             </p>
-            <div className="flex justify-center mb-6 sm:mb-8 px-4">
+            <div className="flex justify-center mb-8">
               <Button size="lg" className="orange-gradient text-white">
-                <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                <Download className="w-5 h-5 mr-2" />
                 Download PDF
               </Button>
             </div>
@@ -48,25 +48,25 @@ export default function Whitepaper() {
       {/* Content */}
       <section className="py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
-            {/* Table of Contents - Hidden on mobile, visible on larger screens */}
+          <div className="grid lg:grid-cols-4 gap-8">
+            {/* Table of Contents */}
             <motion.div
-              className="hidden lg:block lg:col-span-1"
+              className="lg:col-span-1"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
               <Card className="glass-card sticky top-24">
-                <CardHeader className="p-4">
-                  <CardTitle className="text-base sm:text-lg">Table of Contents</CardTitle>
+                <CardHeader>
+                  <CardTitle className="text-lg">Table of Contents</CardTitle>
                 </CardHeader>
-                <CardContent className="p-4 pt-0">
+                <CardContent>
                   <nav className="space-y-2">
                     {sections.map((section, index) => (
                       <a
                         key={section.title}
                         href={section.anchor}
-                        className="block text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors py-1"
+                        className="block text-sm text-muted-foreground hover:text-primary transition-colors py-1"
                       >
                         {index + 1}. {section.title}
                       </a>
@@ -78,13 +78,13 @@ export default function Whitepaper() {
 
             {/* Main Content */}
             <motion.div
-              className="col-span-1 lg:col-span-3"
+              className="lg:col-span-3"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <Card className="glass-card">
-                <CardContent className="p-4 sm:p-6 md:p-8 prose prose-invert max-w-none">
+                <CardContent className="p-8 prose prose-invert max-w-none">
                   <div id="overview">
                     <h2 className="text-3xl font-bold text-primary mb-4">Overview</h2>
                     <p className="text-muted-foreground mb-6">

@@ -73,9 +73,9 @@ export function CodeBlock({ title, code, language = "javascript" }: CodeBlockPro
   }, [isInView, code]);
 
   return (
-    <div ref={ref} className="glass-card p-4 sm:p-6 md:p-8 rounded-2xl h-full flex flex-col">
+    <div ref={ref} className="glass-card p-8 rounded-2xl h-full flex flex-col">
       <motion.h3 
-        className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-primary text-center"
+        className="text-2xl font-bold mb-4 text-primary text-center"
         initial={{ opacity: 0, y: 10 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5 }}
@@ -83,7 +83,7 @@ export function CodeBlock({ title, code, language = "javascript" }: CodeBlockPro
         {title}
       </motion.h3>
       <motion.div 
-        className="bg-card border border-primary/30 p-3 sm:p-4 md:p-6 rounded-lg font-mono text-xs sm:text-sm overflow-x-auto flex-1"
+        className="bg-card border border-primary/30 p-6 rounded-lg font-mono text-sm overflow-x-auto flex-1"
         initial={{ opacity: 0, y: 10 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: 0.1 }}
