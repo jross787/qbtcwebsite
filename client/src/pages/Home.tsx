@@ -30,7 +30,7 @@ const benefits = [
 ];
 
 const advisors = [
-  "Paradigm", "a16z crypto", "Polychain", "Jump Crypto", "Coinbase", "Binance Labs"
+  "Fund 1", "Fund 2", "Fund 3", "Fund 4", "Fund 5", "Fund 6"
 ];
 
 const mlDsaSignatureCode = `<span class="text-muted-foreground">// Post-quantum signature scheme</span>
