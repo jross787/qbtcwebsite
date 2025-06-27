@@ -46,31 +46,31 @@ export function QuantumCountdown() {
   }, []);
 
   return (
-    <Card className="glass-card p-8 rounded-3xl inline-block animate-pulse-orange shadow-xl border-2 border-primary/20">
-      <h3 className="text-primary mb-6 font-bold text-center text-[42px]">Q-Day Countdown</h3>
-      <div className="flex justify-center space-x-6 text-3xl font-mono">
-        <div className="text-center">
-          <div className="text-primary font-bold text-4xl mb-2">{countdown.years}</div>
-          <div className="text-muted-foreground text-base font-semibold">Years</div>
+    <Card className="glass-card p-3 sm:p-4 md:p-6 lg:p-8 rounded-2xl sm:rounded-3xl w-full max-w-[95vw] sm:max-w-4xl lg:max-w-5xl animate-pulse-orange shadow-xl border-2 border-primary/20 mx-auto">
+      <h3 className="text-primary mb-4 sm:mb-6 font-bold text-center text-2xl sm:text-3xl lg:text-4xl xl:text-5xl">Q-Day Countdown</h3>
+      <div className="grid grid-cols-5 gap-2 sm:gap-4 lg:gap-6 text-center font-mono">
+        <div className="min-w-0 overflow-hidden">
+          <div className="text-primary font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.years.toString().padStart(2, '0')}</div>
+          <div className="text-muted-foreground text-xs sm:text-sm lg:text-base font-semibold">Years</div>
         </div>
-        <div className="text-center">
-          <div className="text-primary font-bold text-4xl mb-2">{countdown.days}</div>
-          <div className="text-muted-foreground text-base font-semibold">Days</div>
+        <div className="min-w-0 overflow-hidden">
+          <div className="text-primary font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.days.toString().padStart(3, '0')}</div>
+          <div className="text-muted-foreground text-xs sm:text-sm lg:text-base font-semibold">Days</div>
         </div>
-        <div className="text-center">
-          <div className="text-primary font-bold text-4xl mb-2">{countdown.hours}</div>
-          <div className="text-muted-foreground text-base font-semibold">Hours</div>
+        <div className="min-w-0 overflow-hidden">
+          <div className="text-primary font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.hours.toString().padStart(2, '0')}</div>
+          <div className="text-muted-foreground text-xs sm:text-sm lg:text-base font-semibold">Hours</div>
         </div>
-        <div className="text-center">
-          <div className="text-primary font-bold text-4xl mb-2">{countdown.minutes}</div>
-          <div className="text-muted-foreground text-base font-semibold">Minutes</div>
+        <div className="min-w-0 overflow-hidden">
+          <div className="text-primary font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.minutes.toString().padStart(2, '0')}</div>
+          <div className="text-muted-foreground text-xs sm:text-sm lg:text-base font-semibold">Minutes</div>
         </div>
-        <div className="text-center">
-          <div className="text-primary font-bold text-4xl mb-2">{countdown.seconds}</div>
-          <div className="text-muted-foreground text-base font-semibold">Seconds</div>
+        <div className="min-w-0 overflow-hidden">
+          <div className="text-primary font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.seconds.toString().padStart(2, '0')}</div>
+          <div className="text-muted-foreground text-xs sm:text-sm lg:text-base font-semibold">Seconds</div>
         </div>
       </div>
-      <p className="text-muted-foreground text-base mt-4 text-center max-w-2xl mx-auto">Estimated date that a cryptographically relevant quantum computer may arrive</p>
+      <p className="text-muted-foreground text-sm sm:text-base mt-3 sm:mt-4 text-center max-w-2xl mx-auto px-2">Estimated date that a cryptographically relevant quantum computer may arrive</p>
     </Card>
   );
 }

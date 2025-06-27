@@ -96,7 +96,9 @@ export default function Home() {
               </Button>
             </div>
             
-            <QuantumCountdown />
+            <div className="flex justify-center w-full">
+              <QuantumCountdown />
+            </div>
           </motion.div>
         </div>
       </section>
