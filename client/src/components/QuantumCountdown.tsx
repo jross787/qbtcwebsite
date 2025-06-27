@@ -46,7 +46,7 @@ export function QuantumCountdown() {
   }, []);
 
   return (
-    <Card className="glass-card p-3 sm:p-4 md:p-6 lg:p-8 rounded-2xl sm:rounded-3xl w-full max-w-[95vw] sm:max-w-4xl lg:max-w-5xl animate-pulse-orange shadow-xl border-2 border-primary/20 mx-auto">
+    <Card className="glass-card p-3 sm:p-4 md:p-6 lg:p-8 rounded-2xl sm:rounded-3xl w-full max-w-[95vw] sm:max-w-2xl md:max-w-3xl lg:max-w-4xl animate-pulse-orange shadow-xl border-2 border-primary/20 mx-auto">
       <h3 className="text-primary mb-4 sm:mb-6 font-bold text-center text-2xl sm:text-3xl lg:text-4xl xl:text-5xl">Q-Day Countdown</h3>
       <div className="grid grid-cols-5 gap-2 sm:gap-4 lg:gap-6 text-center font-mono">
         <div className="min-w-0 overflow-hidden">
