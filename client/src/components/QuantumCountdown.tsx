@@ -48,7 +48,7 @@ export function QuantumCountdown() {
   return (
     <Card className="glass-card p-3 sm:p-4 md:p-6 lg:p-8 rounded-2xl sm:rounded-3xl w-full max-w-[95vw] sm:max-w-2xl md:max-w-3xl lg:max-w-4xl animate-pulse-orange shadow-xl border-2 border-primary/20 mx-auto">
       <h3 className="text-primary mb-4 sm:mb-6 font-bold text-center text-2xl sm:text-3xl lg:text-4xl xl:text-5xl">Q-Day Countdown</h3>
-      <div className="grid grid-cols-5 gap-2 sm:gap-4 lg:gap-6 text-center font-mono">
+      <div className="grid grid-cols-5 gap-2 sm:gap-3 md:gap-4 lg:gap-5 text-center font-mono max-w-2xl mx-auto">
         <div className="min-w-0 overflow-hidden">
           <div className="text-primary font-bold text-lg sm:text-2xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 leading-tight">{countdown.years.toString().padStart(2, '0')}</div>
           <div className="text-muted-foreground text-xs sm:text-sm lg:text-base font-semibold">Years</div>
