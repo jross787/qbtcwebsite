@@ -96,14 +96,14 @@ export default function Home() {
               </Button>
             </div>
             
-            <div className="flex justify-center w-full">
+            <div className="flex justify-center w-full mb-16 md:mb-24">
               <QuantumCountdown />
             </div>
           </motion.div>
         </div>
       </section>
       {/* Key Benefits Section */}
-      <section className="py-24 md:py-32 bg-muted/30">
+      <section className="py-32 md:py-40 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
