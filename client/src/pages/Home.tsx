@@ -83,9 +83,7 @@ export default function Home() {
               <span className="text-foreground">Ready Today</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground mb-16 md:mb-20 max-w-4xl mx-auto leading-relaxed">
-              qBTC is a proof-of-work side-chain that inherits Bitcoin's economics while upgrading its cryptography to survive the first large-scale quantum computer.
-            </p>
+            <p className="text-xl md:text-2xl text-muted-foreground mb-16 md:mb-20 max-w-4xl mx-auto leading-relaxed">qBTC is a proof-of-work side-chain that inherits Bitcoin's design while upgrading its cryptography to survive the first large-scale quantum computer.</p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20 md:mb-24">
               <Button asChild size="lg" className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white px-10 py-5 text-lg">
