@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { teamMembers } from "@/data/team";
 import { useState } from "react";
+import christianPhoto from "@assets/Chris_1751815318542.jpg";
 
 function TeamMemberCard({ member, index }: { member: any; index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -19,7 +20,13 @@ function TeamMemberCard({ member, index }: { member: any; index: number }) {
       <Card className="glass-card hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 group h-full flex flex-col">
         <CardHeader className="text-center">
           <div className="w-32 h-32 mx-auto mb-4 relative">
-            {member.photo ? (
+            {member.photo === "christian" ? (
+              <img
+                src={christianPhoto}
+                alt={member.name}
+                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
+              />
+            ) : member.photo ? (
               <img
                 src={member.photo}
                 alt={member.name}
