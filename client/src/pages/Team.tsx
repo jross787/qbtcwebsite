@@ -7,6 +7,7 @@ import { useState } from "react";
 import christianPhoto from "@assets/Chris_1751815318542.jpg";
 import scottPhoto from "@assets/Scott 2_1751815535629.png";
 import joePhoto from "@assets/Joe2_1751816011753.png";
+import qBTCLogo from "@assets/Symbol@4x.png";
 
 function TeamMemberCard({ member, index }: { member: any; index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -122,8 +123,12 @@ export default function Team() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="w-24 h-24 orange-gradient rounded-full flex items-center justify-center mx-auto mb-8">
-              <Users className="w-12 h-12 text-white" />
+            <div className="w-24 h-24 mx-auto mb-8 flex items-center justify-center">
+              <img 
+                src={qBTCLogo} 
+                alt="qBTC Logo" 
+                className="w-20 h-20 object-contain"
+              />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Our <span className="text-primary">Team</span>
