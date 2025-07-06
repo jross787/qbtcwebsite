@@ -257,7 +257,7 @@ export default function Team() {
               <Button size="lg" className="orange-gradient text-white">
                 View Open Positions
               </Button>
-              <Button size="lg" variant="outline">
+              <Button size="lg" variant="secondary" className="bg-background hover:bg-background/80 border-2 border-primary/20 hover:border-primary/40">
                 Contact Us
               </Button>
             </div>
