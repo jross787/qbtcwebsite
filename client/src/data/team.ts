@@ -92,14 +92,14 @@ export interface AdvisoryBoardMember {
 
 export const advisoryBoardMembers: AdvisoryBoardMember[] = [
   {
-    name: "Dr. Sarah Chen",
-    role: "Quantum Cryptography Expert",
-    bio: "Leading researcher in post-quantum cryptography with 15+ years experience. Published over 50 papers on quantum-resistant algorithms and served on multiple standards committees.",
-    fullBio: "Dr. Sarah Chen is a leading researcher in post-quantum cryptography with over 15 years of experience in cryptographic security. She has published more than 50 papers on quantum-resistant algorithms and has served on multiple international standards committees for post-quantum cryptography. Dr. Chen currently leads the quantum cryptography research division at MIT and advises several blockchain projects on quantum security implementations.",
-    expertise: ["Post-Quantum Cryptography", "Quantum Computing", "Cryptographic Standards"],
-    photo: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
+    name: "Jameson Lopp",
+    role: "Technical Advisor",
+    bio: "Jameson has been building multisig wallets since 2015. In addition to Casa he also founded Mensa's Bitcoin Special Interest Group, the Triangle Bitcoin & Business meetup, and several open source Bitcoin projects. He enjoys researching various aspects of the ecosystem and giving presentations about what he has learned the hard way while trying to write robust software that can withstand both adversaries and unsophisticated users.",
+    fullBio: "Jameson has been building multisig wallets since 2015. In addition to Casa he also founded Mensa's Bitcoin Special Interest Group, the Triangle Bitcoin & Business meetup, and several open source Bitcoin projects. He enjoys researching various aspects of the ecosystem and giving presentations about what he has learned the hard way while trying to write robust software that can withstand both adversaries and unsophisticated users.",
+    expertise: ["Multisig Wallets", "Bitcoin Development", "Cybersecurity"],
+    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
     social: {
-      linkedin: "https://linkedin.com/in/sarahchen-crypto"
+      twitter: "https://x.com/lopp"
     }
   },
   {
