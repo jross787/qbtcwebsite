@@ -137,14 +137,15 @@ export const advisoryBoardMembers: AdvisoryBoardMember[] = [
     }
   },
   {
-    name: "David Kumar",
-    role: "Venture Capital Partner",
-    bio: "Managing partner at leading blockchain-focused VC firm. 20+ years in technology investments with extensive experience in cryptocurrency and DeFi projects.",
-    fullBio: "David Kumar is a managing partner at a leading blockchain-focused venture capital firm with over 20 years of experience in technology investments. He has led investments in numerous successful cryptocurrency and DeFi projects and brings invaluable insights into market dynamics and business strategy. His experience helps guide qBTC's strategic direction and market positioning.",
-    expertise: ["Venture Capital", "Blockchain Investments", "Strategic Planning"],
+    name: "Ian Smith",
+    role: "Advisor",
+    bio: "Ian is the CTO of Quantum EVM - a project that aims to implement post quantum cryptography on the Ethereum network. He is a CEO/CTO Dev across 25+ languages, has been in tech since 1997 and Web3 since 2016.",
+    fullBio: "Ian is the CTO of Quantum EVM - a project that aims to implement post quantum cryptography on the Ethereum network. He is a CEO/CTO Dev across 25+ languages, has been in tech since 1997 and Web3 since 2016.",
+    expertise: ["Post-Quantum Cryptography", "Ethereum Development", "Web3 Technology"],
     photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=face",
     social: {
-      linkedin: "https://linkedin.com/in/david-kumar-vc"
+      linkedin: "https://www.linkedin.com/in/ian-smith-a83021314/",
+      twitter: "https://x.com/IanSmith_HSA"
     }
   },
   {
