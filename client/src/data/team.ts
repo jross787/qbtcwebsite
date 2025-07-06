@@ -39,16 +39,15 @@ export const teamMembers: TeamMember[] = [
     }
   },
   {
-    name: "Carol Shor",
-    role: "Head of Research",
-    bio: "Quantum computing researcher with expertise in Shor's algorithm and post-quantum signature schemes. Former NIST contributor.",
-    fullBio: "Carol Shor is a leading researcher in quantum computing and post-quantum cryptography. With her deep understanding of Shor's algorithm and its implications for current cryptographic systems, she has been instrumental in developing qBTC's quantum-resistant protocols. As a former contributor to NIST's post-quantum cryptography standardization process, Carol brings invaluable expertise in evaluating and implementing quantum-safe algorithms. She holds a PhD in Mathematics from Princeton University and has published extensively on lattice-based cryptography and hash-based signatures.",
-    expertise: ["Quantum Computing", "Cryptanalysis", "Algorithm Design"],
-    photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face",
+    name: "Joe Ross",
+    role: "VP Product",
+    bio: "Joe Ross is a technologist and strategic advisor at the forefront of Web3 innovation. Drawing on over a decade of hands-on experience in distributed systems, cryptography, and on-chain governance, he translates deep technical insight and rigorous game-theoretic thinking into practical guidance for founders.",
+    fullBio: "Joe Ross is a technologist and strategic advisor at the forefront of Web3 innovation. Drawing on over a decade of hands-on experience in distributed systems, cryptography, and on-chain governance, he translates deep technical insight and rigorous game-theoretic thinking into practical guidance for founders. Joe has partnered with dozens of early-stage teams, shaping token-economic frameworks, product architectures, and go-to-market strategies that scale from idea to global impact. Whether refining an incentive mechanism, stress-testing a protocol's security model, or mentoring executives on disciplined operating rhythms, Joe is known for turning complex challenges into decisive advantages, empowering ventures to build with confidence and clarity.",
+    expertise: ["Web3 Innovation", "Product Strategy", "Token Economics"],
+    photo: "joe",
     social: {
-      github: "https://github.com/carolshor",
-      linkedin: "https://linkedin.com/in/carolshor",
-      twitter: "https://twitter.com/carolshor"
+      linkedin: "https://www.linkedin.com/in/jross87/",
+      twitter: "https://x.com/jross7878"
     }
   },
   {
