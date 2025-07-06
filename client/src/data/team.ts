@@ -27,15 +27,15 @@ export const teamMembers: TeamMember[] = [
     }
   },
   {
-    name: "Bob Dilithium",
-    role: "CTO & Co-founder",
-    bio: "Previously lead engineer at major cryptocurrency exchange. Expert in distributed systems and blockchain architecture.",
-    fullBio: "Bob Dilithium brings over 8 years of experience in building scalable blockchain infrastructure. As former lead engineer at a top-tier cryptocurrency exchange, he architected systems processing millions of transactions daily. His expertise in distributed systems and consensus mechanisms has been crucial in designing qBTC's robust architecture. Bob holds a Master's degree in Computer Science from Stanford and has contributed to several open-source blockchain projects. He's passionate about creating secure, efficient protocols that can withstand both classical and quantum attacks.",
-    expertise: ["Blockchain Architecture", "Distributed Systems", "Smart Contracts"],
-    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+    name: "Scott Walker",
+    role: "Co-Founder",
+    bio: "An Investor and Serial Entrepreneur. In 2012 he fell in love with Bitcoin. With early Investments in ETH, BTC, and dozens of successful launches Walker is one of the most experienced and successful investors in the space.",
+    fullBio: "Scott Walker is a seasoned investor and serial entrepreneur who has been at the forefront of the cryptocurrency revolution since 2012. His early recognition of Bitcoin's potential led him to become one of the first institutional investors in the space. With strategic investments in ETH, BTC, and dozens of successful blockchain projects, Scott has built one of the most impressive portfolios in the cryptocurrency industry. His deep understanding of market dynamics and investor psychology has been instrumental in securing funding and partnerships for qBTC. Scott's entrepreneurial journey spans multiple successful exits and his expertise in scaling businesses from startup to enterprise level brings invaluable strategic guidance to the qBTC project.",
+    expertise: ["Investment Strategy", "Business Development", "Market Analysis"],
+    photo: "scott",
     social: {
-      github: "https://github.com/bobdilithium",
-      linkedin: "https://linkedin.com/in/bobdilithium"
+      linkedin: "https://www.linkedin.com/in/scott-walker-8128817/",
+      twitter: "https://x.com/scottwalker99"
     }
   },
   {

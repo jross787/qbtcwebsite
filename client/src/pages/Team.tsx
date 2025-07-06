@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { teamMembers } from "@/data/team";
 import { useState } from "react";
 import christianPhoto from "@assets/Chris_1751815318542.jpg";
+import scottPhoto from "@assets/Scott 2_1751815535629.png";
 
 function TeamMemberCard({ member, index }: { member: any; index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -23,6 +24,12 @@ function TeamMemberCard({ member, index }: { member: any; index: number }) {
             {member.photo === "christian" ? (
               <img
                 src={christianPhoto}
+                alt={member.name}
+                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
+              />
+            ) : member.photo === "scott" ? (
+              <img
+                src={scottPhoto}
                 alt={member.name}
                 className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
               />
