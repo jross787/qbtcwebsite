@@ -123,6 +123,43 @@ After deployment, verify these features work:
 - Ensure `mod_headers` is enabled
 - Check Apache error logs: `tail -f /var/log/apache2/error.log`
 
+#### 403 Forbidden Error (CRITICAL FIX)
+If you're getting a 403 forbidden error, try these steps:
+
+**1. Check File Permissions**
+```bash
+# Set correct permissions
+find /var/www/html -type f -exec chmod 644 {} \;
+find /var/www/html -type d -exec chmod 755 {} \;
+```
+
+**2. Verify Directory Ownership**
+```bash
+# Change ownership to Apache user
+sudo chown -R www-data:www-data /var/www/html/
+# Or for some shared hosting:
+sudo chown -R apache:apache /var/www/html/
+```
+
+**3. Check .htaccess Issues**
+- Ensure `.htaccess` file is uploaded to the correct directory
+- The file should be in the same directory as `index.html`
+- Check if `.htaccess` files are allowed by your hosting provider
+
+**4. Minimal .htaccess Test**
+If still getting 403 errors, replace `.htaccess` with minimal version:
+```apache
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ /index.html [L]
+```
+
+**5. Verify Apache Configuration**
+- Check if `AllowOverride All` is set in Apache config
+- Ensure `mod_rewrite` is enabled
+- Contact hosting provider if issues persist
+
 ## Directory Structure After Deployment
 
 ```

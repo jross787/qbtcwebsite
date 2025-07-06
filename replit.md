@@ -111,6 +111,7 @@ qBTC is a quantum-resistant Bitcoin sidechain application built as a full-stack 
 - June 27, 2025: Initial setup
 - July 6, 2025: Updated team page with real team members and advisory board
 - July 6, 2025: Fixed deployment issue - removed old build files from root directory that were being served instead of dist/public
+- July 6, 2025: Fixed 403 forbidden error - simplified .htaccess file to be compatible with shared hosting providers, removed restrictive directives, added comprehensive troubleshooting guide
 
 ## User Preferences
 
