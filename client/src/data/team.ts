@@ -114,15 +114,15 @@ export const advisoryBoardMembers: AdvisoryBoardMember[] = [
     }
   },
   {
-    name: "Alex Thompson",
-    role: "Former Bitcoin Core Developer",
-    bio: "Early Bitcoin contributor and former Bitcoin Core developer with deep expertise in Bitcoin protocol development and security. Advocate for quantum-safe Bitcoin evolution.",
-    fullBio: "Alex Thompson is a former Bitcoin Core developer and early Bitcoin contributor who has been involved in the Bitcoin ecosystem since 2011. With deep expertise in Bitcoin protocol development and security, Alex has contributed to numerous Bitcoin Improvement Proposals (BIPs) and has been a vocal advocate for preparing Bitcoin for the quantum era. His technical insights are invaluable for ensuring qBTC maintains compatibility with Bitcoin's principles.",
-    expertise: ["Bitcoin Protocol", "Cryptocurrency Security", "Open Source Development"],
+    name: "Ronit Ghose",
+    role: "Advisor",
+    bio: "Ronit runs the Future of Finance team at Citibank and prior to this, he was Citi's Global Head of Banks Research and Co-Head of Fintech Research. He is the lead author of Citi's cutting-edge GPS Fintech report series. He is also an Advisory Board member at the Centre for Financial Technology at Imperial College Business School and sits on the advisory board of various technology startups and venture capital firms in the UK, Middle East and Africa. He is based in Dubai, The UAE.",
+    fullBio: "Ronit runs the Future of Finance team at Citibank and prior to this, he was Citi's Global Head of Banks Research and Co-Head of Fintech Research. He is the lead author of Citi's cutting-edge GPS Fintech report series. He is also an Advisory Board member at the Centre for Financial Technology at Imperial College Business School and sits on the advisory board of various technology startups and venture capital firms in the UK, Middle East and Africa. He is based in Dubai, The UAE.",
+    expertise: ["Future of Finance", "Fintech Research", "Banking Technology"],
     photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
     social: {
-      github: "https://github.com/alexthompson",
-      linkedin: "https://linkedin.com/in/alex-thompson-bitcoin"
+      linkedin: "https://www.linkedin.com/in/ronit-ghose-86033610",
+      twitter: "https://x.com/ronitA380"
     }
   },
   {
