@@ -178,9 +178,9 @@ export default function Team() {
               <MemberCard key={member.name} member={member} index={index} />
             ))}
           </div>
-          {/* Bottom row - centered */}
+          {/* Bottom row - responsive layout */}
           <div className="flex justify-center mt-8">
-            <div className="grid grid-cols-2 gap-8" style={{ width: '66.666667%' }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full md:w-2/3">
               {teamMembers.slice(3).map((member, index) => (
                 <MemberCard key={member.name} member={member} index={index + 3} />
               ))}
@@ -222,9 +222,9 @@ export default function Team() {
               />
             ))}
           </div>
-          {/* Bottom row - centered */}
+          {/* Bottom row - responsive layout */}
           <div className="flex justify-center mt-8">
-            <div className="grid grid-cols-2 gap-8" style={{ width: '66.666667%' }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full md:w-2/3">
               {advisoryBoardMembers.slice(3).map((advisor, index) => (
                 <MemberCard
                   key={advisor.name}
