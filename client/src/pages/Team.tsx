@@ -56,30 +56,30 @@ function TeamMemberCard({ member, index }: { member: any; index: number }) {
           <p className="text-primary font-semibold">{member.role}</p>
         </CardHeader>
         <CardContent className="text-center flex-1 flex flex-col">
-          <p className="text-muted-foreground mb-4">
-            {isExpanded ? member.fullBio || member.bio : member.bio}
-          </p>
+          <div className="text-muted-foreground mb-4 flex-1">
+            <p className={`${!isExpanded ? 'line-clamp-3' : ''}`}>
+              {isExpanded && member.fullBio ? member.fullBio : member.bio}
+            </p>
+          </div>
           
-          {member.fullBio && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="mb-4 text-primary hover:text-primary/80"
-            >
-              {isExpanded ? (
-                <>
-                  <ChevronUp className="w-4 h-4 mr-2" />
-                  Read Less
-                </>
-              ) : (
-                <>
-                  <ChevronDown className="w-4 h-4 mr-2" />
-                  Read More
-                </>
-              )}
-            </Button>
-          )}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="mb-4 text-primary hover:text-primary/80"
+          >
+            {isExpanded ? (
+              <>
+                <ChevronUp className="w-4 h-4 mr-2" />
+                Read Less
+              </>
+            ) : (
+              <>
+                <ChevronDown className="w-4 h-4 mr-2" />
+                Read More
+              </>
+            )}
+          </Button>
           
           <div className="flex justify-center space-x-4 mt-auto">
             {member.social.github && (
