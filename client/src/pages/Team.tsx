@@ -60,22 +60,6 @@ function TeamMemberCard({ member, index }: { member: any; index: number }) {
             </Button>
           )}
           
-          {member.expertise.length > 0 && (
-            <div className="mb-4">
-              <h4 className="font-semibold text-foreground mb-2">Expertise</h4>
-              <div className="flex flex-wrap justify-center gap-2">
-                {member.expertise.map((skill: string, i: number) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-          
           <div className="flex justify-center space-x-4 mt-auto">
             {member.social.github && (
               <Button variant="ghost" size="icon" asChild>
