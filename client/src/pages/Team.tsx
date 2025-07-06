@@ -299,7 +299,7 @@ export default function Team() {
           </div>
           {/* Bottom row - centered */}
           <div className="flex justify-center mt-8">
-            <div className="grid md:grid-cols-2 gap-8 max-w-2xl">
+            <div className="grid grid-cols-2 gap-8" style={{ width: '66.666667%' }}>
               {teamMembers.slice(3).map((member, index) => (
                 <TeamMemberCard key={member.name} member={member} index={index + 3} />
               ))}
