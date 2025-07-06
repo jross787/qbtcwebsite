@@ -126,14 +126,14 @@ export const advisoryBoardMembers: AdvisoryBoardMember[] = [
     }
   },
   {
-    name: "Dr. Lisa Wang",
-    role: "Post-Quantum Security Specialist",
-    bio: "NIST researcher specializing in post-quantum security standards and implementations. Key contributor to NIST's post-quantum cryptography standardization process.",
-    fullBio: "Dr. Lisa Wang is a distinguished researcher at the National Institute of Standards and Technology (NIST) specializing in post-quantum security standards and implementations. She has been a key contributor to NIST's post-quantum cryptography standardization process and has extensive experience in evaluating and implementing quantum-resistant cryptographic systems. Her expertise ensures qBTC meets the highest security standards.",
-    expertise: ["Post-Quantum Standards", "Cryptographic Implementation", "Security Evaluation"],
+    name: "Dr. Axel York Poschmann",
+    role: "Advisor",
+    bio: "Dr. York is an accomplished technology and product leader with over 15 years of global experience driving growth, innovation, and transformation across cybersecurity, cryptography, and hardware security. Currently serving as VP of Product at PQShield, he spearheads the development of quantum-safe cryptographic solutions, skillfully merging strategic vision with practical execution to introduce cutting-edge technologies to the market.",
+    fullBio: "Dr. York is an accomplished technology and product leader with over 15 years of global experience driving growth, innovation, and transformation across cybersecurity, cryptography, and hardware security. Currently serving as VP of Product at PQShield, he spearheads the development of quantum-safe cryptographic solutions, skillfully merging strategic vision with practical execution to introduce cutting-edge technologies to the market. Throughout his career, he has held leadership roles in both established corporations and dynamic startups, effectively managing diverse, cross-functional teams and cultivating strategic partnerships. Leveraging deep expertise in cryptographic engineering, he has consistently driven substantial business growth, successfully launched innovative products, and contributed to defining industry-wide security standards. He has demonstrated exceptional capability in scaling products, navigating intricate regulatory landscapes, and leading global teams across various international regions. Beyond industry leadership, he maintains strong academic ties, having served as an Assistant Professor and authoring numerous publications in cryptography. Additionally, he actively engages in mentoring startups, advising founders, and acting as an expert in residence at venture capital and private equity firms, aiding early-stage companies in scaling effectively and innovating within emerging technology sectors.",
+    expertise: ["Quantum-Safe Cryptography", "Product Leadership", "Hardware Security"],
     photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face",
     social: {
-      linkedin: "https://linkedin.com/in/dr-lisa-wang-nist"
+      linkedin: "https://www.linkedin.com/in/dr-axel-york-poschmann/"
     }
   },
   {
