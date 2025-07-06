@@ -3,28 +3,52 @@ import {
   Github,
   Linkedin,
   Twitter,
-  Users,
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { teamMembers, advisoryBoardMembers } from "@/data/team";
+import { teamMembers, advisoryBoardMembers, TeamMember, AdvisoryBoardMember } from "@/data/team";
 import { useState } from "react";
+
+// Team member photos
 import christianPhoto from "@assets/Chris_1751815318542.jpg";
 import scottPhoto from "@assets/Scott 2_1751815535629.png";
 import joePhoto from "@assets/Joe2_1751816011753.png";
 import rickPhoto from "@assets/Rick_1751824776863.jpg";
 import garrettPhoto from "@assets/Garrett_1751826325298.png";
-import panagiotisPhoto from "@assets/Panagotias_1751826527265.png";
-import qBTCLogo from "@assets/Symbol@4x.png";
+
+// Advisory board photos
 import jamesonPhoto from "@assets/Jameson_1751829377731.png";
 import vasilyPhoto from "@assets/Vasily_1751829377732.png";
 import ronitPhoto from "@assets/Ronit 2_1751829377731.png";
 import axelPhoto from "@assets/Axel_1751829377730.png";
 import ianPhoto from "@assets/Ian2_1751829377731.png";
 
-function TeamMemberCard({ member, index }: { member: any; index: number }) {
+// Union type for components
+type Member = TeamMember | AdvisoryBoardMember;
+
+// Photo mapping utility
+const photoMap: Record<string, string> = {
+  // Team members
+  christian: christianPhoto,
+  scott: scottPhoto,
+  joe: joePhoto,
+  rick: rickPhoto,
+  garrett: garrettPhoto,
+  // Advisory board
+  jameson: jamesonPhoto,
+  vasily: vasilyPhoto,
+  ronit: ronitPhoto,
+  axel: axelPhoto,
+  ian: ianPhoto,
+};
+
+const getPhotoSrc = (photoKey: string): string => {
+  return photoMap[photoKey] || photoKey;
+};
+
+function MemberCard({ member, index }: { member: Member; index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -38,180 +62,9 @@ function TeamMemberCard({ member, index }: { member: any; index: number }) {
       <Card className="glass-card hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 group h-full flex flex-col">
         <CardHeader className="text-center">
           <div className="w-32 h-32 mx-auto mb-4 relative">
-            {member.photo === "christian" ? (
+            {member.photo ? (
               <img
-                src={christianPhoto}
-                alt={member.name}
-                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
-              />
-            ) : member.photo === "scott" ? (
-              <img
-                src={scottPhoto}
-                alt={member.name}
-                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
-              />
-            ) : member.photo === "joe" ? (
-              <img
-                src={joePhoto}
-                alt={member.name}
-                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
-              />
-            ) : member.photo === "rick" ? (
-              <img
-                src={rickPhoto}
-                alt={member.name}
-                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
-              />
-            ) : member.photo === "garrett" ? (
-              <img
-                src={garrettPhoto}
-                alt={member.name}
-                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
-              />
-            ) : member.photo === "panagiotis" ? (
-              <img
-                src={panagiotisPhoto}
-                alt={member.name}
-                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
-              />
-            ) : member.photo ? (
-              <img
-                src={member.photo}
-                alt={member.name}
-                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
-              />
-            ) : (
-              <div className="w-full h-full orange-gradient rounded-full flex items-center justify-center text-white text-3xl font-bold group-hover:animate-glow">
-                {member.name
-                  .split(" ")
-                  .map((n: string) => n[0])
-                  .join("")}
-              </div>
-            )}
-          </div>
-          <h3 className="text-xl font-bold text-foreground">{member.name}</h3>
-          <p className="text-primary font-semibold">{member.role}</p>
-        </CardHeader>
-        <CardContent className="text-center flex-1 flex flex-col">
-          <div className="text-muted-foreground mb-4 flex-1">
-            <p className={`${!isExpanded ? "line-clamp-3" : ""}`}>
-              {isExpanded && member.fullBio ? member.fullBio : member.bio}
-            </p>
-          </div>
-
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="mb-4 text-primary hover:text-primary/80"
-          >
-            {isExpanded ? (
-              <>
-                <ChevronUp className="w-4 h-4 mr-2" />
-                Read Less
-              </>
-            ) : (
-              <>
-                <ChevronDown className="w-4 h-4 mr-2" />
-                Read More
-              </>
-            )}
-          </Button>
-
-          <div className="flex justify-center space-x-4 mt-auto">
-            {member.social.github && (
-              <Button variant="ghost" size="icon" asChild>
-                <a
-                  href={member.social.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github className="w-5 h-5" />
-                </a>
-              </Button>
-            )}
-            {member.social.linkedin && (
-              <Button variant="ghost" size="icon" asChild>
-                <a
-                  href={member.social.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-              </Button>
-            )}
-            {member.social.twitter && (
-              <Button variant="ghost" size="icon" asChild>
-                <a
-                  href={member.social.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Twitter className="w-5 h-5" />
-                </a>
-              </Button>
-            )}
-          </div>
-        </CardContent>
-      </Card>
-    </motion.div>
-  );
-}
-
-function AdvisoryBoardMemberCard({
-  member,
-  index,
-}: {
-  member: any;
-  index: number;
-}) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: index * 0.1 }}
-      viewport={{ once: true }}
-      className="h-full"
-    >
-      <Card className="glass-card hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 group h-full flex flex-col">
-        <CardHeader className="text-center">
-          <div className="w-32 h-32 mx-auto mb-4 relative">
-            {member.photo === "jameson" ? (
-              <img
-                src={jamesonPhoto}
-                alt={member.name}
-                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
-              />
-            ) : member.photo === "vasily" ? (
-              <img
-                src={vasilyPhoto}
-                alt={member.name}
-                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
-              />
-            ) : member.photo === "ronit" ? (
-              <img
-                src={ronitPhoto}
-                alt={member.name}
-                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
-              />
-            ) : member.photo === "axel" ? (
-              <img
-                src={axelPhoto}
-                alt={member.name}
-                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
-              />
-            ) : member.photo === "ian" ? (
-              <img
-                src={ianPhoto}
-                alt={member.name}
-                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
-              />
-            ) : member.photo ? (
-              <img
-                src={member.photo}
+                src={getPhotoSrc(member.photo)}
                 alt={member.name}
                 className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
               />
@@ -322,14 +175,14 @@ export default function Team() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.slice(0, 3).map((member, index) => (
-              <TeamMemberCard key={member.name} member={member} index={index} />
+              <MemberCard key={member.name} member={member} index={index} />
             ))}
           </div>
           {/* Bottom row - centered */}
           <div className="flex justify-center mt-8">
             <div className="grid grid-cols-2 gap-8" style={{ width: '66.666667%' }}>
               {teamMembers.slice(3).map((member, index) => (
-                <TeamMemberCard key={member.name} member={member} index={index + 3} />
+                <MemberCard key={member.name} member={member} index={index + 3} />
               ))}
             </div>
           </div>
@@ -362,7 +215,7 @@ export default function Team() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {advisoryBoardMembers.slice(0, 3).map((advisor, index) => (
-              <AdvisoryBoardMemberCard
+              <MemberCard
                 key={advisor.name}
                 member={advisor}
                 index={index}
@@ -373,7 +226,7 @@ export default function Team() {
           <div className="flex justify-center mt-8">
             <div className="grid grid-cols-2 gap-8" style={{ width: '66.666667%' }}>
               {advisoryBoardMembers.slice(3).map((advisor, index) => (
-                <AdvisoryBoardMemberCard
+                <MemberCard
                   key={advisor.name}
                   member={advisor}
                   index={index + 3}
