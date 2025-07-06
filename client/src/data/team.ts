@@ -80,7 +80,7 @@ export const teamMembers: TeamMember[] = [
     bio: "Panagiotis Vryonis has been building web infrastructure for nearly three decades. He is an advocate of Open Source Software, decentralization and censorship-resistant protocols.",
     fullBio: "Panagiotis Vryonis has been building web infrastructure for nearly three decades. He is an advocate of Open Source Software, decentralization and censorship-resistant protocols. With extensive experience in scalable systems and distributed architectures, Panagiotis brings deep technical expertise to the qBTC project's infrastructure development.",
     expertise: ["Web Infrastructure", "Open Source Software", "Distributed Systems"],
-    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=face",
+    photo: "panagiotis",
     social: {
       linkedin: "https://www.linkedin.com/in/vrypan/"
     }
