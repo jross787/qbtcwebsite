@@ -256,6 +256,37 @@ export default function Team() {
         </div>
       </section>
 
+      {/* Advisory Board */}
+      <section className="pb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+              Advisory <span className="text-primary">Board</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Distinguished advisors providing strategic guidance and industry expertise to shape the quantum-safe future.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Advisory Board Grid */}
+      <section className="pb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {advisoryBoardMembers.map((advisor, index) => (
+              <AdvisoryBoardMemberCard key={advisor.name} member={advisor} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Join Team CTA */}
       <section className="py-24 bg-card/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -280,44 +311,6 @@ export default function Team() {
               </Button>
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Advisory Board */}
-      <section className="pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            className="text-center mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="w-24 h-24 mx-auto mb-8 flex items-center justify-center">
-              <img 
-                src={qBTCLogo} 
-                alt="qBTC Logo" 
-                className="w-20 h-20 object-contain"
-              />
-            </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              Advisory <span className="text-primary">Board</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Distinguished advisors providing strategic guidance and industry expertise to shape the quantum-safe future.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Advisory Board Grid */}
-      <section className="pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {advisoryBoardMembers.map((advisor, index) => (
-              <AdvisoryBoardMemberCard key={advisor.name} member={advisor} index={index} />
-            ))}
-          </div>
         </div>
       </section>
     </div>
