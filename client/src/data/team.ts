@@ -103,14 +103,14 @@ export const advisoryBoardMembers: AdvisoryBoardMember[] = [
     }
   },
   {
-    name: "Prof. Michael Roberts",
-    role: "Blockchain Researcher",
-    bio: "Stanford professor and blockchain pioneer with extensive research in consensus mechanisms and distributed systems. Former advisor to multiple Fortune 500 blockchain initiatives.",
-    fullBio: "Professor Michael Roberts is a renowned blockchain researcher at Stanford University with groundbreaking work in consensus mechanisms and distributed systems. He has advised multiple Fortune 500 companies on blockchain implementations and has been instrumental in developing several widely-adopted consensus protocols. His research focuses on scalability, security, and decentralization in blockchain networks.",
-    expertise: ["Consensus Mechanisms", "Distributed Systems", "Blockchain Architecture"],
+    name: "Vasily Pozdyshev",
+    role: "Advisor",
+    bio: "Vasily is a central banker with a robust technological background rooted in the defense industry. He previously held the position of Deputy Governor at the Central Bank of Russia and is now a Senior Advisor at the Bank for International Settlements (BIS) in Basel, Switzerland. In his current role, he supports monetary authorities in strengthening Cyber Resilience Frameworks for Systemically Important Financial Market Infrastructures, including those related to Digital Money. His contributions to the QBTC are undertaken strictly on a pro-bono basis and during his personal time.",
+    fullBio: "Vasily is a central banker with a robust technological background rooted in the defense industry. He previously held the position of Deputy Governor at the Central Bank of Russia and is now a Senior Advisor at the Bank for International Settlements (BIS) in Basel, Switzerland. In his current role, he supports monetary authorities in strengthening Cyber Resilience Frameworks for Systemically Important Financial Market Infrastructures, including those related to Digital Money. His contributions to the QBTC are undertaken strictly on a pro-bono basis and during his personal time.",
+    expertise: ["Central Banking", "Cyber Resilience", "Digital Money"],
     photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
     social: {
-      linkedin: "https://linkedin.com/in/prof-michael-roberts"
+      linkedin: "https://www.linkedin.com/in/vasily-pozdyshev-130496246/"
     }
   },
   {
