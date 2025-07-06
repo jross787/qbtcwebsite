@@ -147,16 +147,5 @@ export const advisoryBoardMembers: AdvisoryBoardMember[] = [
       linkedin: "https://www.linkedin.com/in/ian-smith-a83021314/",
       twitter: "https://x.com/IanSmith_HSA"
     }
-  },
-  {
-    name: "Maria Rodriguez",
-    role: "Regulatory Affairs Expert",
-    bio: "Former SEC attorney and regulatory affairs consultant specializing in cryptocurrency regulations. Expert in compliance frameworks for digital assets and blockchain projects.",
-    fullBio: "Maria Rodriguez is a former SEC attorney and regulatory affairs consultant with specialized expertise in cryptocurrency regulations and compliance. She has helped numerous blockchain projects navigate complex regulatory landscapes and has been instrumental in developing compliance frameworks for digital assets. Her guidance ensures qBTC meets all regulatory requirements and maintains compliance across jurisdictions.",
-    expertise: ["Regulatory Compliance", "Securities Law", "Digital Asset Policy"],
-    photo: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=face",
-    social: {
-      linkedin: "https://linkedin.com/in/maria-rodriguez-crypto-law"
-    }
   }
 ];
