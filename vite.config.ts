@@ -4,6 +4,14 @@ import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 export default defineConfig({
+  // --------- build output ---------
+  // Writes index.html and assets/* directly into dist/
+  build: {
+    outDir: path.resolve(import.meta.dirname, "dist"),
+    emptyOutDir: true,
+  },
+
+  // --------- plugins --------------
   plugins: [
     react(),
     runtimeErrorOverlay(),
@@ -16,6 +24,8 @@ export default defineConfig({
         ]
       : []),
   ],
+
+  // --------- path aliases ---------
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -23,11 +33,11 @@ export default defineConfig({
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
+
+  // --------- project root ---------
   root: path.resolve(import.meta.dirname, "client"),
-  build: {
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
-    emptyOutDir: true,
-  },
+
+  // --------- dev server ---------- 
   server: {
     fs: {
       strict: true,

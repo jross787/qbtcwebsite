@@ -5,15 +5,14 @@ import { Badge } from "@/components/ui/badge";
 
 const milestones = [
   {
-    title: "MVP Live",
-    description: "Testnet operational with core functionality",
-    date: "Q2 2024",
+    title: "Devnet Live",
+    description: "Devnet operational with core functionality",
+    date: "Q2 2025",
     status: "completed",
     details: [
       "Core blockchain implementation",
-      "Dilithium signature integration",
+      "ML-DSA signature integration",
       "Basic bridge functionality",
-      "RPC API endpoints",
       "Block explorer"
     ]
   },
