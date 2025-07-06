@@ -73,17 +73,6 @@ export const teamMembers: TeamMember[] = [
       linkedin: "https://www.linkedin.com/in/garrettpaymon/",
       twitter: "https://x.com/GMONEYPEPE"
     }
-  },
-  {
-    name: "Panagiotis Vryonis",
-    role: "Senior Software Engineer",
-    bio: "Panagiotis Vryonis has been building web infrastructure for nearly three decades. He is an advocate of Open Source Software, decentralization and censorship-resistant protocols.",
-    fullBio: "Panagiotis Vryonis has been building web infrastructure for nearly three decades. He is an advocate of Open Source Software, decentralization and censorship-resistant protocols. With extensive experience in scalable systems and distributed architectures, Panagiotis brings deep technical expertise to the qBTC project's infrastructure development.",
-    expertise: ["Web Infrastructure", "Open Source Software", "Distributed Systems"],
-    photo: "panagiotis",
-    social: {
-      linkedin: "https://www.linkedin.com/in/vrypan/"
-    }
   }
 ];
 
