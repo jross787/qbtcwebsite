@@ -14,16 +14,13 @@ export interface TeamMember {
 
 export const teamMembers: TeamMember[] = [
   {
-    name: "Dr. Alice Quantum",
-    role: "Founder & CEO",
-    bio: "Former Bitcoin Core contributor with 10+ years in cryptography research. PhD in Post-Quantum Cryptography from MIT.",
-    fullBio: "Dr. Alice Quantum is a renowned cryptographer and the visionary behind qBTC. With over a decade of experience in cryptocurrency development, she has been instrumental in advancing post-quantum cryptography research. Her PhD dissertation on lattice-based cryptographic systems from MIT has been cited extensively in the field. Before founding qBTC, Alice was a core contributor to Bitcoin's development, focusing on security enhancements and protocol improvements. She has published numerous papers on quantum-resistant algorithms and regularly speaks at international conferences on blockchain security.",
-    expertise: ["Post-Quantum Cryptography", "Bitcoin Protocol", "Consensus Algorithms"],
-    photo: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
+    name: "Christian Papathanasiou",
+    role: "Chief Scientist",
+    bio: "Chief Architect behind qBTC with 20+ years cybersecurity experience for leading worldwide companies. Pioneer in Android security and founding member of the UK Digital Currency Association.",
+    fullBio: "Christian Papathanasiou is the Chief Architect behind qBTC, the world's first quantum‑safe implementation of Bitcoin. With more than two decades of hands‑on cybersecurity experience, he began his career as a penetration tester for global financial institutions such as Citibank, Misys, and the Royal Bank of Scotland. Christian's research has been featured by outlets including Forbes, Reuters, and Dark Reading, and he has spoken at premier security conferences such as Black Hat and DEF CON. As a contributing author to the European Union Agency for Cybersecurity (ENISA) guidelines for secure mobile development, he was a pioneer in Android security during its formative years. A founding member of the UK Digital Currency Association and an early participant in the Bitcoin community, Christian wrote his first line of code at age 12 and has since served as Chief Security Officer for three leading technology companies. Today, he brings together deep expertise in offensive security, cryptography, and distributed systems to deliver qBTC — a next‑generation, post‑quantum secure form of Bitcoin designed to withstand the era of quantum computing.",
+    expertise: ["Offensive Security", "Cryptography", "Distributed Systems"],
     social: {
-      github: "https://github.com/alicequantum",
-      linkedin: "https://linkedin.com/in/alicequantum",
-      twitter: "https://twitter.com/alicequantum"
+      linkedin: "https://www.linkedin.com/in/papathanasiou"
     }
   },
   {
