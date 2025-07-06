@@ -326,13 +326,25 @@ export default function Team() {
       <section className="pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {advisoryBoardMembers.map((advisor, index) => (
+            {advisoryBoardMembers.slice(0, 3).map((advisor, index) => (
               <AdvisoryBoardMemberCard
                 key={advisor.name}
                 member={advisor}
                 index={index}
               />
             ))}
+          </div>
+          {/* Bottom row - centered */}
+          <div className="flex justify-center mt-8">
+            <div className="grid grid-cols-2 gap-8" style={{ width: '66.666667%' }}>
+              {advisoryBoardMembers.slice(3).map((advisor, index) => (
+                <AdvisoryBoardMemberCard
+                  key={advisor.name}
+                  member={advisor}
+                  index={index + 3}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
