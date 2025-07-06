@@ -244,9 +244,9 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white px-8 py-4 text-lg">
-                <Link href="https://github.com/q-BTC/qBTC-core">Start Building on qBTC</Link>
+                <Link href="/docs">Start Building on qBTC</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white bg-background/90 px-8 py-4 text-lg">
+              <Button asChild size="lg" variant="outline" className="border-muted-foreground text-muted-foreground hover:bg-muted-foreground hover:text-background px-8 py-4 text-lg">
                 <Link href="/contact">Get Developer Access</Link>
               </Button>
             </div>
