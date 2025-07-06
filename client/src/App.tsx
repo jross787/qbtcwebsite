@@ -61,4 +61,3 @@ function App() {
 }
 
 export default App;
-{/* hook-test 3 */}
