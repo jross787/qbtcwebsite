@@ -18,6 +18,11 @@ import rickPhoto from "@assets/Rick_1751824776863.jpg";
 import garrettPhoto from "@assets/Garrett_1751826325298.png";
 import panagiotisPhoto from "@assets/Panagotias_1751826527265.png";
 import qBTCLogo from "@assets/Symbol@4x.png";
+import jamesonPhoto from "@assets/Jameson_1751829377731.png";
+import vasilyPhoto from "@assets/Vasily_1751829377732.png";
+import ronitPhoto from "@assets/Ronit 2_1751829377731.png";
+import axelPhoto from "@assets/Axel_1751829377730.png";
+import ianPhoto from "@assets/Ian2_1751829377731.png";
 
 function TeamMemberCard({ member, index }: { member: any; index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -174,7 +179,37 @@ function AdvisoryBoardMemberCard({
       <Card className="glass-card hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 group h-full flex flex-col">
         <CardHeader className="text-center">
           <div className="w-32 h-32 mx-auto mb-4 relative">
-            {member.photo ? (
+            {member.photo === "jameson" ? (
+              <img
+                src={jamesonPhoto}
+                alt={member.name}
+                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
+              />
+            ) : member.photo === "vasily" ? (
+              <img
+                src={vasilyPhoto}
+                alt={member.name}
+                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
+              />
+            ) : member.photo === "ronit" ? (
+              <img
+                src={ronitPhoto}
+                alt={member.name}
+                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
+              />
+            ) : member.photo === "axel" ? (
+              <img
+                src={axelPhoto}
+                alt={member.name}
+                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
+              />
+            ) : member.photo === "ian" ? (
+              <img
+                src={ianPhoto}
+                alt={member.name}
+                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
+              />
+            ) : member.photo ? (
               <img
                 src={member.photo}
                 alt={member.name}

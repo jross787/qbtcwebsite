@@ -97,7 +97,7 @@ export const advisoryBoardMembers: AdvisoryBoardMember[] = [
     bio: "Jameson has been building multisig wallets since 2015. In addition to Casa he also founded Mensa's Bitcoin Special Interest Group, the Triangle Bitcoin & Business meetup, and several open source Bitcoin projects. He enjoys researching various aspects of the ecosystem and giving presentations about what he has learned the hard way while trying to write robust software that can withstand both adversaries and unsophisticated users.",
     fullBio: "Jameson has been building multisig wallets since 2015. In addition to Casa he also founded Mensa's Bitcoin Special Interest Group, the Triangle Bitcoin & Business meetup, and several open source Bitcoin projects. He enjoys researching various aspects of the ecosystem and giving presentations about what he has learned the hard way while trying to write robust software that can withstand both adversaries and unsophisticated users.",
     expertise: ["Multisig Wallets", "Bitcoin Development", "Cybersecurity"],
-    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+    photo: "jameson",
     social: {
       twitter: "https://x.com/lopp"
     }
@@ -108,7 +108,7 @@ export const advisoryBoardMembers: AdvisoryBoardMember[] = [
     bio: "Vasily is a central banker with a robust technological background rooted in the defense industry. He previously held the position of Deputy Governor at the Central Bank of Russia and is now a Senior Advisor at the Bank for International Settlements (BIS) in Basel, Switzerland. In his current role, he supports monetary authorities in strengthening Cyber Resilience Frameworks for Systemically Important Financial Market Infrastructures, including those related to Digital Money. His contributions to the QBTC are undertaken strictly on a pro-bono basis and during his personal time.",
     fullBio: "Vasily is a central banker with a robust technological background rooted in the defense industry. He previously held the position of Deputy Governor at the Central Bank of Russia and is now a Senior Advisor at the Bank for International Settlements (BIS) in Basel, Switzerland. In his current role, he supports monetary authorities in strengthening Cyber Resilience Frameworks for Systemically Important Financial Market Infrastructures, including those related to Digital Money. His contributions to the QBTC are undertaken strictly on a pro-bono basis and during his personal time.",
     expertise: ["Central Banking", "Cyber Resilience", "Digital Money"],
-    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+    photo: "vasily",
     social: {
       linkedin: "https://www.linkedin.com/in/vasily-pozdyshev-130496246/"
     }
@@ -119,7 +119,7 @@ export const advisoryBoardMembers: AdvisoryBoardMember[] = [
     bio: "Ronit runs the Future of Finance team at Citibank and prior to this, he was Citi's Global Head of Banks Research and Co-Head of Fintech Research. He is the lead author of Citi's cutting-edge GPS Fintech report series. He is also an Advisory Board member at the Centre for Financial Technology at Imperial College Business School and sits on the advisory board of various technology startups and venture capital firms in the UK, Middle East and Africa. He is based in Dubai, The UAE.",
     fullBio: "Ronit runs the Future of Finance team at Citibank and prior to this, he was Citi's Global Head of Banks Research and Co-Head of Fintech Research. He is the lead author of Citi's cutting-edge GPS Fintech report series. He is also an Advisory Board member at the Centre for Financial Technology at Imperial College Business School and sits on the advisory board of various technology startups and venture capital firms in the UK, Middle East and Africa. He is based in Dubai, The UAE.",
     expertise: ["Future of Finance", "Fintech Research", "Banking Technology"],
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+    photo: "ronit",
     social: {
       linkedin: "https://www.linkedin.com/in/ronit-ghose-86033610",
       twitter: "https://x.com/ronitA380"
@@ -131,7 +131,7 @@ export const advisoryBoardMembers: AdvisoryBoardMember[] = [
     bio: "Dr. York is an accomplished technology and product leader with over 15 years of global experience driving growth, innovation, and transformation across cybersecurity, cryptography, and hardware security. Currently serving as VP of Product at PQShield, he spearheads the development of quantum-safe cryptographic solutions, skillfully merging strategic vision with practical execution to introduce cutting-edge technologies to the market.",
     fullBio: "Dr. York is an accomplished technology and product leader with over 15 years of global experience driving growth, innovation, and transformation across cybersecurity, cryptography, and hardware security. Currently serving as VP of Product at PQShield, he spearheads the development of quantum-safe cryptographic solutions, skillfully merging strategic vision with practical execution to introduce cutting-edge technologies to the market. Throughout his career, he has held leadership roles in both established corporations and dynamic startups, effectively managing diverse, cross-functional teams and cultivating strategic partnerships. Leveraging deep expertise in cryptographic engineering, he has consistently driven substantial business growth, successfully launched innovative products, and contributed to defining industry-wide security standards. He has demonstrated exceptional capability in scaling products, navigating intricate regulatory landscapes, and leading global teams across various international regions. Beyond industry leadership, he maintains strong academic ties, having served as an Assistant Professor and authoring numerous publications in cryptography. Additionally, he actively engages in mentoring startups, advising founders, and acting as an expert in residence at venture capital and private equity firms, aiding early-stage companies in scaling effectively and innovating within emerging technology sectors.",
     expertise: ["Quantum-Safe Cryptography", "Product Leadership", "Hardware Security"],
-    photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face",
+    photo: "axel",
     social: {
       linkedin: "https://www.linkedin.com/in/dr-axel-york-poschmann/"
     }
@@ -142,7 +142,7 @@ export const advisoryBoardMembers: AdvisoryBoardMember[] = [
     bio: "Ian is the CTO of Quantum EVM - a project that aims to implement post quantum cryptography on the Ethereum network. He is a CEO/CTO Dev across 25+ languages, has been in tech since 1997 and Web3 since 2016.",
     fullBio: "Ian is the CTO of Quantum EVM - a project that aims to implement post quantum cryptography on the Ethereum network. He is a CEO/CTO Dev across 25+ languages, has been in tech since 1997 and Web3 since 2016.",
     expertise: ["Post-Quantum Cryptography", "Ethereum Development", "Web3 Technology"],
-    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=face",
+    photo: "ian",
     social: {
       linkedin: "https://www.linkedin.com/in/ian-smith-a83021314/",
       twitter: "https://x.com/IanSmith_HSA"
