@@ -8,6 +8,7 @@ import christianPhoto from "@assets/Chris_1751815318542.jpg";
 import scottPhoto from "@assets/Scott 2_1751815535629.png";
 import joePhoto from "@assets/Joe2_1751816011753.png";
 import rickPhoto from "@assets/Rick_1751824776863.jpg";
+import garrettPhoto from "@assets/Garrett_1751826325298.png";
 import qBTCLogo from "@assets/Symbol@4x.png";
 
 function TeamMemberCard({ member, index }: { member: any; index: number }) {
@@ -45,6 +46,12 @@ function TeamMemberCard({ member, index }: { member: any; index: number }) {
             ) : member.photo === "rick" ? (
               <img
                 src={rickPhoto}
+                alt={member.name}
+                className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
+              />
+            ) : member.photo === "garrett" ? (
+              <img
+                src={garrettPhoto}
                 alt={member.name}
                 className="w-full h-full rounded-full object-cover border-4 border-primary/20 group-hover:border-primary/40 transition-all duration-300"
               />

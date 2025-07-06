@@ -68,7 +68,7 @@ export const teamMembers: TeamMember[] = [
     bio: "Garrett, aka GMONEY is the host of Rugpull Radio the largest Bitcoin podcast on Rumble is a Bitcoin Freedom Cyberpunk committed to the ideals of privacy, sovereignty, and economic freedom.",
     fullBio: "Garrett, aka GMONEY is the host of Rugpull Radio the largest Bitcoin podcast on Rumble is a Bitcoin Freedom Cyberpunk committed to the ideals of privacy, sovereignty, and economic freedom. A digital revolutionary advocating for the use of Bitcoin as CYBERPOWER to disrupt institutions, traditional financial systems and empower individuals.",
     expertise: ["Bitcoin Advocacy", "Podcast Hosting", "Digital Marketing"],
-    photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face",
+    photo: "garrett",
     social: {
       linkedin: "https://www.linkedin.com/in/garrettpaymon/",
       twitter: "https://x.com/GMONEYPEPE"
