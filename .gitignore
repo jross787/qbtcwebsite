@@ -9,7 +9,6 @@ coverage/
 # Production
 /build
 /dist
-# Note: public_html is NOT ignored - needed for Hostinger deployment
 
 # Misc
 .DS_Store

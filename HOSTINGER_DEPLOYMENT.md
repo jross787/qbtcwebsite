@@ -6,33 +6,22 @@ The issue was caused by old build files from July 1st in the root directory bein
 
 ## Correct Hostinger Configuration
 
-### ⚠️ CRITICAL: Hostinger Requirements
-**Hostinger requires index.html to be in the `public_html` directory**
-
 ### 1. Repository Settings in Hostinger
 - **Branch**: `main` (not master)
 - **Root Directory**: Leave empty (repository root)
-- **Build Command**: `./deploy-hostinger.sh` (or `npm run build && rm -rf public_html && cp -r dist/public public_html`)
-- **Publish Directory**: `public_html` ⚠️ MUST be public_html for Hostinger
+- **Build Command**: `npm run build`
+- **Publish Directory**: `dist/public` ⚠️ CRITICAL - not just `/` or `/public`
 
 ### 2. Build Output Structure
-After running the deployment script, your files should be in:
+After running `npm run build`, your files should be in:
 ```
-public_html/
-├── assets/
-│   ├── index-[hash].js  (contains team data)
-│   ├── index-[hash].css
-│   └── [team member photos]
-└── index.html
-```
-
-To prepare for Hostinger deployment:
-```bash
-./deploy-hostinger.sh
-# OR manually:
-npm run build
-rm -rf public_html
-cp -r dist/public public_html
+dist/
+└── public/
+    ├── assets/
+    │   ├── index-[hash].js  (contains team data)
+    │   ├── index-[hash].css
+    │   └── [team member photos]
+    └── index.html
 ```
 
 ### 3. Verify Deployment Success
@@ -54,9 +43,9 @@ After deployment, check these URLs:
 3. Ensure `package.json` has correct build script
 
 #### Wrong Directory Deployed
-- Double-check "Publish Directory" is exactly `public_html`
-- Hostinger REQUIRES files to be in `public_html` directory
-- Run `./deploy-hostinger.sh` before pushing to ensure files are in correct location
+- Double-check "Publish Directory" is exactly `dist/public`
+- Not `/dist/public` (with leading slash)
+- Not `public` or `dist` alone
 
 ### 5. Emergency Manual Deployment
 If automatic deployment fails:
