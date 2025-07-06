@@ -12,14 +12,14 @@ const benefits = [
   {
     icon: Shield,
     title: "Post-Quantum Signatures",
-    description: "Each UTXO is protected by Dilithium 5, immune to Shor's algorithm and quantum attacks.",
-    code: `<span class="text-primary">dilithium_p2wsh</span><br><span class="text-muted-foreground">// Quantum-resistant signatures</span>`,
+    description: "Each UTXO is protected by ML-DSA-87, resistant to Shor's algorithm and quantum attacks.",
+    code: `<span class="text-primary">ML-DSA_P2QRH</span><br><span class="text-muted-foreground">// Quantum-resistant signatures</span>`,
   },
   {
     icon: Zap,
     title: "Aligned Mining Incentives",
-    description: "Mining rewards are BTC-denominated, keeping hash power loyal to Bitcoin's ecosystem.",
-    code: `<span class="text-primary">reward_btc</span><br><span class="text-muted-foreground">// Same economic model</span>`,
+    description: "Mining rewards are qBTC-denominated, keeping hash power loyal to Bitcoin's ecosystem.",
+    code: `<span class="text-primary">Reward_qbtc</span><br><span class="text-muted-foreground">// Same economic model</span>`,
   },
   {
     icon: ArrowLeftRight,
@@ -130,13 +130,13 @@ export default function Home() {
                 viewport={{ once: true }}
               >
                 <Card className="glass-card p-8 rounded-2xl hover:shadow-lg hover:shadow-muted/10 transition-all duration-300 group h-full">
-                  <CardContent className="p-0">
+                  <CardContent className="p-0 flex flex-col h-full">
                     <div className="w-16 h-16 orange-gradient rounded-xl flex items-center justify-center mb-6 group-hover:animate-glow">
                       <benefit.icon className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold mb-4 text-foreground">{benefit.title}</h3>
-                    <p className="text-muted-foreground mb-4">{benefit.description}</p>
-                    <div className="bg-card border border-muted/30 p-4 rounded-lg font-mono text-sm">
+                    <p className="text-muted-foreground mb-4 flex-grow">{benefit.description}</p>
+                    <div className="bg-card border border-muted/30 p-4 rounded-lg font-mono text-sm mt-auto">
                       <div dangerouslySetInnerHTML={{ __html: benefit.code }} />
                     </div>
                   </CardContent>
