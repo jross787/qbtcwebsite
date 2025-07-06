@@ -190,3 +190,4 @@ The Apache configuration includes:
 - **Hidden sensitive files** (.env, .git, etc.)
 
 The site is fully production-ready for Apache deployment!
+

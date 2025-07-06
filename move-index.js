@@ -32,3 +32,4 @@ try {
   console.error('Error moving file:', error);
   process.exit(1);
 }
+
