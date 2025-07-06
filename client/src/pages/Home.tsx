@@ -24,7 +24,7 @@ const benefits = [
   {
     icon: ArrowLeftRight,
     title: "Seamless Migration",
-    description: "A trust-minimized bridge lets holders peg-in BTC now and redeem 1:1 later with the ecosystem.",
+    description: "A trust-minimized bridge lets holders peg-in BTC now and redeem 1:1 later.",
     code: `<span class="text-primary">Bridge_Peg_In</span><br><span class="text-muted-foreground">// 1:1 BTC Ratio</span>`,
   },
 ];
