@@ -80,7 +80,7 @@ export default function Home() {
             <h1 className="text-5xl md:text-7xl font-bold mb-10">
               <span className="text-gradient">Quantum-Safe Bitcoin,</span>
               <br />
-              <span className="text-foreground">Ready Today.</span>
+              <span className="text-foreground">Ready Today</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground mb-16 md:mb-20 max-w-4xl mx-auto leading-relaxed">
