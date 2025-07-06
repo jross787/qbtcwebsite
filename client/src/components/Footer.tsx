@@ -15,28 +15,22 @@ export function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://x.com/bitcoinqs"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <Twitter className="w-6 h-6" />
               </a>
               <a
-                href="#"
+                href="https://github.com/q-BTC/qBTC-core"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <Github className="w-6 h-6" />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/company/qbtc"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <Linkedin className="w-6 h-6" />
-              </a>
-              <a
-                href="#"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <MessageCircle className="w-6 h-6" />
               </a>
             </div>
           </div>
