@@ -135,7 +135,9 @@ export default function Home() {
                       <benefit.icon className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold mb-4 text-foreground">{benefit.title}</h3>
-                    <p className="text-muted-foreground mb-4">{benefit.description}</p>
+                    <div className="h-16 mb-4">
+                      <p className="text-muted-foreground">{benefit.description}</p>
+                    </div>
                     <div className="bg-card border border-muted/30 p-4 rounded-lg font-mono text-sm">
                       <div dangerouslySetInnerHTML={{ __html: benefit.code }} />
                     </div>
