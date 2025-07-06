@@ -21,7 +21,9 @@ export const teamMembers: TeamMember[] = [
     expertise: ["Offensive Security", "Cryptography", "Distributed Systems"],
     photo: "christian",
     social: {
-      linkedin: "https://www.linkedin.com/in/papathanasiou"
+      github: "https://github.com/0xfffffffa",
+      linkedin: "https://www.linkedin.com/in/papathanasiou",
+      twitter: "https://x.com/0xfffffffa"
     }
   },
   {
