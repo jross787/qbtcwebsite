@@ -63,15 +63,15 @@ export const teamMembers: TeamMember[] = [
     }
   },
   {
-    name: "Eve Quantum",
-    role: "Security Engineer",
-    bio: "Cybersecurity expert with focus on cryptocurrency security audits. Led security reviews for major blockchain projects.",
-    fullBio: "Eve Quantum is a cybersecurity expert specializing in cryptocurrency and blockchain security. With over 6 years of experience in security auditing, she has led security reviews for major blockchain projects with combined market caps exceeding $10 billion. Her expertise includes smart contract auditing, penetration testing, and cryptographic security analysis. Eve holds certifications in ethical hacking and has discovered critical vulnerabilities in several high-profile DeFi protocols. At qBTC, she ensures the highest security standards across all systems and protocols.",
-    expertise: ["Security Auditing", "Penetration Testing", "Cryptographic Security"],
+    name: "Garrett Paymon",
+    role: "VP Marketing",
+    bio: "Garrett, aka GMONEY is the host of Rugpull Radio the largest Bitcoin podcast on Rumble is a Bitcoin Freedom Cyberpunk committed to the ideals of privacy, sovereignty, and economic freedom.",
+    fullBio: "Garrett, aka GMONEY is the host of Rugpull Radio the largest Bitcoin podcast on Rumble is a Bitcoin Freedom Cyberpunk committed to the ideals of privacy, sovereignty, and economic freedom. A digital revolutionary advocating for the use of Bitcoin as CYBERPOWER to disrupt institutions, traditional financial systems and empower individuals.",
+    expertise: ["Bitcoin Advocacy", "Podcast Hosting", "Digital Marketing"],
     photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face",
     social: {
-      github: "https://github.com/evequantum",
-      linkedin: "https://linkedin.com/in/evequantum"
+      linkedin: "https://www.linkedin.com/in/garrettpaymon/",
+      twitter: "https://x.com/GMONEYPEPE"
     }
   },
   {
