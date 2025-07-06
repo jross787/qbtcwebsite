@@ -70,3 +70,4 @@ console.log('1. git add -A dist');
 console.log('2. git commit -m "fix: build output for Hostinger deployment"');
 console.log('3. git push');
 console.log('\nHostinger will deploy files from dist/ to public_html/');
+

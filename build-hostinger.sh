@@ -48,3 +48,4 @@ echo "2. git commit -m 'fix: build output for Hostinger deployment'"
 echo "3. git push"
 echo ""
 echo "Hostinger will automatically deploy from dist/ to public_html/"
+

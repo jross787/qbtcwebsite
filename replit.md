@@ -118,3 +118,4 @@ qBTC is a quantum-resistant Bitcoin sidechain application built as a full-stack 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+
