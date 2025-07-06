@@ -263,7 +263,7 @@ export default function Team() {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="py-24 md:py-32">
+      <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-4"
@@ -271,13 +271,6 @@ export default function Team() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="w-24 h-24 mx-auto mb-8 flex items-center justify-center">
-              <img
-                src={qBTCLogo}
-                alt="qBTC Logo"
-                className="w-20 h-20 object-contain"
-              />
-            </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Our <span className="text-primary">Team</span>
             </h1>
