@@ -148,3 +148,4 @@ After deployment, test these URLs:
 - `https://yourdomain.com/technology` → Technology page
 
 All should load without 403 errors.
+

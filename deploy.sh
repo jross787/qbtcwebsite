@@ -20,3 +20,4 @@ rsync -a --delete dist/ .
 if ! grep -q "FallbackResource" .htaccess 2>/dev/null; then
   echo "FallbackResource /index.html" >> .htaccess
 fi
+

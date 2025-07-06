@@ -55,3 +55,4 @@ dist/
 - If you move files to `dist/`, you may need to update server configurations accordingly
 - Always run the build command before running the move scripts
 - The scripts will overwrite existing files in the target location
+
