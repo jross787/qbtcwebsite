@@ -130,15 +130,13 @@ export default function Home() {
                 viewport={{ once: true }}
               >
                 <Card className="glass-card p-8 rounded-2xl hover:shadow-lg hover:shadow-muted/10 transition-all duration-300 group h-full">
-                  <CardContent className="p-0 flex flex-col h-full">
+                  <CardContent className="p-0 grid grid-rows-[auto_auto_1fr_auto] gap-0 h-full">
                     <div className="w-16 h-16 orange-gradient rounded-xl flex items-center justify-center mb-6 group-hover:animate-glow">
                       <benefit.icon className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold mb-4 text-foreground">{benefit.title}</h3>
-                    <div className="h-24 mb-4">
-                      <p className="text-muted-foreground">{benefit.description}</p>
-                    </div>
-                    <div className="bg-card border border-muted/30 p-4 rounded-lg font-mono text-sm mt-auto">
+                    <p className="text-muted-foreground mb-4">{benefit.description}</p>
+                    <div className="bg-card border border-muted/30 p-4 rounded-lg font-mono text-sm self-end">
                       <div dangerouslySetInnerHTML={{ __html: benefit.code }} />
                     </div>
                   </CardContent>
