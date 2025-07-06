@@ -86,3 +86,87 @@ export const teamMembers: TeamMember[] = [
     }
   }
 ];
+
+export interface AdvisoryBoardMember {
+  name: string;
+  role: string;
+  bio: string;
+  fullBio?: string;
+  expertise: string[];
+  photo?: string;
+  social: {
+    github?: string;
+    linkedin?: string;
+    twitter?: string;
+  };
+}
+
+export const advisoryBoardMembers: AdvisoryBoardMember[] = [
+  {
+    name: "Dr. Sarah Chen",
+    role: "Quantum Cryptography Expert",
+    bio: "Leading researcher in post-quantum cryptography with 15+ years experience. Published over 50 papers on quantum-resistant algorithms and served on multiple standards committees.",
+    fullBio: "Dr. Sarah Chen is a leading researcher in post-quantum cryptography with over 15 years of experience in cryptographic security. She has published more than 50 papers on quantum-resistant algorithms and has served on multiple international standards committees for post-quantum cryptography. Dr. Chen currently leads the quantum cryptography research division at MIT and advises several blockchain projects on quantum security implementations.",
+    expertise: ["Post-Quantum Cryptography", "Quantum Computing", "Cryptographic Standards"],
+    photo: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
+    social: {
+      linkedin: "https://linkedin.com/in/sarahchen-crypto"
+    }
+  },
+  {
+    name: "Prof. Michael Roberts",
+    role: "Blockchain Researcher",
+    bio: "Stanford professor and blockchain pioneer with extensive research in consensus mechanisms and distributed systems. Former advisor to multiple Fortune 500 blockchain initiatives.",
+    fullBio: "Professor Michael Roberts is a renowned blockchain researcher at Stanford University with groundbreaking work in consensus mechanisms and distributed systems. He has advised multiple Fortune 500 companies on blockchain implementations and has been instrumental in developing several widely-adopted consensus protocols. His research focuses on scalability, security, and decentralization in blockchain networks.",
+    expertise: ["Consensus Mechanisms", "Distributed Systems", "Blockchain Architecture"],
+    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+    social: {
+      linkedin: "https://linkedin.com/in/prof-michael-roberts"
+    }
+  },
+  {
+    name: "Alex Thompson",
+    role: "Former Bitcoin Core Developer",
+    bio: "Early Bitcoin contributor and former Bitcoin Core developer with deep expertise in Bitcoin protocol development and security. Advocate for quantum-safe Bitcoin evolution.",
+    fullBio: "Alex Thompson is a former Bitcoin Core developer and early Bitcoin contributor who has been involved in the Bitcoin ecosystem since 2011. With deep expertise in Bitcoin protocol development and security, Alex has contributed to numerous Bitcoin Improvement Proposals (BIPs) and has been a vocal advocate for preparing Bitcoin for the quantum era. His technical insights are invaluable for ensuring qBTC maintains compatibility with Bitcoin's principles.",
+    expertise: ["Bitcoin Protocol", "Cryptocurrency Security", "Open Source Development"],
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+    social: {
+      github: "https://github.com/alexthompson",
+      linkedin: "https://linkedin.com/in/alex-thompson-bitcoin"
+    }
+  },
+  {
+    name: "Dr. Lisa Wang",
+    role: "Post-Quantum Security Specialist",
+    bio: "NIST researcher specializing in post-quantum security standards and implementations. Key contributor to NIST's post-quantum cryptography standardization process.",
+    fullBio: "Dr. Lisa Wang is a distinguished researcher at the National Institute of Standards and Technology (NIST) specializing in post-quantum security standards and implementations. She has been a key contributor to NIST's post-quantum cryptography standardization process and has extensive experience in evaluating and implementing quantum-resistant cryptographic systems. Her expertise ensures qBTC meets the highest security standards.",
+    expertise: ["Post-Quantum Standards", "Cryptographic Implementation", "Security Evaluation"],
+    photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face",
+    social: {
+      linkedin: "https://linkedin.com/in/dr-lisa-wang-nist"
+    }
+  },
+  {
+    name: "David Kumar",
+    role: "Venture Capital Partner",
+    bio: "Managing partner at leading blockchain-focused VC firm. 20+ years in technology investments with extensive experience in cryptocurrency and DeFi projects.",
+    fullBio: "David Kumar is a managing partner at a leading blockchain-focused venture capital firm with over 20 years of experience in technology investments. He has led investments in numerous successful cryptocurrency and DeFi projects and brings invaluable insights into market dynamics and business strategy. His experience helps guide qBTC's strategic direction and market positioning.",
+    expertise: ["Venture Capital", "Blockchain Investments", "Strategic Planning"],
+    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=face",
+    social: {
+      linkedin: "https://linkedin.com/in/david-kumar-vc"
+    }
+  },
+  {
+    name: "Maria Rodriguez",
+    role: "Regulatory Affairs Expert",
+    bio: "Former SEC attorney and regulatory affairs consultant specializing in cryptocurrency regulations. Expert in compliance frameworks for digital assets and blockchain projects.",
+    fullBio: "Maria Rodriguez is a former SEC attorney and regulatory affairs consultant with specialized expertise in cryptocurrency regulations and compliance. She has helped numerous blockchain projects navigate complex regulatory landscapes and has been instrumental in developing compliance frameworks for digital assets. Her guidance ensures qBTC meets all regulatory requirements and maintains compliance across jurisdictions.",
+    expertise: ["Regulatory Compliance", "Securities Law", "Digital Asset Policy"],
+    photo: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=face",
+    social: {
+      linkedin: "https://linkedin.com/in/maria-rodriguez-crypto-law"
+    }
+  }
+];
