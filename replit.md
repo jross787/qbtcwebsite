@@ -98,6 +98,7 @@ qBTC is a quantum-resistant Bitcoin sidechain application built as a full-stack 
 - **Backend**: esbuild bundles Express.js server to `dist/index.js`
 - **Static Assets**: Served from build output directory
 - **Database**: Production PostgreSQL database via Neon Database
+- **Hostinger Deployment**: Requires flattening build structure from `dist/public/` to `dist/` to avoid 403 errors
 
 ### Architecture Decisions
 1. **Full-Stack TypeScript**: Chosen for type safety across the entire application stack
