@@ -1,5 +1,12 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Users, ChevronDown, ChevronUp } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Twitter,
+  Users,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { teamMembers, advisoryBoardMembers } from "@/data/team";
@@ -70,7 +77,10 @@ function TeamMemberCard({ member, index }: { member: any; index: number }) {
               />
             ) : (
               <div className="w-full h-full orange-gradient rounded-full flex items-center justify-center text-white text-3xl font-bold group-hover:animate-glow">
-                {member.name.split(' ').map((n: string) => n[0]).join('')}
+                {member.name
+                  .split(" ")
+                  .map((n: string) => n[0])
+                  .join("")}
               </div>
             )}
           </div>
@@ -79,11 +89,11 @@ function TeamMemberCard({ member, index }: { member: any; index: number }) {
         </CardHeader>
         <CardContent className="text-center flex-1 flex flex-col">
           <div className="text-muted-foreground mb-4 flex-1">
-            <p className={`${!isExpanded ? 'line-clamp-3' : ''}`}>
+            <p className={`${!isExpanded ? "line-clamp-3" : ""}`}>
               {isExpanded && member.fullBio ? member.fullBio : member.bio}
             </p>
           </div>
-          
+
           <Button
             variant="ghost"
             size="sm"
@@ -102,25 +112,37 @@ function TeamMemberCard({ member, index }: { member: any; index: number }) {
               </>
             )}
           </Button>
-          
+
           <div className="flex justify-center space-x-4 mt-auto">
             {member.social.github && (
               <Button variant="ghost" size="icon" asChild>
-                <a href={member.social.github} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={member.social.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Github className="w-5 h-5" />
                 </a>
               </Button>
             )}
             {member.social.linkedin && (
               <Button variant="ghost" size="icon" asChild>
-                <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={member.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Linkedin className="w-5 h-5" />
                 </a>
               </Button>
             )}
             {member.social.twitter && (
               <Button variant="ghost" size="icon" asChild>
-                <a href={member.social.twitter} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={member.social.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Twitter className="w-5 h-5" />
                 </a>
               </Button>
@@ -132,7 +154,13 @@ function TeamMemberCard({ member, index }: { member: any; index: number }) {
   );
 }
 
-function AdvisoryBoardMemberCard({ member, index }: { member: any; index: number }) {
+function AdvisoryBoardMemberCard({
+  member,
+  index,
+}: {
+  member: any;
+  index: number;
+}) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -154,7 +182,10 @@ function AdvisoryBoardMemberCard({ member, index }: { member: any; index: number
               />
             ) : (
               <div className="w-full h-full orange-gradient rounded-full flex items-center justify-center text-white text-3xl font-bold group-hover:animate-glow">
-                {member.name.split(' ').map((n: string) => n[0]).join('')}
+                {member.name
+                  .split(" ")
+                  .map((n: string) => n[0])
+                  .join("")}
               </div>
             )}
           </div>
@@ -163,11 +194,11 @@ function AdvisoryBoardMemberCard({ member, index }: { member: any; index: number
         </CardHeader>
         <CardContent className="text-center flex-1 flex flex-col">
           <div className="text-muted-foreground mb-4 flex-1">
-            <p className={`${!isExpanded ? 'line-clamp-3' : ''}`}>
+            <p className={`${!isExpanded ? "line-clamp-3" : ""}`}>
               {isExpanded && member.fullBio ? member.fullBio : member.bio}
             </p>
           </div>
-          
+
           <Button
             variant="ghost"
             size="sm"
@@ -186,25 +217,37 @@ function AdvisoryBoardMemberCard({ member, index }: { member: any; index: number
               </>
             )}
           </Button>
-          
+
           <div className="flex justify-center space-x-4 mt-auto">
             {member.social.github && (
               <Button variant="ghost" size="icon" asChild>
-                <a href={member.social.github} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={member.social.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Github className="w-5 h-5" />
                 </a>
               </Button>
             )}
             {member.social.linkedin && (
               <Button variant="ghost" size="icon" asChild>
-                <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={member.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Linkedin className="w-5 h-5" />
                 </a>
               </Button>
             )}
             {member.social.twitter && (
               <Button variant="ghost" size="icon" asChild>
-                <a href={member.social.twitter} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={member.social.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Twitter className="w-5 h-5" />
                 </a>
               </Button>
@@ -222,16 +265,16 @@ export default function Team() {
       {/* Hero Section */}
       <section className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             className="text-center mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             <div className="w-24 h-24 mx-auto mb-8 flex items-center justify-center">
-              <img 
-                src={qBTCLogo} 
-                alt="qBTC Logo" 
+              <img
+                src={qBTCLogo}
+                alt="qBTC Logo"
                 className="w-20 h-20 object-contain"
               />
             </div>
@@ -239,7 +282,8 @@ export default function Team() {
               Our <span className="text-primary">Team</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              World-class researchers, engineers, and cryptographers building the quantum-safe future of Bitcoin.
+              World-class researchers, engineers, and cryptographers building
+              the quantum-safe future of Bitcoin.
             </p>
           </motion.div>
         </div>
@@ -257,10 +301,10 @@ export default function Team() {
       </section>
 
       {/* Advisory Board */}
-      <section className="pb-12">
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            className="text-center mb-4"
+          <motion.div
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -270,7 +314,8 @@ export default function Team() {
               Advisory <span className="text-primary">Board</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Distinguished advisors providing strategic guidance and industry expertise to shape the quantum-safe future.
+              Distinguished advisors providing strategic guidance and industry
+              expertise to shape the quantum-safe future.
             </p>
           </motion.div>
         </div>
@@ -281,7 +326,11 @@ export default function Team() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {advisoryBoardMembers.map((advisor, index) => (
-              <AdvisoryBoardMemberCard key={advisor.name} member={advisor} index={index} />
+              <AdvisoryBoardMemberCard
+                key={advisor.name}
+                member={advisor}
+                index={index}
+              />
             ))}
           </div>
         </div>
@@ -300,7 +349,8 @@ export default function Team() {
               Join Our <span className="text-primary">Mission</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              We're always looking for talented individuals who share our passion for quantum-safe cryptography and Bitcoin's future.
+              We're always looking for talented individuals who share our
+              passion for quantum-safe cryptography and Bitcoin's future.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="orange-gradient text-white">
