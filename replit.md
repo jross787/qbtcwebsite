@@ -108,7 +108,9 @@ qBTC is a quantum-resistant Bitcoin sidechain application built as a full-stack 
 6. **Dark-First Design**: Aligns with crypto/technical audience preferences
 
 ## Changelog
-- June 27, 2025. Initial setup
+- June 27, 2025: Initial setup
+- July 6, 2025: Updated team page with real team members and advisory board
+- July 6, 2025: Fixed deployment issue - removed old build files from root directory that were being served instead of dist/public
 
 ## User Preferences
 
