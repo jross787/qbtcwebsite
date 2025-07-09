@@ -164,7 +164,7 @@ export function MigrationPath() {
                 transition={{ duration: 0.6, delay: 0.8 }}
                 viewport={{ once: true }}
               >
-                Quantum safety without any upgrades needed on Bitcoin L1
+                Quantum safety today and tomorrow
               </motion.p>
             </div>
           </motion.div>
