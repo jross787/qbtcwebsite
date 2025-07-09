@@ -244,7 +244,7 @@ export default function Home() {
             </p>
             <div className="flex justify-center">
               <Button asChild size="lg" className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white px-8 py-4 text-lg">
-                <Link href="/docs">Start Building on qBTC</Link>
+                <a href="https://github.com/q-BTC/qBTC-core" target="_blank" rel="noopener noreferrer">Start Building on qBTC</a>
               </Button>
             </div>
           </motion.div>
