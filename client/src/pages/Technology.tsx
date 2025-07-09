@@ -8,26 +8,26 @@ const technologies = [
   {
     icon: Shield,
     title: "Consensus Mechanism",
-    subtitle: "Modified Nakamoto PoW",
-    description: "Enhanced proof-of-work consensus with quantum-resistant mining algorithms and improved difficulty adjustment.",
+    subtitle: "Nakamoto Style PoW",
+    description: "Proof-of-work consensus with SHA-256 mining algorithms and familiar difficulty adjustment.",
   },
   {
     icon: Cpu,
     title: "Signature Scheme",
-    subtitle: "Dilithium Post-Quantum",
-    description: "NIST-standardized Dilithium 5 signatures providing 256-bit security against quantum attacks.",
+    subtitle: "ML-DSA Post-Quantum",
+    description: "NIST-standardized ML-DSA signatures providing security against quantum attacks.",
   },
   {
     icon: Link2,
     title: "Bridge Security",
-    subtitle: "2-of-2 MSC + zk-attest",
+    subtitle: "Multi-sig Security",
     description: "Trust-minimized bridge using multi-signature contracts with zero-knowledge attestations.",
   },
   {
     icon: Coins,
     title: "Economic Incentives",
     subtitle: "BTC-Denominated Rewards",
-    description: "Mining rewards paid in BTC equivalents to maintain economic alignment with Bitcoin mainnet.",
+    description: "Miner rewards paid in BTC equivalents to maintain economic alignment with Bitcoin mainnet.",
   },
 ];
 
@@ -137,7 +137,7 @@ export default function Technology() {
             <TabsContent value="consensus" className="mt-8">
               <div className="grid lg:grid-cols-2 gap-8">
                 <Card className="glass-card p-8">
-                  <h3 className="text-2xl font-bold mb-4">Modified Nakamoto Consensus</h3>
+                  <h3 className="text-2xl font-bold mb-4">Nakamoto Consensus</h3>
                   <div className="space-y-4 text-muted-foreground">
                     <p>
                       qBTC inherits Bitcoin's proven proof-of-work consensus mechanism with quantum-safe enhancements:
@@ -154,14 +154,15 @@ export default function Technology() {
                   <h4 className="text-xl font-semibold mb-4 text-primary">Block Structure</h4>
                   <div className="bg-card border border-primary/30 p-6 rounded-lg font-mono text-sm">
                     <pre className="text-foreground">
-{`Block Header:
-- version: 0x20000000
-- prev_block_hash: Hash256
-- merkle_root: Hash256
-- timestamp: u32
-- bits: u32
-- nonce: u32
-- dilithium_sig: [u8; 4595]`}
+{`block_obj = Block(
+    version=block_data["version"],
+    prev_hash=prev_hash,
+    merkle_root=block_data["merkle_root"],
+    timestamp=block_data["timestamp"],
+    bits=block_data["bits"],
+    nonce=block_data["nonce"],
+    dilithium_sig=block_data["dilithium_sig"]
+)`}
                     </pre>
                   </div>
                 </div>
