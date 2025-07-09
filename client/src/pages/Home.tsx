@@ -33,18 +33,15 @@ const advisors = [
   "Fund 1", "Fund 2", "Fund 3", "Fund 4", "Fund 5", "Fund 6"
 ];
 
-const mlDsaSignatureCode = `<span class="text-muted-foreground">// Post-quantum signature scheme</span>
-<span class="text-primary">const</span> <span class="text-slate-300">signature</span> = <span class="text-foreground">dilithium.sign(</span>
-  <span class="text-foreground">privateKey,</span>
-  <span class="text-foreground">messageHash</span>
-<span class="text-foreground">);</span>
-
-<span class="text-muted-foreground">// Quantum-resistant verification</span>
-<span class="text-primary">const</span> <span class="text-slate-300">isValid</span> = <span class="text-foreground">dilithium.verify(</span>
-  <span class="text-foreground">publicKey,</span>
-  <span class="text-foreground">signature,</span>
-  <span class="text-foreground">messageHash</span>
-<span class="text-foreground">);</span>`;
+const mlDsaSignatureCode = `<span class="text-primary">def</span> <span class="text-orange-400">sign_transaction</span><span class="text-foreground">(message: str, priv_hex: str) -> str:</span>
+    <span class="text-muted-foreground">"""Sign a UTF-8 message string; return hex signature."""</span>
+    <span class="text-primary">try</span><span class="text-foreground">:</span>
+        <span class="text-primary">with</span> <span class="text-foreground">oqs.Signature(_PQ_ALG, secret_key=bytes.fromhex(priv_hex))</span> <span class="text-primary">as</span> <span class="text-foreground">signer:</span>
+            <span class="text-foreground">signature = _as_bytes(signer.sign(message.encode()))</span>
+        <span class="text-primary">return</span> <span class="text-foreground">_hex(signature)</span>
+    <span class="text-primary">except</span> <span class="text-foreground">Exception</span> <span class="text-primary">as</span> <span class="text-foreground">e:</span>
+        <span class="text-foreground">logging.error(</span><span class="text-green-400">f"Failed to sign: {e}"</span><span class="text-foreground">)</span>
+        <span class="text-primary">raise</span> <span class="text-foreground">RuntimeError(</span><span class="text-green-400">"Failed to sign transaction"</span><span class="text-foreground">)</span> <span class="text-primary">from</span> <span class="text-foreground">e</span>`;
 
 const bridgeSecurityCode = `<span class="text-muted-foreground">// 2-of-2 multisig with zk-attestation</span>
 <span class="text-primary">struct</span> <span class="text-slate-300">BridgeProof</span> <span class="text-foreground">{</span>
