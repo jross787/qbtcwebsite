@@ -242,12 +242,9 @@ export default function Home() {
             <p className="text-xl text-muted-foreground mb-8">
               Don't wait for Q-Day. Secure your Bitcoin with quantum-resistant technology today.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button asChild size="lg" className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white px-8 py-4 text-lg">
                 <Link href="/docs">Start Building on qBTC</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-muted-foreground text-muted-foreground hover:bg-muted-foreground hover:text-background px-8 py-4 text-lg">
-                <Link href="/contact">Get Developer Access</Link>
               </Button>
             </div>
           </motion.div>
