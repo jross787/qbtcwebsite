@@ -17,8 +17,30 @@ const sections = [
 export default function Whitepaper() {
   return (
     <div className="pt-16">
-      {/* Hero Section */}
-      <section className="py-16 md:py-20">
+      {/* Coming Soon Section */}
+      <section className="py-32 md:py-40">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="w-24 h-24 orange-gradient rounded-full flex items-center justify-center mx-auto mb-8">
+              <FileText className="w-12 h-12 text-white" />
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              Coming Soon
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              The qBTC whitepaper is currently being finalized and will be available soon.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Hidden Hero Section */}
+      <section className="py-16 md:py-20 hidden-temp">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-8"
@@ -45,8 +67,8 @@ export default function Whitepaper() {
         </div>
       </section>
 
-      {/* Content */}
-      <section className="py-6">
+      {/* Hidden Content */}
+      <section className="py-6 hidden-temp">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-4 gap-8">
             {/* Table of Contents */}
