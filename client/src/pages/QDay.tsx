@@ -1,6 +1,12 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -26,7 +32,7 @@ const qDayImages = [
   image8,
   image9,
   image10,
-  image12
+  image12,
 ];
 
 export default function QDay() {
@@ -45,7 +51,7 @@ export default function QDay() {
             <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
               What is <span className="text-primary">Q-Day</span>?
             </h1>
-            
+
             {/* Quantum particles animation */}
             <div className="absolute inset-0 pointer-events-none">
               {[...Array(20)].map((_, i) => (
@@ -87,20 +93,23 @@ export default function QDay() {
               <CardContent className="p-0">
                 <div className="space-y-6 text-lg leading-relaxed">
                   <p className="text-muted-foreground">
-                    This allows users to trust mathematical laws for asset security without third parties, assuming proper security practices. However, quantum computers using Shor's algorithm could derive private keys from public keys, threatening Bitcoin's security even with perfect user practices.
+                    Bitcoin's security depends on cryptography that classical
+                    computers cannot break, as finding a private key would take
+                    longer than the age of the universe.
                   </p>
-                  
+                  <p className="text-muted-foreground">
+                    This allows users to trust mathematical laws for asset
+                    security without third parties, assuming proper security
+                    practices. However, quantum computers using Shor's algorithm
+                    could derive private keys from public keys, threatening
+                    Bitcoin's security even with perfect user practices.
+                  </p>
                   <div className="relative">
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent rounded-lg"></div>
-                    <p className="relative text-foreground font-semibold text-xl p-4">
-                      Q-Day is the anticipated future moment when quantum computers gain the power to break these cryptographic algorithms.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-gradient-to-r from-primary/20 to-primary/10 rounded-lg p-6">
-                    <h3 className="text-2xl font-bold text-primary mb-4">The future of Bitcoin is Quantum Safe</h3>
-                    <p className="text-muted-foreground">
-                      Secure your Bitcoin against quantum threats with Quantum Safe Bitcoin qBTC. The first Quantum Safe Proof of Work side chain designed to protect your Bitcoin in the quantum era.
+                    <p className="text-muted-foreground relative">
+                      <strong>Q-Day</strong> is the anticipated future moment
+                      when quantum computers gain the power to break these
+                      cryptographic algorithms.
                     </p>
                   </div>
                 </div>
@@ -151,14 +160,31 @@ export default function QDay() {
                 <CarouselPrevious className="left-4 bg-black/50 border-primary/50 hover:bg-black/70 text-white" />
                 <CarouselNext className="right-4 bg-black/50 border-primary/50 hover:bg-black/70 text-white" />
               </Carousel>
-              
+
               {/* Decorative quantum circuit pattern */}
               <div className="absolute -top-4 -right-4 w-32 h-32 opacity-10">
-                <svg viewBox="0 0 100 100" className="w-full h-full text-primary">
+                <svg
+                  viewBox="0 0 100 100"
+                  className="w-full h-full text-primary"
+                >
                   <defs>
-                    <pattern id="quantum-circuit" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <pattern
+                      id="quantum-circuit"
+                      x="0"
+                      y="0"
+                      width="20"
+                      height="20"
+                      patternUnits="userSpaceOnUse"
+                    >
                       <circle cx="10" cy="10" r="2" fill="currentColor" />
-                      <line x1="0" y1="10" x2="20" y2="10" stroke="currentColor" strokeWidth="1" />
+                      <line
+                        x1="0"
+                        y1="10"
+                        x2="20"
+                        y2="10"
+                        stroke="currentColor"
+                        strokeWidth="1"
+                      />
                     </pattern>
                   </defs>
                   <rect width="100" height="100" fill="url(#quantum-circuit)" />
@@ -182,7 +208,8 @@ export default function QDay() {
               Don't Wait for <span className="text-primary">Q-Day</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Prepare your Bitcoin for the quantum future today. Join the quantum-safe revolution with qBTC.
+              Prepare your Bitcoin for the quantum future today. Join the
+              quantum-safe revolution with qBTC.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
@@ -191,13 +218,6 @@ export default function QDay() {
                 className="px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-lg"
               >
                 Learn More About qBTC
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-gray-100 transition-colors shadow-lg border-2 border-primary"
-              >
-                Read Our Whitepaper
               </motion.button>
             </div>
           </motion.div>
