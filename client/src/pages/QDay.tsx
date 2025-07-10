@@ -75,98 +75,97 @@ export default function QDay() {
       {/* Content Section */}
       <section className="py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Text Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <Card className="glass-card p-8 lg:p-12">
-                <CardContent className="p-0">
-                  <div className="space-y-6 text-lg leading-relaxed">
-                    <p className="text-muted-foreground">
-                      This allows users to trust mathematical laws for asset security without third parties, assuming proper security practices. However, quantum computers using Shor's algorithm could derive private keys from public keys, threatening Bitcoin's security even with perfect user practices.
+          {/* Text Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <Card className="glass-card p-8 lg:p-12">
+              <CardContent className="p-0">
+                <div className="space-y-6 text-lg leading-relaxed">
+                  <p className="text-muted-foreground">
+                    This allows users to trust mathematical laws for asset security without third parties, assuming proper security practices. However, quantum computers using Shor's algorithm could derive private keys from public keys, threatening Bitcoin's security even with perfect user practices.
+                  </p>
+                  
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent rounded-lg"></div>
+                    <p className="relative text-foreground font-semibold text-xl p-4">
+                      Q-Day is the anticipated future moment when quantum computers gain the power to break these cryptographic algorithms.
                     </p>
-                    
-                    <div className="relative">
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent rounded-lg"></div>
-                      <p className="relative text-foreground font-semibold text-xl p-4">
-                        Q-Day is the anticipated future moment when quantum computers gain the power to break these cryptographic algorithms.
-                      </p>
-                    </div>
-                    
-                    <div className="bg-gradient-to-r from-primary/20 to-primary/10 rounded-lg p-6">
-                      <h3 className="text-2xl font-bold text-primary mb-4">The future of Bitcoin is Quantum Safe</h3>
-                      <p className="text-muted-foreground">
-                        Secure your Bitcoin against quantum threats with Quantum Safe Bitcoin qBTC. The first Quantum Safe Proof of Work side chain designed to protect your Bitcoin in the quantum era.
-                      </p>
-                    </div>
                   </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Image Carousel */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="relative">
-                <Carousel
-                  plugins={[
-                    Autoplay({
-                      delay: 4000,
-                    }),
-                  ]}
-                  className="w-full"
-                  opts={{
-                    align: "start",
-                    loop: true,
-                  }}
-                >
-                  <CarouselContent>
-                    {qDayImages.map((image, index) => (
-                      <CarouselItem key={index}>
-                        <div className="relative">
-                          <Card className="glass-card overflow-hidden">
-                            <CardContent className="p-0">
-                              <img
-                                src={image}
-                                alt={`Q-Day insight ${index + 1}`}
-                                className="w-full h-96 object-contain bg-white transition-transform duration-700 hover:scale-105"
-                              />
-                            </CardContent>
-                          </Card>
-                          {/* Gradient overlay for better text contrast */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"></div>
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="left-4 bg-black/50 border-primary/50 hover:bg-black/70 text-white" />
-                  <CarouselNext className="right-4 bg-black/50 border-primary/50 hover:bg-black/70 text-white" />
-                </Carousel>
-                
-                {/* Decorative quantum circuit pattern */}
-                <div className="absolute -top-4 -right-4 w-32 h-32 opacity-10">
-                  <svg viewBox="0 0 100 100" className="w-full h-full text-primary">
-                    <defs>
-                      <pattern id="quantum-circuit" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                        <circle cx="10" cy="10" r="2" fill="currentColor" />
-                        <line x1="0" y1="10" x2="20" y2="10" stroke="currentColor" strokeWidth="1" />
-                      </pattern>
-                    </defs>
-                    <rect width="100" height="100" fill="url(#quantum-circuit)" />
-                  </svg>
+                  
+                  <div className="bg-gradient-to-r from-primary/20 to-primary/10 rounded-lg p-6">
+                    <h3 className="text-2xl font-bold text-primary mb-4">The future of Bitcoin is Quantum Safe</h3>
+                    <p className="text-muted-foreground">
+                      Secure your Bitcoin against quantum threats with Quantum Safe Bitcoin qBTC. The first Quantum Safe Proof of Work side chain designed to protect your Bitcoin in the quantum era.
+                    </p>
+                  </div>
                 </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Image Carousel */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="relative max-w-4xl mx-auto">
+              <Carousel
+                plugins={[
+                  Autoplay({
+                    delay: 4000,
+                  }),
+                ]}
+                className="w-full"
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+              >
+                <CarouselContent>
+                  {qDayImages.map((image, index) => (
+                    <CarouselItem key={index}>
+                      <div className="relative">
+                        <Card className="glass-card overflow-hidden">
+                          <CardContent className="p-0">
+                            <img
+                              src={image}
+                              alt={`Q-Day insight ${index + 1}`}
+                              className="w-full h-96 object-contain bg-white transition-transform duration-700 hover:scale-105"
+                            />
+                          </CardContent>
+                        </Card>
+                        {/* Gradient overlay for better text contrast */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"></div>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-4 bg-black/50 border-primary/50 hover:bg-black/70 text-white" />
+                <CarouselNext className="right-4 bg-black/50 border-primary/50 hover:bg-black/70 text-white" />
+              </Carousel>
+              
+              {/* Decorative quantum circuit pattern */}
+              <div className="absolute -top-4 -right-4 w-32 h-32 opacity-10">
+                <svg viewBox="0 0 100 100" className="w-full h-full text-primary">
+                  <defs>
+                    <pattern id="quantum-circuit" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                      <circle cx="10" cy="10" r="2" fill="currentColor" />
+                      <line x1="0" y1="10" x2="20" y2="10" stroke="currentColor" strokeWidth="1" />
+                    </pattern>
+                  </defs>
+                  <rect width="100" height="100" fill="url(#quantum-circuit)" />
+                </svg>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
