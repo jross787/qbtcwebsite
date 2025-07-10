@@ -9,25 +9,29 @@ const technologies = [
     icon: Shield,
     title: "Consensus Mechanism",
     subtitle: "Nakamoto Style PoW",
-    description: "Proof-of-work consensus with SHA-256 mining algorithms and familiar difficulty adjustment.",
+    description:
+      "Proof-of-work consensus with SHA-256 mining algorithms and familiar difficulty adjustment.",
   },
   {
     icon: Cpu,
     title: "Signature Scheme",
     subtitle: "ML-DSA Post-Quantum",
-    description: "NIST-standardized ML-DSA signatures providing security against quantum attacks.",
+    description:
+      "NIST-standardized ML-DSA signatures providing security against quantum attacks.",
   },
   {
     icon: Link2,
     title: "Bridge Security",
     subtitle: "Multi-sig Secured",
-    description: "Trust-minimized bridge using multi-signature vaults with proven security to keep mainnet BTC safe.",
+    description:
+      "Trust-minimized bridge using multi-signature vaults with proven security to keep mainnet BTC safe.",
   },
   {
     icon: Coins,
     title: "Economic Incentives",
     subtitle: "BTC-Denominated Rewards",
-    description: "Miner rewards paid in BTC equivalents to maintain economic alignment with Bitcoin mainnet.",
+    description:
+      "Miner rewards paid in BTC equivalents to maintain economic alignment with Bitcoin mainnet.",
   },
 ];
 
@@ -68,7 +72,7 @@ export default function Technology() {
       {/* Hero Section */}
       <section className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -78,7 +82,9 @@ export default function Technology() {
               Quantum-Safe <span className="text-primary">Technology</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Advanced cryptographic protocols and consensus mechanisms designed to withstand quantum attacks while maintaining Bitcoin's security model.
+              Advanced cryptographic protocols and consensus mechanisms designed
+              to withstand quantum attacks while maintaining Bitcoin's security
+              model.
             </p>
           </motion.div>
 
@@ -96,7 +102,9 @@ export default function Technology() {
                       <tech.icon className="w-6 h-6 text-white" />
                     </div>
                     <CardTitle className="text-xl">{tech.title}</CardTitle>
-                    <div className="text-primary font-semibold">{tech.subtitle}</div>
+                    <div className="text-primary font-semibold">
+                      {tech.subtitle}
+                    </div>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">{tech.description}</p>
@@ -111,7 +119,7 @@ export default function Technology() {
       {/* Technical Details */}
       <section className="py-24 bg-card/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -122,7 +130,8 @@ export default function Technology() {
               Technical <span className="text-primary">Implementation</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Deep dive into the cryptographic primitives and protocol design that powers qBTC's quantum resistance.
+              Deep dive into the cryptographic primitives and protocol design
+              that powers qBTC's quantum resistance.
             </p>
           </motion.div>
 
@@ -135,14 +144,22 @@ export default function Technology() {
             <TabsContent value="consensus" className="mt-8">
               <div className="grid lg:grid-cols-2 gap-8">
                 <Card className="glass-card p-8">
-                  <h3 className="text-2xl font-bold mb-4">Nakamoto Consensus</h3>
+                  <h3 className="text-2xl font-bold mb-4">
+                    Nakamoto Consensus
+                  </h3>
                   <div className="space-y-4 text-muted-foreground">
                     <p>
-                      qBTC inherits Bitcoin's proven proof-of-work consensus mechanism with quantum-safe enhancements:
+                      qBTC inherits Bitcoin's proven proof-of-work consensus
+                      mechanism with quantum-safe enhancements:
                     </p>
                     <ul className="list-disc list-inside space-y-2">
-                      <li>SHA-256 mining remains unchanged for hash power compatibility</li>
-                      <li>Enhanced difficulty adjustment for side-chain stability</li>
+                      <li>
+                        SHA-256 mining remains unchanged for hash power
+                        compatibility
+                      </li>
+                      <li>
+                        Enhanced difficulty adjustment for side-chain stability
+                      </li>
                       <li>Quantum-resistant block validation</li>
                       <li>Cross-chain merge mining support</li>
                     </ul>
@@ -152,7 +169,7 @@ export default function Technology() {
                   <h3 className="text-2xl font-bold mb-4">Block Structure</h3>
                   <div className="bg-card border border-primary/30 p-6 rounded-lg font-mono text-sm">
                     <pre className="text-foreground">
-{`block_obj = Block(
+                      {`block_obj = Block(
     version=block_data["version"],
     prev_hash=prev_hash,
     merkle_root=block_data["merkle_root"],
@@ -185,7 +202,7 @@ export default function Technology() {
                       code={taprootCode}
                     />
                   </motion.div>
-                  
+
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -200,19 +217,35 @@ export default function Technology() {
                 </div>
 
                 <Card className="glass-card p-8">
-                  <h3 className="text-2xl font-bold mb-4">Dilithium 5 Specifications</h3>
+                  <h3 className="text-2xl font-bold mb-4">
+                    Dilithium 5 Specifications
+                  </h3>
                   <div className="grid md:grid-cols-3 gap-6">
                     <div>
-                      <h4 className="font-semibold text-primary mb-2">Security Level</h4>
-                      <p className="text-muted-foreground">256-bit post-quantum security</p>
+                      <h4 className="font-semibold text-primary mb-2">
+                        Security Level
+                      </h4>
+                      <p className="text-muted-foreground">
+                        256-bit post-quantum security
+                      </p>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-primary mb-2">Key Sizes</h4>
-                      <p className="text-muted-foreground">Public: 1952 bytes<br />Private: 4016 bytes</p>
+                      <h4 className="font-semibold text-primary mb-2">
+                        Key Sizes
+                      </h4>
+                      <p className="text-muted-foreground">
+                        Public: 1952 bytes
+                        <br />
+                        Private: 4016 bytes
+                      </p>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-primary mb-2">Signature Size</h4>
-                      <p className="text-muted-foreground">4595 bytes average</p>
+                      <h4 className="font-semibold text-primary mb-2">
+                        Signature Size
+                      </h4>
+                      <p className="text-muted-foreground">
+                        4595 bytes average
+                      </p>
                     </div>
                   </div>
                 </Card>
@@ -222,14 +255,19 @@ export default function Technology() {
             <TabsContent value="bridge" className="mt-8">
               <div className="space-y-8">
                 <Card className="glass-card p-8">
-                  <h3 className="text-2xl font-bold mb-4">Trust-Minimized Bridge Architecture</h3>
+                  <h3 className="text-2xl font-bold mb-4">
+                    Trust-Minimized Bridge Architecture
+                  </h3>
                   <div className="space-y-4 text-muted-foreground">
                     <p>
-                      The qBTC bridge uses a hybrid approach combining multi-signature security with zero-knowledge proofs:
+                      The qBTC bridge uses a hybrid approach combining
+                      multi-signature security with zero-knowledge proofs:
                     </p>
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <h4 className="font-semibold text-primary">Peg-In Process</h4>
+                        <h4 className="font-semibold text-primary">
+                          Peg-In Process
+                        </h4>
                         <ol className="list-decimal list-inside space-y-1 text-sm">
                           <li>User locks BTC in 2-of-2 multisig</li>
                           <li>Generate ZK proof of lock transaction</li>
@@ -238,7 +276,9 @@ export default function Technology() {
                         </ol>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-primary">Peg-Out Process</h4>
+                        <h4 className="font-semibold text-primary">
+                          Peg-Out Process
+                        </h4>
                         <ol className="list-decimal list-inside space-y-1 text-sm">
                           <li>Burn qBTC tokens on side-chain</li>
                           <li>Generate burn proof</li>
@@ -251,10 +291,12 @@ export default function Technology() {
                 </Card>
 
                 <div className="bg-card border border-primary/30 p-6 rounded-lg">
-                  <h4 className="text-xl font-semibold mb-4 text-primary">Bridge Security Model</h4>
+                  <h4 className="text-xl font-semibold mb-4 text-primary">
+                    Bridge Security Model
+                  </h4>
                   <div className="font-mono text-sm text-foreground">
                     <pre>
-{`// Federation consensus with slashing
+                      {`// Federation consensus with slashing
 struct Federation {
     validators: Vec<ValidatorInfo>,
     threshold: u32,           // 2/3 + 1
@@ -284,32 +326,29 @@ fn verify_bridge_proof(
             <TabsContent value="economics" className="mt-8">
               <div className="space-y-8">
                 <Card className="glass-card p-8">
-                  <h3 className="text-2xl font-bold mb-4">Economic Alignment with Bitcoin</h3>
+                  <h3 className="text-2xl font-bold mb-4">
+                    Economic Alignment with Bitcoin
+                  </h3>
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
-                      <h4 className="font-semibold text-primary mb-3">Mining Incentives</h4>
+                      <h4 className="font-semibold text-primary mb-3">
+                        Mining Incentives
+                      </h4>
                       <ul className="space-y-2 text-muted-foreground">
-                        <li>• Block rewards denominated in BTC</li>
+                        <li>• No block rewards, parity with BTC</li>
                         <li>• Transaction fees paid in qBTC</li>
-                        <li>• Merge mining compatibility</li>
-                        <li>• Difficulty adjustment every 2016 blocks</li>
+                        <li>• Merge mining with Bitcoin mainnet</li>
                       </ul>
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-primary mb-3">Fee Structure</h4>
-                      <ul className="space-y-2 text-muted-foreground">
-                        <li>• Base fee: 1 sat/vbyte</li>
-                        <li>• Bridge fee: 0.1% of amount</li>
-                        <li>• Priority fee market</li>
-                        <li>• MEV protection mechanisms</li>
-                      </ul>
-                    </div>
+                    <div></div>
                   </div>
                 </Card>
 
                 <div className="grid lg:grid-cols-2 gap-8">
                   <Card className="glass-card p-6">
-                    <h4 className="text-xl font-semibold mb-4 text-primary">Token Economics</h4>
+                    <h4 className="text-xl font-semibold mb-4 text-primary">
+                      Token Economics
+                    </h4>
                     <div className="space-y-3 text-muted-foreground">
                       <div className="flex justify-between">
                         <span>Total Supply:</span>
@@ -321,7 +360,9 @@ fn verify_bridge_proof(
                       </div>
                       <div className="flex justify-between">
                         <span>Issuance:</span>
-                        <span className="text-foreground">Bridge Mint Only</span>
+                        <span className="text-foreground">
+                          Bridge Mint Only
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span>Reserve Ratio:</span>
@@ -331,15 +372,19 @@ fn verify_bridge_proof(
                   </Card>
 
                   <Card className="glass-card p-6">
-                    <h4 className="text-xl font-semibold mb-4 text-primary">Security Budget</h4>
+                    <h4 className="text-xl font-semibold mb-4 text-primary">
+                      Security Budget
+                    </h4>
                     <div className="space-y-3 text-muted-foreground">
                       <div className="flex justify-between">
                         <span>Block Reward:</span>
-                        <span className="text-foreground">6.25 BTC</span>
+                        <span className="text-foreground">0.00 BTC</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Halving Schedule:</span>
-                        <span className="text-foreground">Every 210k blocks</span>
+                        <span className="text-foreground">
+                          None (Parity with BTC)
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span>Fee Revenue:</span>
@@ -347,7 +392,7 @@ fn verify_bridge_proof(
                       </div>
                       <div className="flex justify-between">
                         <span>Hash Rate Target:</span>
-                        <span className="text-foreground">1% of Bitcoin</span>
+                        <span className="text-foreground">50% of Bitcoin</span>
                       </div>
                     </div>
                   </Card>
