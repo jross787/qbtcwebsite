@@ -127,10 +127,8 @@ export default function Technology() {
           </motion.div>
 
           <Tabs defaultValue="consensus" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
+            <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="consensus">Consensus</TabsTrigger>
-              <TabsTrigger value="signatures">Signatures</TabsTrigger>
-              <TabsTrigger value="bridge">Bridge</TabsTrigger>
               <TabsTrigger value="economics">Economics</TabsTrigger>
             </TabsList>
 
