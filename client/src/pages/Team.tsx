@@ -173,18 +173,10 @@ export default function Team() {
       {/* Team Grid */}
       <section className="pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamMembers.slice(0, 3).map((member, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {teamMembers.map((member, index) => (
               <MemberCard key={member.name} member={member} index={index} />
             ))}
-          </div>
-          {/* Bottom row - responsive layout */}
-          <div className="flex justify-center mt-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full md:w-2/3">
-              {teamMembers.slice(3).map((member, index) => (
-                <MemberCard key={member.name} member={member} index={index + 3} />
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -213,26 +205,14 @@ export default function Team() {
       {/* Advisory Board Grid */}
       <section className="pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {advisoryBoardMembers.slice(0, 3).map((advisor, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {advisoryBoardMembers.map((advisor, index) => (
               <MemberCard
                 key={advisor.name}
                 member={advisor}
                 index={index}
               />
             ))}
-          </div>
-          {/* Bottom row - responsive layout */}
-          <div className="flex justify-center mt-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full md:w-2/3">
-              {advisoryBoardMembers.slice(3).map((advisor, index) => (
-                <MemberCard
-                  key={advisor.name}
-                  member={advisor}
-                  index={index + 3}
-                />
-              ))}
-            </div>
           </div>
         </div>
       </section>
