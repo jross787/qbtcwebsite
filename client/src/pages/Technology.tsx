@@ -20,8 +20,8 @@ const technologies = [
   {
     icon: Link2,
     title: "Bridge Security",
-    subtitle: "Multi-sig Security",
-    description: "Trust-minimized bridge using multi-signature contracts with zero-knowledge attestations.",
+    subtitle: "Multi-sig Secured",
+    description: "Trust-minimized bridge using multi-signature vaults with proven security to keep mainnet BTC safe.",
   },
   {
     icon: Coins,
