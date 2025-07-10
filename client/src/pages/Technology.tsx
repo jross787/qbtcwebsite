@@ -127,10 +127,10 @@ export default function Technology() {
           </motion.div>
 
           <Tabs defaultValue="consensus" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
+            <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="consensus">Consensus</TabsTrigger>
-              <TabsTrigger value="signatures">Signatures</TabsTrigger>
-              <TabsTrigger value="bridge">Bridge</TabsTrigger>
+              <TabsTrigger value="signatures" className="hidden-temp">Signatures</TabsTrigger>
+              <TabsTrigger value="bridge" className="hidden-temp">Bridge</TabsTrigger>
               <TabsTrigger value="economics">Economics</TabsTrigger>
             </TabsList>
 
@@ -183,7 +183,7 @@ export default function Technology() {
                       code={taprootCode}
                     />
                   </motion.div>
-                  
+
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -267,10 +267,10 @@ fn verify_bridge_proof(
 ) -> Result<(), BridgeError> {
     // Verify ZK-SNARK proof
     zk_verify(proof.snark, public_inputs)?;
-    
+
     // Verify Bitcoin transaction inclusion
     verify_tx_inclusion(proof.btc_proof)?;
-    
+
     Ok(())
 }`}
                     </pre>
