@@ -402,6 +402,19 @@ fn verify_bridge_proof(
           </Tabs>
         </div>
       </section>
+
+      {/* Disclaimer Section */}
+      <section className="py-12 bg-muted/10 border-t border-border/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-sm text-muted-foreground">
+              <strong>Disclaimer:</strong> All features and technical specifications described on this page are subject to change during development. 
+              The information presented does not necessarily represent the current features available on the qBTC Devnet and is intended for 
+              informational purposes only.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
