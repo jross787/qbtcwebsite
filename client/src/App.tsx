@@ -11,6 +11,7 @@ import { MouseTrail } from "@/components/MouseTrail";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Technology from "@/pages/Technology";
+import QDay from "@/pages/QDay";
 import Whitepaper from "@/pages/Whitepaper";
 import Docs from "@/pages/Docs";
 import Roadmap from "@/pages/Roadmap";
@@ -25,6 +26,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/technology" component={Technology} />
+      <Route path="/q-day" component={QDay} />
       <Route path="/whitepaper" component={Whitepaper} />
       <Route path="/docs" component={Docs} />
       <Route path="/roadmap" component={Roadmap} />

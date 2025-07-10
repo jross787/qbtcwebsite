@@ -31,13 +31,14 @@ qBTC is a quantum-resistant Bitcoin sidechain application built as a full-stack 
 ### Frontend Pages
 1. **Home**: Hero section with quantum countdown, benefits showcase, and migration path visualization
 2. **Technology**: Deep dive into consensus mechanisms, signature schemes, and bridge security
-3. **Whitepaper**: Full whitepaper content with downloadable PDF option
-4. **Docs**: API documentation and quick-start guides
-5. **Roadmap**: Timeline of development milestones and future plans
-6. **Team**: Team member profiles with expertise and social links
-7. **Blog**: Technical articles and research updates
-8. **Contact**: Contact form with backend integration
-9. **Wallet**: Quantum-safe wallet interface and setup flows
+3. **Q-Day**: Educational page about quantum threat timeline with expert opinion carousel
+4. **Whitepaper**: Full whitepaper content with downloadable PDF option
+5. **Docs**: API documentation and quick-start guides
+6. **Roadmap**: Timeline of development milestones and future plans
+7. **Team**: Team member profiles with expertise and social links
+8. **Blog**: Technical articles and research updates
+9. **Contact**: Contact form with backend integration
+10. **Wallet**: Quantum-safe wallet interface and setup flows
 
 ### Interactive Features
 - **Quantum Countdown**: Real-time countdown to estimated quantum threat timeline (2028)
@@ -114,6 +115,7 @@ qBTC is a quantum-resistant Bitcoin sidechain application built as a full-stack 
 - July 6, 2025: Fixed deployment issue - removed old build files from root directory that were being served instead of dist/public
 - July 6, 2025: Fixed 403 forbidden error - simplified .htaccess file to be compatible with shared hosting providers, removed restrictive directives, added comprehensive troubleshooting guide
 - July 6, 2025: Fixed home page benefit cards alignment - implemented fixed heights for title (h-16) and description (h-28) containers to ensure perfect horizontal alignment of code blocks across all three cards
+- July 9, 2025: Added Q-Day page with quantum threat awareness content and expert tweet carousel
 
 ## User Preferences
 
