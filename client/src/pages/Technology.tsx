@@ -160,7 +160,11 @@ export default function Technology() {
     bits=block_data["bits"],
     nonce=block_data["nonce"],
     dilithium_sig=block_data["dilithium_sig"]
-)`}
+)
+
+
+
+`}
                     </pre>
                   </div>
                 </div>
