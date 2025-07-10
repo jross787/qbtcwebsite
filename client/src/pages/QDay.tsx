@@ -138,7 +138,7 @@ export default function QDay() {
                               <img
                                 src={image}
                                 alt={`Q-Day insight ${index + 1}`}
-                                className="w-full h-96 object-cover transition-transform duration-700 hover:scale-105"
+                                className="w-full h-96 object-contain bg-white transition-transform duration-700 hover:scale-105"
                               />
                             </CardContent>
                           </Card>
