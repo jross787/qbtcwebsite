@@ -15,7 +15,6 @@ const navItems = [
   { href: "/technology", label: "Technology" },
   { href: "/roadmap", label: "Roadmap" },
   { href: "/team", label: "Team" },
-  { href: "/blog", label: "Blog" },
   { href: "/wallet-setup", label: "Wallet" },
   { href: "/contact", label: "Contact" },
 ];
