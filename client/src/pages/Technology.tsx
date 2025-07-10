@@ -148,8 +148,8 @@ export default function Technology() {
                     </ul>
                   </div>
                 </Card>
-                <div>
-                  <h4 className="text-xl font-semibold mb-4 text-primary">Block Structure</h4>
+                <Card className="glass-card p-8">
+                  <h3 className="text-2xl font-bold mb-4">Block Structure</h3>
                   <div className="bg-card border border-primary/30 p-6 rounded-lg font-mono text-sm">
                     <pre className="text-foreground">
 {`block_obj = Block(
@@ -167,7 +167,7 @@ export default function Technology() {
 `}
                     </pre>
                   </div>
-                </div>
+                </Card>
               </div>
             </TabsContent>
 
