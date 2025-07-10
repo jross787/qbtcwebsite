@@ -13,7 +13,6 @@ import Symbol_4x from "@assets/Symbol@4x.png";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/technology", label: "Technology" },
-  { href: "/whitepaper", label: "Whitepaper" },
   { href: "/docs", label: "Docs" },
   { href: "/roadmap", label: "Roadmap" },
   { href: "/team", label: "Team" },
