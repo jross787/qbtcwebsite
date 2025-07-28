@@ -175,23 +175,18 @@ export default function Team() {
       {/* Team Grid */}
       <section className="pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* First row with 3 members */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-6 lg:mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {teamMembers.slice(0, 3).map((member, index) => (
               <MemberCard key={member.name} member={member} index={index} />
             ))}
+            
+            {/* Empty spacer for centering on large screens */}
+            <div className="hidden lg:block lg:col-start-1 lg:col-end-2"></div>
+            
+            {teamMembers.slice(3).map((member, index) => (
+              <MemberCard key={member.name} member={member} index={index + 3} />
+            ))}
           </div>
-          
-          {/* Second row with remaining members centered */}
-          {teamMembers.length > 3 && (
-            <div className="flex justify-center">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 w-full sm:w-2/3 lg:w-2/3">
-                {teamMembers.slice(3).map((member, index) => (
-                  <MemberCard key={member.name} member={member} index={index + 3} />
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </section>
 
