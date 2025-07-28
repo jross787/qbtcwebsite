@@ -185,7 +185,7 @@ export default function Team() {
           {/* Second row with remaining members centered */}
           {teamMembers.length > 3 && (
             <div className="flex justify-center">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 max-w-2xl">
+              <div className="grid grid-cols-2 gap-6 lg:gap-8" style={{ width: `${(100/3)*2}%` }}>
                 {teamMembers.slice(3).map((member, index) => (
                   <MemberCard key={member.name} member={member} index={index + 3} />
                 ))}
