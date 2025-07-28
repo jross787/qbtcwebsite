@@ -164,30 +164,17 @@ export default function Home() {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Built with NIST approved post-quantum algorithms and battle-tested consensus mechanisms.</p>
           </motion.div>
           
-          <div className="grid lg:grid-cols-2 gap-12 items-stretch">
+          <div className="flex justify-center">
             <motion.div
-              className="h-full"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              className="w-full max-w-2xl"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
               <CodeBlock
-                title="ML-DSA-87 Signatures"
+                title="Institutional Grade Cryptography"
                 code={mlDsaSignatureCode}
-              />
-            </motion.div>
-            
-            <motion.div
-              className="h-full"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <CodeBlock
-                title="Institutional Grade Security"
-                code={bridgeSecurityCode}
               />
             </motion.div>
           </div>
