@@ -103,6 +103,18 @@ export const advisoryBoardMembers: AdvisoryBoardMember[] = [
     }
   },
   {
+    name: "Pierre-Luc Dallaire-Demers",
+    role: "Technical Advisor",
+    bio: "Dr. Pierre-Luc Dallaire-Demers is a quantum physicist and entrepreneur who conducted postdoctoral research at Harvard University, developed quantum algorithms at Xanadu and Zapata Computing, and is the founder and CEO of Pauli Group, specializing in post-quantum cryptography and blockchain security.",
+    fullBio: "Dr. Pierre-Luc Dallaire-Demers is a quantum physicist and entrepreneur who conducted postdoctoral research at Harvard University, developed quantum algorithms at Xanadu and Zapata Computing, and is the founder and CEO of Pauli Group, specializing in post-quantum cryptography and blockchain security.",
+    expertise: ["Quantum Physics", "Post-Quantum Cryptography", "Blockchain Security"],
+    photo: "pierre-luc",
+    social: {
+      linkedin: "https://www.linkedin.com/in/pierre-luc-dallaire-demers/",
+      twitter: "https://x.com/dallairedemers"
+    }
+  },
+  {
     name: "Vasily Pozdyshev",
     role: "Advisor",
     bio: "Vasily is a central banker with a robust technological background rooted in the defense industry. He previously held the position of Deputy Governor at the Central Bank of Russia and is now a Senior Advisor at the Bank for International Settlements (BIS) in Basel, Switzerland. In his current role, he supports monetary authorities in strengthening Cyber Resilience Frameworks for Systemically Important Financial Market Infrastructures, including those related to Digital Money. His contributions to the QBTC are undertaken strictly on a pro-bono basis and during his personal time.",
