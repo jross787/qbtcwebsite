@@ -74,14 +74,6 @@ export function CodeBlock({ title, code, language = "javascript" }: CodeBlockPro
 
   return (
     <div ref={ref} className="glass-card p-8 rounded-2xl h-full flex flex-col">
-      <motion.h3 
-        className="text-2xl font-bold mb-4 text-primary text-center"
-        initial={{ opacity: 0, y: 10 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5 }}
-      >
-        {title}
-      </motion.h3>
       <motion.div 
         className="bg-card border border-primary/30 p-6 rounded-lg font-mono text-sm overflow-x-auto flex-1"
         initial={{ opacity: 0, y: 10 }}
