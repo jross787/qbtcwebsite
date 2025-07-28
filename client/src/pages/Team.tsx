@@ -176,15 +176,8 @@ export default function Team() {
       <section className="pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {teamMembers.slice(0, 3).map((member, index) => (
+            {teamMembers.map((member, index) => (
               <MemberCard key={member.name} member={member} index={index} />
-            ))}
-            
-            {/* Empty spacer for centering on large screens */}
-            <div className="hidden lg:block lg:col-start-1 lg:col-end-2"></div>
-            
-            {teamMembers.slice(3).map((member, index) => (
-              <MemberCard key={member.name} member={member} index={index + 3} />
             ))}
           </div>
         </div>
