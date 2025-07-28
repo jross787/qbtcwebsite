@@ -20,7 +20,7 @@ import garrettPhoto from "@assets/Garrett_1751826325298.png";
 
 // Advisory board photos
 import jamesonPhoto from "@assets/Jameson_1751829377731.png";
-import pierreLucPhoto from "@assets/pierre-luc-new.png";
+import pierreLucPhoto from "@assets/Pierre Luc_1753717855269.png";
 import vasilyPhoto from "@assets/Vasily_1751829377732.png";
 import ronitPhoto from "@assets/Ronit 2_1751829377731.png";
 import axelPhoto from "@assets/Axel_1751829377730.png";
