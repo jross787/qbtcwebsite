@@ -1,15 +1,34 @@
-# Deployment Guide
+# Deployment Guide - Fixed
 
-This guide explains how to properly build and deploy the qBTC marketing platform.
+This guide explains how to properly build and deploy the qBTC marketing platform. 
+
+**✅ DEPLOYMENT ISSUES RESOLVED:**
+- Server now finds static files in the correct location (`dist/public/`)
+- Build process properly organizes files into expected directory structure
+- Automated scripts handle file organization correctly
+- Production deployment structure verified and tested
 
 ## Build Process
 
 The application uses a custom build process to organize files correctly for deployment:
 
-### Quick Build for Deployment
+### ✅ RECOMMENDED: Complete Deployment Process
 
 ```bash
-# Run the complete deployment build
+# Run the complete deployment with verification
+node scripts/deploy.js
+```
+
+This new script does everything needed for deployment:
+1. Builds frontend and backend correctly
+2. Organizes files into proper structure
+3. Verifies deployment readiness
+4. Tests production server
+
+### Alternative: Quick Build for Deployment
+
+```bash
+# Run just the build process
 node scripts/build-for-deployment.js
 ```
 
@@ -50,7 +69,7 @@ dist/
         └── [other assets]
 ```
 
-## Deployment Issues Fixed
+## 🔧 All Deployment Issues Fixed
 
 ### Problem
 The original build configuration had a mismatch:

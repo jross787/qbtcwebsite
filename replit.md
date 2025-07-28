@@ -100,7 +100,13 @@ qBTC is a quantum-resistant Bitcoin sidechain application built as a full-stack 
 - **Static Assets**: Served from `dist/public/` directory as expected by server configuration
 - **Database**: Production PostgreSQL database via Neon Database
 - **Build Scripts**: Automated deployment build process handles file organization correctly
-- **Deployment**: Uses scripts/build-for-deployment.js for complete build process with proper file structure
+- **Deployment**: Uses scripts/deploy.js for complete deployment with verification, or scripts/build-for-deployment.js for build-only
+
+### Deployment Fixes Applied (July 28, 2025)
+- **Issue**: Server expected static files in `dist/public/` but build placed them in `dist/`
+- **Solution**: Created comprehensive deployment scripts that automatically organize files correctly
+- **Result**: Deployment now works with proper directory structure verification
+- **Scripts**: scripts/deploy.js (recommended), scripts/build-for-deployment.js, scripts/organize-build.js
 
 ### Architecture Decisions
 1. **Full-Stack TypeScript**: Chosen for type safety across the entire application stack
