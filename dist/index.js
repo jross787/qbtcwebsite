@@ -1,120 +1,395 @@
-// Production server for qBTC - Addresses deployment issues
-import express from 'express';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { existsSync } from 'fs';
+// server/index.ts
+import express2 from "express";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const app = express();
+// server/routes.ts
+import { createServer } from "http";
 
-// Port configuration - Fix #2: Use PORT environment variable or default to 5000
-const port = process.env.PORT || 5000;
+// server/storage.ts
+var MemStorage = class {
+  users;
+  contacts;
+  currentUserId;
+  currentContactId;
+  constructor() {
+    this.users = /* @__PURE__ */ new Map();
+    this.contacts = /* @__PURE__ */ new Map();
+    this.currentUserId = 1;
+    this.currentContactId = 1;
+  }
+  async getUser(id) {
+    return this.users.get(id);
+  }
+  async getUserByUsername(username) {
+    return Array.from(this.users.values()).find(
+      (user) => user.username === username
+    );
+  }
+  async createUser(insertUser) {
+    const id = this.currentUserId++;
+    const user = { ...insertUser, id };
+    this.users.set(id, user);
+    return user;
+  }
+  async createContact(insertContact) {
+    const id = this.currentContactId++;
+    const contact = {
+      ...insertContact,
+      id,
+      createdAt: /* @__PURE__ */ new Date(),
+      isRead: false
+    };
+    this.contacts.set(id, contact);
+    return contact;
+  }
+  async getAllContacts() {
+    return Array.from(this.contacts.values()).sort(
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+    );
+  }
+};
+var storage = new MemStorage();
 
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+// shared/schema.ts
+import { pgTable, text, serial, boolean, timestamp } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
+import { z } from "zod";
+var users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  username: text("username").notNull().unique(),
+  password: text("password").notNull()
+});
+var contacts = pgTable("contacts", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  subject: text("subject").notNull(),
+  message: text("message").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  isRead: boolean("is_read").default(false).notNull()
+});
+var insertUserSchema = createInsertSchema(users).pick({
+  username: true,
+  password: true
+});
+var insertContactSchema = createInsertSchema(contacts).pick({
+  name: true,
+  email: true,
+  subject: true,
+  message: true
+}).extend({
+  email: z.string().email("Please enter a valid email address"),
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  subject: z.string().min(5, "Subject must be at least 5 characters"),
+  message: z.string().min(10, "Message must be at least 10 characters")
+});
 
-// Request logging
+// server/routes.ts
+async function registerRoutes(app2) {
+  app2.post("/api/contact", async (req, res) => {
+    try {
+      const contactData = insertContactSchema.parse(req.body);
+      const contact = await storage.createContact(contactData);
+      res.json({
+        success: true,
+        message: "Contact form submitted successfully",
+        id: contact.id
+      });
+    } catch (error) {
+      console.error("Contact form error:", error);
+      res.status(400).json({
+        success: false,
+        message: "Invalid form data",
+        error: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  });
+  app2.get("/api/contacts", async (req, res) => {
+    try {
+      const contacts2 = await storage.getAllContacts();
+      res.json(contacts2);
+    } catch (error) {
+      console.error("Error fetching contacts:", error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to fetch contacts"
+      });
+    }
+  });
+  app2.post("/api/newsletter", async (req, res) => {
+    try {
+      const { email } = req.body;
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        return res.status(400).json({
+          success: false,
+          message: "Valid email address is required"
+        });
+      }
+      await storage.createContact({
+        name: "Newsletter Subscriber",
+        email,
+        subject: "Newsletter Subscription",
+        message: "Newsletter subscription request"
+      });
+      res.json({
+        success: true,
+        message: "Successfully subscribed to newsletter"
+      });
+    } catch (error) {
+      console.error("Newsletter subscription error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to subscribe to newsletter"
+      });
+    }
+  });
+  app2.get("/api/health", (req, res) => {
+    res.json({
+      status: "ok",
+      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+      version: "1.0.0"
+    });
+  });
+  app2.get("/api/blog", (req, res) => {
+    res.json({
+      success: true,
+      message: "Blog data is served from frontend"
+    });
+  });
+  app2.post("/api/quantum-check", async (req, res) => {
+    try {
+      const { userAgent } = req.body;
+      const browserInfo = analyzeBrowserCapabilities(userAgent);
+      const quantumMethods = [
+        { method: "X25519MLKEM768", description: "Hybrid X25519 with ML-KEM 768-bit" },
+        { method: "secp256r1MLKEM768", description: "Hybrid secp256r1 with ML-KEM 768-bit" },
+        { method: "MLKEM512", description: "ML-KEM 512-bit post-quantum" },
+        { method: "MLKEM768", description: "ML-KEM 768-bit post-quantum" },
+        { method: "MLKEM1024", description: "ML-KEM 1024-bit post-quantum" }
+      ];
+      const supportedMethods = quantumMethods.map(({ method, description }) => {
+        const supported = checkMethodSupport(method, browserInfo);
+        return { method, supported, description };
+      });
+      const isQuantumSecure = supportedMethods.some((m) => m.supported);
+      res.json({
+        supportedMethods,
+        isQuantumSecure,
+        browserInfo,
+        detectedAt: (/* @__PURE__ */ new Date()).toISOString()
+      });
+    } catch (error) {
+      console.error("Quantum check error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to check quantum security capabilities"
+      });
+    }
+  });
+  const httpServer = createServer(app2);
+  return httpServer;
+}
+function analyzeBrowserCapabilities(userAgent) {
+  const ua = userAgent.toLowerCase();
+  const isChrome = ua.includes("chrome") && !ua.includes("edg");
+  const isFirefox = ua.includes("firefox");
+  const isSafari = ua.includes("safari") && !ua.includes("chrome");
+  const isEdge = ua.includes("edg");
+  const chromeVersion = isChrome ? parseInt(ua.match(/chrome\/(\d+)/)?.[1] || "0") : 0;
+  const firefoxVersion = isFirefox ? parseInt(ua.match(/firefox\/(\d+)/)?.[1] || "0") : 0;
+  const safariVersion = isSafari ? parseInt(ua.match(/version\/(\d+)/)?.[1] || "0") : 0;
+  const edgeVersion = isEdge ? parseInt(ua.match(/edg\/(\d+)/)?.[1] || "0") : 0;
+  return {
+    browser: isChrome ? "Chrome" : isFirefox ? "Firefox" : isSafari ? "Safari" : isEdge ? "Edge" : "Unknown",
+    version: chromeVersion || firefoxVersion || safariVersion || edgeVersion || 0,
+    isChrome,
+    isFirefox,
+    isSafari,
+    isEdge,
+    chromeVersion,
+    firefoxVersion,
+    safariVersion,
+    edgeVersion
+  };
+}
+function checkMethodSupport(method, browserInfo) {
+  const { chromeVersion, firefoxVersion, safariVersion, edgeVersion } = browserInfo;
+  switch (method) {
+    case "X25519MLKEM768":
+      return chromeVersion >= 116 || firefoxVersion >= 118 || safariVersion >= 17 || edgeVersion >= 116;
+    case "secp256r1MLKEM768":
+      return chromeVersion >= 118 || firefoxVersion >= 119 || edgeVersion >= 118;
+    case "MLKEM512":
+      return chromeVersion >= 120 || firefoxVersion >= 121 || edgeVersion >= 120;
+    case "MLKEM768":
+      return chromeVersion >= 119 || firefoxVersion >= 120 || edgeVersion >= 119;
+    case "MLKEM1024":
+      return chromeVersion >= 121 || firefoxVersion >= 122 || edgeVersion >= 121;
+    default:
+      return false;
+  }
+}
+
+// server/vite.ts
+import express from "express";
+import fs from "fs";
+import path2 from "path";
+import { createServer as createViteServer, createLogger } from "vite";
+
+// vite.config.ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
+import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+var vite_config_default = defineConfig({
+  // --------- build output ---------
+  // Writes index.html and assets/* directly into dist/
+  build: {
+    outDir: path.resolve(import.meta.dirname, "dist"),
+    emptyOutDir: true
+  },
+  // --------- plugins --------------
+  plugins: [
+    react(),
+    runtimeErrorOverlay(),
+    ...process.env.NODE_ENV !== "production" && process.env.REPL_ID !== void 0 ? [
+      await import("@replit/vite-plugin-cartographer").then(
+        (m) => m.cartographer()
+      )
+    ] : []
+  ],
+  // --------- path aliases ---------
+  resolve: {
+    alias: {
+      "@": path.resolve(import.meta.dirname, "client", "src"),
+      "@shared": path.resolve(import.meta.dirname, "shared"),
+      "@assets": path.resolve(import.meta.dirname, "attached_assets")
+    }
+  },
+  // --------- project root ---------
+  root: path.resolve(import.meta.dirname, "client"),
+  // --------- dev server ---------- 
+  server: {
+    fs: {
+      strict: true,
+      deny: ["**/.*"]
+    }
+  }
+});
+
+// server/vite.ts
+import { nanoid } from "nanoid";
+var viteLogger = createLogger();
+function log(message, source = "express") {
+  const formattedTime = (/* @__PURE__ */ new Date()).toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true
+  });
+  console.log(`${formattedTime} [${source}] ${message}`);
+}
+async function setupVite(app2, server) {
+  const serverOptions = {
+    middlewareMode: true,
+    hmr: { server },
+    allowedHosts: true
+  };
+  const vite = await createViteServer({
+    ...vite_config_default,
+    configFile: false,
+    customLogger: {
+      ...viteLogger,
+      error: (msg, options) => {
+        viteLogger.error(msg, options);
+        process.exit(1);
+      }
+    },
+    server: serverOptions,
+    appType: "custom"
+  });
+  app2.use(vite.middlewares);
+  app2.use("*", async (req, res, next) => {
+    const url = req.originalUrl;
+    try {
+      const clientTemplate = path2.resolve(
+        import.meta.dirname,
+        "..",
+        "client",
+        "index.html"
+      );
+      let template = await fs.promises.readFile(clientTemplate, "utf-8");
+      template = template.replace(
+        `src="/src/main.tsx"`,
+        `src="/src/main.tsx?v=${nanoid()}"`
+      );
+      const page = await vite.transformIndexHtml(url, template);
+      res.status(200).set({ "Content-Type": "text/html" }).end(page);
+    } catch (e) {
+      vite.ssrFixStacktrace(e);
+      next(e);
+    }
+  });
+}
+function serveStatic(app2) {
+  const distPath = path2.resolve(import.meta.dirname, "public");
+  if (!fs.existsSync(distPath)) {
+    throw new Error(
+      `Could not find the build directory: ${distPath}, make sure to build the client first`
+    );
+  }
+  app2.use(express.static(distPath));
+  app2.use("*", (_req, res) => {
+    res.sendFile(path2.resolve(distPath, "index.html"));
+  });
+}
+
+// server/index.ts
+var app = express2();
+app.use(express2.json());
+app.use(express2.urlencoded({ extended: false }));
 app.use((req, res, next) => {
   const start = Date.now();
-  res.on('finish', () => {
+  const path3 = req.path;
+  let capturedJsonResponse = void 0;
+  const originalResJson = res.json;
+  res.json = function(bodyJson, ...args) {
+    capturedJsonResponse = bodyJson;
+    return originalResJson.apply(res, [bodyJson, ...args]);
+  };
+  res.on("finish", () => {
     const duration = Date.now() - start;
-    if (req.path.startsWith('/api') || req.path === '/health') {
-      console.log(`${req.method} ${req.path} ${res.statusCode} in ${duration}ms`);
+    if (path3.startsWith("/api")) {
+      let logLine = `${req.method} ${path3} ${res.statusCode} in ${duration}ms`;
+      if (capturedJsonResponse) {
+        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
+      }
+      if (logLine.length > 80) {
+        logLine = logLine.slice(0, 79) + "\u2026";
+      }
+      log(logLine);
     }
   });
   next();
 });
-
-// Health check endpoint
-app.get('/health', (req, res) => {
-  const publicPath = join(__dirname, 'public');
-  res.json({ 
-    status: 'healthy', 
-    timestamp: new Date().toISOString(),
-    port: port,
-    staticPath: publicPath,
-    staticExists: existsSync(publicPath),
-    version: '1.0.0',
-    fixes: {
-      staticFiles: 'dist/public/',
-      portConfig: port,
-      buildStructure: 'optimized'
-    }
+(async () => {
+  const server = await registerRoutes(app);
+  app.use((err, _req, res, _next) => {
+    const status = err.status || err.statusCode || 500;
+    const message = err.message || "Internal Server Error";
+    res.status(status).json({ message });
+    throw err;
   });
-});
-
-// API routes placeholder
-app.get('/api/status', (req, res) => {
-  res.json({
-    service: 'qBTC API',
-    status: 'operational',
-    deploymentFixes: {
-      staticFilesPath: 'resolved',
-      portConfiguration: 'resolved', 
-      buildStructure: 'resolved'
-    }
-  });
-});
-
-// Static file serving - Fix #1: Serve from dist/public/
-const publicPath = join(__dirname, 'public');
-console.log(`Static files path: ${publicPath}`);
-console.log(`Static directory exists: ${existsSync(publicPath)}`);
-
-if (existsSync(publicPath)) {
-  app.use(express.static(publicPath));
-  console.log('✅ Static files middleware configured');
-} else {
-  console.log('⚠️  Static files directory not found, creating fallback');
-}
-
-// SPA fallback route
-app.get('*', (req, res) => {
-  const indexPath = join(publicPath, 'index.html');
-  if (existsSync(indexPath)) {
-    res.sendFile(indexPath);
+  if (app.get("env") === "development") {
+    await setupVite(app, server);
   } else {
-    res.status(404).send(`
-      <!DOCTYPE html>
-      <html>
-        <head><title>qBTC - Not Found</title></head>
-        <body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
-          <h1>qBTC - Quantum-Safe Bitcoin</h1>
-          <p>Static files not found. Please build the project first.</p>
-          <p>Expected location: ${indexPath}</p>
-        </body>
-      </html>
-    `);
+    serveStatic(app);
   }
-});
-
-// Error handling
-app.use((err, req, res, next) => {
-  console.error('Server error:', err.message);
-  res.status(500).json({ 
-    error: 'Internal server error',
-    message: err.message,
-    timestamp: new Date().toISOString()
+  const port = process.env.PORT ? parseInt(process.env.PORT) : 5e3;
+  server.listen({
+    port,
+    host: "0.0.0.0",
+    reusePort: true
+  }, () => {
+    log(`serving on port ${port}`);
   });
-});
-
-// Start server - Fix #3: Listen on all interfaces with proper port
-app.listen(port, '0.0.0.0', () => {
-  console.log(`
-🚀 qBTC Server Started
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Port: ${port}
-Environment: ${process.env.NODE_ENV || 'production'}
-Static Path: ${publicPath}
-Health Check: http://localhost:${port}/health
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-✅ Deployment Fixes Applied:
-   1. Static files served from dist/public/
-   2. Server listening on port ${port}
-   3. Build structure optimized for hosting
-
-Ready for deployment!
-  `);
-});
+})();

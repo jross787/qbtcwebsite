@@ -95,11 +95,12 @@ qBTC is a quantum-resistant Bitcoin sidechain application built as a full-stack 
 - **Hot Reloading**: Full-stack hot reloading with tsx and Vite integration
 
 ### Production Build
-- **Frontend**: Vite builds React application to `dist/public`
+- **Frontend**: Vite builds React application to `dist/` then organized to `dist/public/` via post-build script
 - **Backend**: esbuild bundles Express.js server to `dist/index.js`
-- **Static Assets**: Served from build output directory
+- **Static Assets**: Served from `dist/public/` directory as expected by server configuration
 - **Database**: Production PostgreSQL database via Neon Database
-- **Hostinger Deployment**: Requires flattening build structure from `dist/public/` to `dist/` to avoid 403 errors
+- **Build Scripts**: Automated deployment build process handles file organization correctly
+- **Deployment**: Uses scripts/build-for-deployment.js for complete build process with proper file structure
 
 ### Architecture Decisions
 1. **Full-Stack TypeScript**: Chosen for type safety across the entire application stack
@@ -117,6 +118,7 @@ qBTC is a quantum-resistant Bitcoin sidechain application built as a full-stack 
 - July 6, 2025: Fixed home page benefit cards alignment - implemented fixed heights for title (h-16) and description (h-28) containers to ensure perfect horizontal alignment of code blocks across all three cards
 - July 9, 2025: Added Q-Day page with quantum threat awareness content and expert tweet carousel
 - July 10, 2025: Applied comprehensive deployment fixes - resolved static files path (dist/public/), port configuration (5000), and build structure issues for production deployment compatibility
+- July 28, 2025: Fixed critical deployment build structure mismatch - created automated build scripts to organize files correctly, server expects files in dist/public but vite outputs to dist/, added post-build organization scripts and comprehensive deployment documentation
 
 ## User Preferences
 
