@@ -54,11 +54,69 @@ export default function Wallet() {
   const [walletData, setWalletData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string>("");
+  const [selectedTransaction, setSelectedTransaction] = useState<any>(null);
+  const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
   const publicAddress = "qbtc1q4v8n2k3m9x7c2w1e5r6t8y9u0i2o4p6a8s1d3f5g7h9j2k4l6m8n0p2q4r6t8";
   const privateKey = "L5oLkf4jnhHg3fDsR8yE...mK9nQ2pX4vC6bN1mJ8kL7iO5pU3rY6sA";
+
+  // Sample transaction data
+  const recentTransactions = [
+    {
+      id: "tx_1",
+      hash: "f4b3c2d1a0e9f8g7h6i5j4k3l2m1n0o9p8q7r6s5t4u3v2w1x0y9z8",
+      type: "received",
+      amount: 0.5,
+      from: "qbtc1q9x8y7z6a5b4c3d2e1f0g9h8i7j6k5l4m3n2o1p0q9r8s7t6u5v4w3x2y1z0",
+      to: publicAddress,
+      timestamp: "2024-08-11T14:30:00Z",
+      status: "confirmed",
+      confirmations: 12,
+      fee: 0.0001,
+      blockHeight: 850123
+    },
+    {
+      id: "tx_2", 
+      hash: "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2",
+      type: "sent",
+      amount: 0.25,
+      from: publicAddress,
+      to: "qbtc1q3r4s5t6u7v8w9x0y1z2a3b4c5d6e7f8g9h0i1j2k3l4m5n6o7p8q9r0s1t2u3",
+      timestamp: "2024-08-10T09:15:00Z",
+      status: "confirmed",
+      confirmations: 45,
+      fee: 0.0002,
+      blockHeight: 850089
+    },
+    {
+      id: "tx_3",
+      hash: "z9y8x7w6v5u4t3s2r1q0p9o8n7m6l5k4j3i2h1g0f9e8d7c6b5a4z3y2x1w0v9u8",
+      type: "received",
+      amount: 1.0,
+      from: "qbtc1q7k8l9m0n1o2p3q4r5s6t7u8v9w0x1y2z3a4b5c6d7e8f9g0h1i2j3k4l5m6n7",
+      to: publicAddress,
+      timestamp: "2024-08-09T16:45:00Z",
+      status: "confirmed",
+      confirmations: 78,
+      fee: 0.0001,
+      blockHeight: 850034
+    }
+  ];
+
+  const openTransactionModal = (transaction: any) => {
+    setSelectedTransaction(transaction);
+    setIsTransactionModalOpen(true);
+  };
+
+  const formatAddress = (address: string) => {
+    return `${address.slice(0, 8)}...${address.slice(-8)}`;
+  };
+
+  const formatHash = (hash: string) => {
+    return `${hash.slice(0, 8)}...${hash.slice(-8)}`;
+  };
 
   // Generate QR code when component mounts or address changes
   useEffect(() => {
@@ -590,34 +648,197 @@ export default function Wallet() {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      {mockTransactions.map((tx) => (
-                        <div key={tx.id} className="flex items-center justify-between p-4 border border-border rounded-lg">
+                      {recentTransactions.map((tx) => (
+                        <div 
+                          key={tx.id} 
+                          className="flex items-center justify-between p-4 border border-border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors"
+                          onClick={() => openTransactionModal(tx)}
+                        >
                           <div className="flex items-center space-x-4">
                             <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                              tx.type === 'receive' ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'
+                              tx.type === 'received' ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'
                             }`}>
-                              {tx.type === 'receive' ? <ArrowDownLeft className="w-5 h-5" /> : <Send className="w-5 h-5" />}
+                              {tx.type === 'received' ? <ArrowDownLeft className="w-5 h-5" /> : <Send className="w-5 h-5" />}
                             </div>
                             <div>
                               <div className="font-semibold">
-                                {tx.type === 'receive' ? '+' : '-'}{tx.amount} qBTC
+                                {tx.type === 'received' ? '+' : '-'}{tx.amount} qBTC
                               </div>
-                              <div className="text-sm text-muted-foreground">{tx.timestamp}</div>
+                              <div className="text-sm text-muted-foreground">
+                                {new Date(tx.timestamp).toLocaleString()}
+                              </div>
                             </div>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <Badge variant="outline" className="bg-green-500/20 text-green-500 border-green-500/30">
+                            <Badge variant="outline" className={tx.status === 'confirmed' ? 
+                              'bg-green-500/20 text-green-500 border-green-500/30' : 
+                              'bg-yellow-500/20 text-yellow-500 border-yellow-500/30'
+                            }>
                               {tx.status}
                             </Badge>
-                            <Button variant="ghost" size="sm">
-                              <ExternalLink className="w-4 h-4" />
-                            </Button>
+                            <div className="text-sm text-muted-foreground">
+                              {formatHash(tx.hash)}
+                            </div>
                           </div>
                         </div>
                       ))}
                     </div>
                   </CardContent>
                 </Card>
+
+                {/* Transaction Detail Modal */}
+                <Dialog open={isTransactionModalOpen} onOpenChange={setIsTransactionModalOpen}>
+                  <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                      <DialogTitle className="flex items-center gap-2">
+                        <ExternalLink className="h-5 w-5" />
+                        Transaction Details
+                      </DialogTitle>
+                    </DialogHeader>
+                    
+                    {selectedTransaction && (
+                      <div className="space-y-6">
+                        {/* Transaction Hash */}
+                        <div className="space-y-2">
+                          <Label className="text-sm font-medium text-muted-foreground">
+                            Transaction Hash
+                          </Label>
+                          <div className="flex items-center gap-2">
+                            <code className="flex-1 p-2 bg-muted rounded text-sm font-mono break-all">
+                              {selectedTransaction.hash}
+                            </code>
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              onClick={() => {
+                                navigator.clipboard.writeText(selectedTransaction.hash);
+                                toast({
+                                  title: "Copied",
+                                  description: "Transaction hash copied to clipboard.",
+                                });
+                              }}
+                            >
+                              <Copy className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </div>
+
+                        {/* Status and Confirmations */}
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <Label className="text-sm font-medium text-muted-foreground">
+                              Status
+                            </Label>
+                            <div className="flex items-center gap-2">
+                              <div className={`w-2 h-2 rounded-full ${
+                                selectedTransaction.status === 'confirmed' ? 'bg-green-500' : 'bg-yellow-500'
+                              }`} />
+                              <span className="capitalize font-medium">{selectedTransaction.status}</span>
+                            </div>
+                          </div>
+                          
+                          <div className="space-y-2">
+                            <Label className="text-sm font-medium text-muted-foreground">
+                              Confirmations
+                            </Label>
+                            <p className="font-medium">{selectedTransaction.confirmations}</p>
+                          </div>
+                        </div>
+
+                        {/* Amount and Fee */}
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <Label className="text-sm font-medium text-muted-foreground">
+                              Amount
+                            </Label>
+                            <p className={`text-xl font-bold ${
+                              selectedTransaction.type === 'received' ? 'text-green-500' : 'text-red-500'
+                            }`}>
+                              {selectedTransaction.type === 'received' ? '+' : '-'}{selectedTransaction.amount} qBTC
+                            </p>
+                          </div>
+                          
+                          <div className="space-y-2">
+                            <Label className="text-sm font-medium text-muted-foreground">
+                              Network Fee
+                            </Label>
+                            <p className="font-medium">{selectedTransaction.fee} qBTC</p>
+                          </div>
+                        </div>
+
+                        {/* Addresses */}
+                        <div className="space-y-4">
+                          <div className="space-y-2">
+                            <Label className="text-sm font-medium text-muted-foreground">
+                              From Address
+                            </Label>
+                            <div className="flex items-center gap-2">
+                              <code className="flex-1 p-2 bg-muted rounded text-sm font-mono break-all">
+                                {selectedTransaction.from}
+                              </code>
+                              <Button 
+                                variant="outline" 
+                                size="sm"
+                                onClick={() => {
+                                  navigator.clipboard.writeText(selectedTransaction.from);
+                                  toast({
+                                    title: "Copied",
+                                    description: "From address copied to clipboard.",
+                                  });
+                                }}
+                              >
+                                <Copy className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </div>
+
+                          <div className="space-y-2">
+                            <Label className="text-sm font-medium text-muted-foreground">
+                              To Address
+                            </Label>
+                            <div className="flex items-center gap-2">
+                              <code className="flex-1 p-2 bg-muted rounded text-sm font-mono break-all">
+                                {selectedTransaction.to}
+                              </code>
+                              <Button 
+                                variant="outline" 
+                                size="sm"
+                                onClick={() => {
+                                  navigator.clipboard.writeText(selectedTransaction.to);
+                                  toast({
+                                    title: "Copied",
+                                    description: "To address copied to clipboard.",
+                                  });
+                                }}
+                              >
+                                <Copy className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Block and Timestamp */}
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <Label className="text-sm font-medium text-muted-foreground">
+                              Block Height
+                            </Label>
+                            <p className="font-medium">#{selectedTransaction.blockHeight}</p>
+                          </div>
+                          
+                          <div className="space-y-2">
+                            <Label className="text-sm font-medium text-muted-foreground">
+                              Timestamp
+                            </Label>
+                            <p className="font-medium">
+                              {new Date(selectedTransaction.timestamp).toLocaleString()}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </DialogContent>
+                </Dialog>
               </TabsContent>
 
               <TabsContent value="send" className="mt-8">
