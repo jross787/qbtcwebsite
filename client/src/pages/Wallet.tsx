@@ -1290,22 +1290,11 @@ export default function Wallet() {
                     <div className="flex flex-col items-center space-y-4">
                       <div className="bg-white p-4 rounded-lg shadow-lg">
                         {qrCodeDataUrl ? (
-                          <div className="relative">
-                            <img 
-                              src={qrCodeDataUrl} 
-                              alt="qBTC Address QR Code"
-                              className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 cursor-pointer"
-                              onClick={() => setIsQRModalOpen(true)}
-                            />
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="absolute top-2 right-2 bg-white/90 hover:bg-white"
-                              onClick={() => setIsQRModalOpen(true)}
-                            >
-                              <Maximize2 className="w-4 h-4" />
-                            </Button>
-                          </div>
+                          <img 
+                            src={qrCodeDataUrl} 
+                            alt="qBTC Address QR Code"
+                            className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64"
+                          />
                         ) : (
                           <div className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-muted rounded flex items-center justify-center">
                             <div className="text-center">
@@ -1316,18 +1305,20 @@ export default function Wallet() {
                         )}
                       </div>
                       
+                      {/* Expand QR Code Button */}
+                      <Button 
+                        onClick={() => setIsQRModalOpen(true)}
+                        className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white"
+                      >
+                        <Maximize2 className="w-4 h-4 mr-2" />
+                        Expand QR Code
+                      </Button>
+                      
                       {/* QR Code Instructions */}
                       <div className="text-center max-w-md">
                         <p className="text-sm text-muted-foreground">
                           Scan this QR code with any qBTC wallet to send payments to your address
                         </p>
-                        <Button 
-                          variant="link" 
-                          className="text-primary mt-2 sm:hidden"
-                          onClick={() => setIsQRModalOpen(true)}
-                        >
-                          View Full Size QR Code
-                        </Button>
                       </div>
                     </div>
 
