@@ -824,19 +824,19 @@ export default function Wallet() {
                                   {tx.type === 'received' ? <ArrowDownLeft className="w-4 h-4" /> : <Send className="w-4 h-4" />}
                                 </div>
                                 <div className="flex-1 min-w-0 space-y-1">
-                                  <div className="flex items-center justify-between">
-                                    <div className="font-semibold text-sm">
-                                      {tx.type === 'received' ? '+' : '-'}{tx.amount} qBTC
-                                    </div>
-                                    <Badge variant="outline" className={`text-xs ml-2 ${tx.status === 'confirmed' ? 
+                                  <div className="font-semibold text-sm">
+                                    {tx.type === 'received' ? '+' : '-'}{tx.amount} qBTC
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <Badge variant="outline" className={`text-xs ${tx.status === 'confirmed' ? 
                                       'bg-green-500/20 text-green-500 border-green-500/30' : 
                                       'bg-yellow-500/20 text-yellow-500 border-yellow-500/30'
                                     }`}>
                                       {tx.status}
                                     </Badge>
-                                  </div>
-                                  <div className="text-xs text-muted-foreground">
-                                    {new Date(tx.timestamp).toLocaleDateString()} {new Date(tx.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                                    <div className="text-xs text-muted-foreground">
+                                      {new Date(tx.timestamp).toLocaleDateString()} {new Date(tx.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                                    </div>
                                   </div>
                                   <div className="text-xs text-muted-foreground truncate">
                                     {formatHash(tx.hash)}
