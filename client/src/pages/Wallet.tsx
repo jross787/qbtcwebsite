@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Wallet as WalletIcon, Send, ArrowDownLeft, Shield, Eye, Copy, ExternalLink, Plus, Link, Download, Upload, FileText, Key, AlertCircle } from "lucide-react";
+import QRCode from "qrcode";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -52,11 +53,36 @@ export default function Wallet() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [walletData, setWalletData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
   const publicAddress = "qbtc1q4v8n2k3m9x7c2w1e5r6t8y9u0i2o4p6a8s1d3f5g7h9j2k4l6m8n0p2q4r6t8";
   const privateKey = "L5oLkf4jnhHg3fDsR8yE...mK9nQ2pX4vC6bN1mJ8kL7iO5pU3rY6sA";
+
+  // Generate QR code when component mounts or address changes
+  useEffect(() => {
+    const generateQRCode = async () => {
+      try {
+        const qrDataUrl = await QRCode.toDataURL(publicAddress, {
+          width: 256,
+          margin: 2,
+          color: {
+            dark: '#000000',
+            light: '#FFFFFF'
+          },
+          errorCorrectionLevel: 'M'
+        });
+        setQrCodeDataUrl(qrDataUrl);
+      } catch (error) {
+        console.error('Error generating QR code:', error);
+      }
+    };
+
+    if (hasWallet) {
+      generateQRCode();
+    }
+  }, [hasWallet, publicAddress]);
 
   const generateWalletFile = () => {
     if (!walletName || !walletPassword) return;
@@ -632,27 +658,109 @@ export default function Wallet() {
               <TabsContent value="receive" className="mt-8">
                 <Card className="glass-card">
                   <CardHeader>
-                    <CardTitle>Receive qBTC</CardTitle>
+                    <CardTitle className="flex items-center gap-2">
+                      <ArrowDownLeft className="h-5 w-5" />
+                      Receive qBTC
+                    </CardTitle>
+                    <p className="text-muted-foreground">
+                      Share your address or QR code to receive qBTC payments
+                    </p>
                   </CardHeader>
-                  <CardContent className="text-center space-y-4">
-                    <div className="bg-white p-4 rounded-lg max-w-xs mx-auto">
-                      {/* QR Code would go here */}
-                      <div className="h-48 bg-muted rounded flex items-center justify-center">
-                        QR Code
+                  <CardContent className="space-y-6">
+                    {/* QR Code Section */}
+                    <div className="flex flex-col items-center space-y-4">
+                      <div className="bg-white p-4 rounded-lg shadow-lg">
+                        {qrCodeDataUrl ? (
+                          <img 
+                            src={qrCodeDataUrl} 
+                            alt="qBTC Address QR Code"
+                            className="w-64 h-64"
+                          />
+                        ) : (
+                          <div className="w-64 h-64 bg-muted rounded flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="w-8 h-8 animate-spin rounded-full border-2 border-primary/30 border-t-primary mx-auto mb-2"></div>
+                              <p className="text-sm text-muted-foreground">Generating QR Code...</p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      
+                      {/* QR Code Instructions */}
+                      <div className="text-center max-w-md">
+                        <p className="text-sm text-muted-foreground">
+                          Scan this QR code with any qBTC wallet to send payments to your address
+                        </p>
                       </div>
                     </div>
-                    <div>
-                      <Label>Your Address</Label>
-                      <div className="flex items-center space-x-2 mt-2">
+
+                    {/* Address Section */}
+                    <div className="space-y-3">
+                      <Label className="text-base font-medium">Your qBTC Address</Label>
+                      <div className="flex items-center space-x-2">
                         <Input
                           value={publicAddress}
                           readOnly
                           className="font-mono text-sm"
                         />
-                        <Button variant="outline" size="icon">
+                        <Button 
+                          variant="outline" 
+                          size="icon"
+                          onClick={() => {
+                            navigator.clipboard.writeText(publicAddress);
+                            toast({
+                              title: "Address Copied",
+                              description: "Your qBTC address has been copied to clipboard.",
+                            });
+                          }}
+                        >
                           <Copy className="w-4 h-4" />
                         </Button>
                       </div>
+                      <p className="text-xs text-muted-foreground">
+                        This is your public address. You can safely share it with others to receive payments.
+                      </p>
+                    </div>
+
+                    {/* Additional Actions */}
+                    <div className="flex gap-3 pt-4">
+                      <Button 
+                        variant="outline" 
+                        className="flex-1"
+                        onClick={() => {
+                          const shareData = {
+                            title: 'qBTC Address',
+                            text: `Send qBTC to: ${publicAddress}`,
+                          };
+                          if (navigator.share) {
+                            navigator.share(shareData);
+                          } else {
+                            navigator.clipboard.writeText(publicAddress);
+                            toast({
+                              title: "Address Copied",
+                              description: "Address copied to clipboard for sharing.",
+                            });
+                          }
+                        }}
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Share Address
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        className="flex-1"
+                        onClick={() => {
+                          if (qrCodeDataUrl) {
+                            const link = document.createElement('a');
+                            link.download = 'qbtc-address-qr.png';
+                            link.href = qrCodeDataUrl;
+                            link.click();
+                          }
+                        }}
+                      >
+                        <Download className="w-4 h-4 mr-2" />
+                        Save QR Code
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
