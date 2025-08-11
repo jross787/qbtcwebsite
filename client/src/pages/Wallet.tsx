@@ -219,7 +219,7 @@ export default function Wallet() {
                   <Dialog open={isConnectDialogOpen} onOpenChange={setIsConnectDialogOpen}>
                     <DialogTrigger asChild>
                       <Button className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white w-full h-12">
-                        Upload Wallet File
+                        Connect Wallet
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="max-w-lg">
@@ -362,8 +362,8 @@ export default function Wallet() {
                 <CardContent className="text-center">
                   <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
                     <DialogTrigger asChild>
-                      <Button variant="outline" className="w-full h-12">
-                        Generate New Wallet
+                      <Button className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white w-full h-12">
+                        Create Wallet
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="max-w-lg">
