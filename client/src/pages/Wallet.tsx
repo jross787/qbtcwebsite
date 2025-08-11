@@ -112,6 +112,34 @@ export default function Wallet() {
     }
   ];
 
+  // Mock faucet requests data - will be replaced with API data later
+  const mockFaucetRequests = [
+    {
+      amount: '0.1',
+      timestamp: 'Today, 2:30 PM',
+      status: 'completed' as const,
+      txHash: 'qbtc_faucet_abc123def456'
+    },
+    {
+      amount: '0.1',
+      timestamp: 'Yesterday, 11:45 AM',
+      status: 'completed' as const,
+      txHash: 'qbtc_faucet_def456ghi789'
+    },
+    {
+      amount: '0.1',
+      timestamp: '2 days ago, 3:20 PM',
+      status: 'pending' as const,
+      txHash: 'qbtc_faucet_ghi789jkl012'
+    },
+    {
+      amount: '0.1',
+      timestamp: '3 days ago, 9:15 AM',
+      status: 'completed' as const,
+      txHash: 'qbtc_faucet_jkl012mno345'
+    }
+  ];
+
   const openTransactionModal = (transaction: any) => {
     setSelectedTransaction(transaction);
     setIsTransactionModalOpen(true);
@@ -1406,17 +1434,25 @@ export default function Wallet() {
                       <h4 className="font-medium">Recent Faucet Requests</h4>
                       <div className="space-y-2">
                         {/* Mock data - replace with actual faucet requests */}
-                        {[].length > 0 ? (
+                        {mockFaucetRequests.length > 0 ? (
                           <div className="space-y-2">
-                            <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
-                              <div>
-                                <p className="font-medium">0.1 qBTC</p>
-                                <p className="text-sm text-muted-foreground">Today, 2:30 PM</p>
+                            {mockFaucetRequests.map((request, index) => (
+                              <div key={index} className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                                <div>
+                                  <p className="font-medium">{request.amount} qBTC</p>
+                                  <p className="text-sm text-muted-foreground">{request.timestamp}</p>
+                                </div>
+                                <Badge variant="outline" className={
+                                  request.status === 'completed' 
+                                    ? 'bg-green-500/20 text-green-500 border-green-500/30'
+                                    : request.status === 'pending'
+                                    ? 'bg-yellow-500/20 text-yellow-500 border-yellow-500/30'
+                                    : 'bg-red-500/20 text-red-500 border-red-500/30'
+                                }>
+                                  {request.status}
+                                </Badge>
                               </div>
-                              <Badge variant="outline" className="bg-green-500/20 text-green-500 border-green-500/30">
-                                Completed
-                              </Badge>
-                            </div>
+                            ))}
                           </div>
                         ) : (
                           <div className="flex flex-col items-center justify-center py-8 space-y-3 text-center">
