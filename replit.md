@@ -125,6 +125,13 @@ qBTC is a quantum-resistant Bitcoin sidechain application built as a full-stack 
 - July 9, 2025: Added Q-Day page with quantum threat awareness content and expert tweet carousel
 - July 10, 2025: Applied comprehensive deployment fixes - resolved static files path (dist/public/), port configuration (5000), and build structure issues for production deployment compatibility
 - July 28, 2025: ✅ RESOLVED critical deployment build structure mismatch - implemented all suggested fixes: updated build command to use deployment script, created missing public directory structure, added post-build step to move static files, ensured server looks for files in correct directory, runs organization before server start. Deployment now works correctly with proper dist/public/ structure.
+- August 11, 2025: ✅ MIGRATION COMPLETE - Successfully migrated from Replit Agent to standard Replit environment with major navigation and wallet improvements:
+  * Restructured navigation with Technology dropdown containing Overview, Q-Day, and Roadmap
+  * Added new Explorer page with transaction browser, search functionality, and detailed transaction modals
+  * Completely redesigned Wallet page with Connect Wallet (JSON file upload) and Create Wallet (downloadable JSON) as primary options
+  * Implemented quantum-safe wallet file generation with CRYSTALS-Kyber1024 and Dilithium3 algorithms
+  * Added client-side wallet encryption/decryption functionality with password protection
+  * Enhanced UI with proper modal dialogs, file upload handling, and loading states
 
 ## User Preferences
 

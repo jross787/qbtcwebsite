@@ -20,6 +20,7 @@ import Blog from "@/pages/Blog";
 import Contact from "@/pages/Contact";
 import Wallet from "@/pages/Wallet";
 import WalletSetup from "@/pages/WalletSetup";
+import Explorer from "@/pages/Explorer";
 
 function Router() {
   return (
@@ -30,6 +31,7 @@ function Router() {
       <Route path="/whitepaper" component={Whitepaper} />
       <Route path="/docs" component={Docs} />
       <Route path="/roadmap" component={Roadmap} />
+      <Route path="/explorer" component={Explorer} />
       <Route path="/team" component={Team} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={Blog} />

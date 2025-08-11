@@ -1,23 +1,29 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useTheme } from "./ThemeProvider";
 import logoImage from "@assets/Symbol@4x copy 5_1750368885450.png";
 
 import Symbol_4x from "@assets/Symbol@4x.png";
 
-
-
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/technology", label: "Technology" },
-  { href: "/q-day", label: "Q-Day" },
-  { href: "/roadmap", label: "Roadmap" },
-  { href: "/team", label: "Team" },
-  { href: "/wallet-setup", label: "Wallet" },
-  { href: "/contact", label: "Contact" },
+  { id: "home", href: "/", label: "Home" },
+  { 
+    id: "technology",
+    label: "Technology", 
+    children: [
+      { href: "/technology", label: "Overview" },
+      { href: "/q-day", label: "Q-Day" },
+      { href: "/roadmap", label: "Roadmap" }
+    ]
+  },
+  { id: "explorer", href: "/explorer", label: "Explorer" },
+  { id: "team", href: "/team", label: "Team" },
+  { id: "wallet", href: "/wallet", label: "Wallet" },
+  { id: "contact", href: "/contact", label: "Contact" },
 ];
 
 export function Navigation() {
@@ -40,17 +46,46 @@ export function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`transition-colors ${
-                  location === item.href
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-primary"
-                }`}
-              >
-                {item.label}
-              </Link>
+              item.children ? (
+                <DropdownMenu key={item.id}>
+                  <DropdownMenuTrigger className={`flex items-center space-x-1 transition-colors ${
+                    item.children.some(child => location === child.href)
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-primary"
+                  }`}>
+                    <span>{item.label}</span>
+                    <ChevronDown className="h-4 w-4" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    {item.children.map((child) => (
+                      <DropdownMenuItem key={child.href} asChild>
+                        <Link
+                          href={child.href}
+                          className={`w-full transition-colors ${
+                            location === child.href
+                              ? "text-primary"
+                              : "text-muted-foreground hover:text-primary"
+                          }`}
+                        >
+                          {child.label}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  className={`transition-colors ${
+                    location === item.href
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-primary"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
           </div>
 
@@ -77,18 +112,42 @@ export function Navigation() {
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <div className="flex flex-col space-y-4 mt-8">
                   {navItems.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={`text-lg transition-colors ${
-                        location === item.href
-                          ? "text-primary"
-                          : "text-muted-foreground hover:text-primary"
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
+                    item.children ? (
+                      <div key={item.id} className="space-y-2">
+                        <div className="text-lg font-medium text-muted-foreground">
+                          {item.label}
+                        </div>
+                        <div className="ml-4 space-y-2">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              onClick={() => setMobileOpen(false)}
+                              className={`block text-lg transition-colors ${
+                                location === child.href
+                                  ? "text-primary"
+                                  : "text-muted-foreground hover:text-primary"
+                              }`}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <Link
+                        key={item.id}
+                        href={item.href}
+                        onClick={() => setMobileOpen(false)}
+                        className={`text-lg transition-colors ${
+                          location === item.href
+                            ? "text-primary"
+                            : "text-muted-foreground hover:text-primary"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    )
                   ))}
                 </div>
               </SheetContent>
