@@ -142,6 +142,14 @@ qBTC is a quantum-resistant Bitcoin sidechain application built as a full-stack 
   * Team page: Empty states for both main team and advisory board sections
   * Bridge functionality: Proper status tracking with visual progress indicators
   * All empty states include relevant icons, helpful messaging, and actionable next steps
+- August 11, 2025: ✅ MOBILE RESPONSIVENESS FIXES - Resolved text overlap and alignment issues on iPhone devices:
+  * Separated mobile and desktop layouts for wallet header to prevent text overlap
+  * Improved tab layout with responsive grid (3 columns on mobile, 6 on desktop)
+  * Enhanced transaction list items with stacked layout on mobile devices
+  * Added responsive text sizing throughout wallet page (text-3xl sm:text-4xl md:text-5xl)
+  * Improved button layouts with flex-col on mobile, flex-row on larger screens
+  * Added proper padding and spacing for different screen sizes
+  * Fixed network toggle and disconnect button positioning for mobile
 
 ## User Preferences
 

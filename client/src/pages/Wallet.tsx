@@ -669,7 +669,7 @@ export default function Wallet() {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="py-24 md:py-32">
+      <section className="py-12 sm:py-16 md:py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
@@ -677,9 +677,48 @@ export default function Wallet() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="flex justify-between items-start mb-6">
+            {/* Mobile Layout */}
+            <div className="block md:hidden">
+              <div className="text-center mb-6">
+                <h1 className="text-3xl sm:text-4xl font-bold mb-4">
+                  qBTC <span className="text-primary">Wallet</span>
+                </h1>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+                  <div className="flex items-center space-x-2">
+                    <Globe className="w-4 h-4 text-muted-foreground" />
+                    <span className="text-sm font-medium">{isTestnet ? 'Testnet' : 'Mainnet'}</span>
+                    <Switch 
+                      checked={!isTestnet}
+                      onCheckedChange={(checked) => {
+                        if (checked) {
+                          toast({
+                            title: "Mainnet Coming Soon",
+                            description: "Mainnet functionality is currently in development and will be available soon.",
+                            variant: "destructive"
+                          });
+                          return;
+                        } else {
+                          setIsTestnet(true);
+                        }
+                      }}
+                    />
+                  </div>
+                  <Button 
+                    variant="outline" 
+                    onClick={disconnectWallet}
+                    className="text-[#FF9500] border-[#FF9500] hover:bg-[#FF9500] hover:text-white p-2"
+                    title="Disconnect Wallet"
+                  >
+                    <Power className="w-5 h-5" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop Layout */}
+            <div className="hidden md:flex justify-between items-start mb-6">
               <div className="flex-1">
-                <h1 className="text-5xl md:text-6xl font-bold mb-6">
+                <h1 className="text-5xl lg:text-6xl font-bold mb-6">
                   qBTC <span className="text-primary">Wallet</span>
                 </h1>
               </div>
@@ -691,16 +730,13 @@ export default function Wallet() {
                     checked={!isTestnet}
                     onCheckedChange={(checked) => {
                       if (checked) {
-                        // Trying to switch to mainnet - show alert and don't change state
                         toast({
                           title: "Mainnet Coming Soon",
                           description: "Mainnet functionality is currently in development and will be available soon.",
                           variant: "destructive"
                         });
-                        // Keep it on testnet
                         return;
                       } else {
-                        // Allow switching back to testnet
                         setIsTestnet(true);
                       }
                     }}
@@ -716,26 +752,26 @@ export default function Wallet() {
                 </Button>
               </div>
             </div>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
               Secure quantum-resistant wallet for managing your qBTC with post-quantum cryptography protection.
             </p>
           </motion.div>
 
           {/* Balance Card */}
           <motion.div
-            className="max-w-2xl mx-auto mb-12"
+            className="max-w-2xl mx-auto mb-8 sm:mb-12 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <Card className="glass-card text-center p-8">
+            <Card className="glass-card text-center p-4 sm:p-6 md:p-8">
               <div className="flex items-center justify-center mb-4">
-                <WalletIcon className="w-8 h-8 text-primary mr-3" />
-                <h2 className="text-2xl font-semibold">Total Balance</h2>
+                <WalletIcon className="w-6 h-6 sm:w-8 sm:h-8 text-primary mr-2 sm:mr-3" />
+                <h2 className="text-xl sm:text-2xl font-semibold">Total Balance</h2>
               </div>
-              <div className="text-5xl font-bold text-primary mb-2">{balance} qBTC</div>
-              <div className="text-muted-foreground">≈ $127,350 USD</div>
-              <div className="flex gap-4 justify-center mt-6">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-2">{balance} qBTC</div>
+              <div className="text-sm sm:text-base text-muted-foreground">≈ $127,350 USD</div>
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mt-4 sm:mt-6">
                 <Button className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white">
                   <Send className="w-4 h-4 mr-2" />
                   Send
@@ -750,22 +786,22 @@ export default function Wallet() {
 
           {/* Wallet Interface */}
           <motion.div
-            className="max-w-6xl mx-auto"
+            className="max-w-6xl mx-auto px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Tabs defaultValue="transactions" className="w-full">
-              <TabsList className="grid w-full grid-cols-6">
-                <TabsTrigger value="transactions">Transactions</TabsTrigger>
-                <TabsTrigger value="send">Send</TabsTrigger>
-                <TabsTrigger value="receive">Receive</TabsTrigger>
-                <TabsTrigger value="bridge">Bridge</TabsTrigger>
-                <TabsTrigger value="faucet">Faucet</TabsTrigger>
-                <TabsTrigger value="security">Security</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-3 sm:grid-cols-6 gap-1">
+                <TabsTrigger value="transactions" className="text-xs sm:text-sm">Transactions</TabsTrigger>
+                <TabsTrigger value="send" className="text-xs sm:text-sm">Send</TabsTrigger>
+                <TabsTrigger value="receive" className="text-xs sm:text-sm">Receive</TabsTrigger>
+                <TabsTrigger value="bridge" className="text-xs sm:text-sm">Bridge</TabsTrigger>
+                <TabsTrigger value="faucet" className="text-xs sm:text-sm">Faucet</TabsTrigger>
+                <TabsTrigger value="security" className="text-xs sm:text-sm">Security</TabsTrigger>
               </TabsList>
 
-              <TabsContent value="transactions" className="mt-8">
+              <TabsContent value="transactions" className="mt-4 sm:mt-6 md:mt-8">
                 <Card className="glass-card">
                   <CardHeader>
                     <CardTitle>Recent Transactions</CardTitle>
@@ -776,32 +812,32 @@ export default function Wallet() {
                         {recentTransactions.map((tx) => (
                           <div 
                             key={tx.id} 
-                            className="flex items-center justify-between p-4 border border-border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors"
+                            className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 border border-border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors space-y-2 sm:space-y-0"
                             onClick={() => openTransactionModal(tx)}
                           >
-                            <div className="flex items-center space-x-4">
-                              <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                            <div className="flex items-center space-x-3 sm:space-x-4">
+                              <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center ${
                                 tx.type === 'received' ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'
                               }`}>
-                                {tx.type === 'received' ? <ArrowDownLeft className="w-5 h-5" /> : <Send className="w-5 h-5" />}
+                                {tx.type === 'received' ? <ArrowDownLeft className="w-4 h-4 sm:w-5 sm:h-5" /> : <Send className="w-4 h-4 sm:w-5 sm:h-5" />}
                               </div>
                               <div>
-                                <div className="font-semibold">
+                                <div className="font-semibold text-sm sm:text-base">
                                   {tx.type === 'received' ? '+' : '-'}{tx.amount} qBTC
                                 </div>
-                                <div className="text-sm text-muted-foreground">
+                                <div className="text-xs sm:text-sm text-muted-foreground">
                                   {new Date(tx.timestamp).toLocaleString()}
                                 </div>
                               </div>
                             </div>
-                            <div className="flex items-center space-x-2">
-                              <Badge variant="outline" className={tx.status === 'confirmed' ? 
+                            <div className="flex items-center justify-between sm:justify-end space-x-2 pl-11 sm:pl-0">
+                              <Badge variant="outline" className={`text-xs ${tx.status === 'confirmed' ? 
                                 'bg-green-500/20 text-green-500 border-green-500/30' : 
                                 'bg-yellow-500/20 text-yellow-500 border-yellow-500/30'
-                              }>
+                              }`}>
                                 {tx.status}
                               </Badge>
-                              <div className="text-sm text-muted-foreground">
+                              <div className="text-xs sm:text-sm text-muted-foreground">
                                 {formatHash(tx.hash)}
                               </div>
                             </div>
