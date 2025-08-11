@@ -792,14 +792,16 @@ export default function Wallet() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Tabs defaultValue="transactions" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 sm:grid-cols-6 gap-1">
-                <TabsTrigger value="transactions" className="text-xs sm:text-sm">Transactions</TabsTrigger>
-                <TabsTrigger value="send" className="text-xs sm:text-sm">Send</TabsTrigger>
-                <TabsTrigger value="receive" className="text-xs sm:text-sm">Receive</TabsTrigger>
-                <TabsTrigger value="bridge" className="text-xs sm:text-sm">Bridge</TabsTrigger>
-                <TabsTrigger value="faucet" className="text-xs sm:text-sm">Faucet</TabsTrigger>
-                <TabsTrigger value="security" className="text-xs sm:text-sm">Security</TabsTrigger>
-              </TabsList>
+              <div className="overflow-x-auto">
+                <TabsList className="flex w-max min-w-full gap-1">
+                  <TabsTrigger value="transactions" className="text-xs sm:text-sm flex-shrink-0">Transactions</TabsTrigger>
+                  <TabsTrigger value="send" className="text-xs sm:text-sm flex-shrink-0">Send</TabsTrigger>
+                  <TabsTrigger value="receive" className="text-xs sm:text-sm flex-shrink-0">Receive</TabsTrigger>
+                  <TabsTrigger value="bridge" className="text-xs sm:text-sm flex-shrink-0">Bridge</TabsTrigger>
+                  <TabsTrigger value="faucet" className="text-xs sm:text-sm flex-shrink-0">Faucet</TabsTrigger>
+                  <TabsTrigger value="security" className="text-xs sm:text-sm flex-shrink-0">Security</TabsTrigger>
+                </TabsList>
+              </div>
 
               <TabsContent value="transactions" className="mt-4 sm:mt-6 md:mt-8">
                 <Card className="glass-card">
