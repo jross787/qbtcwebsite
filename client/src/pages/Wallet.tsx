@@ -765,18 +765,18 @@ export default function Wallet() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <Card className="glass-card text-center p-4 sm:p-6 md:p-8">
-              <div className="flex items-center justify-center mb-4">
-                <WalletIcon className="w-6 h-6 sm:w-8 sm:h-8 text-primary mr-2 sm:mr-3" />
-                <h2 className="text-xl sm:text-2xl font-semibold">Total Balance</h2>
+              <div className="flex items-center justify-center mb-3 sm:mb-4">
+                <WalletIcon className="w-5 h-5 sm:w-8 sm:h-8 text-primary mr-2 sm:mr-3" />
+                <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">Total Balance</h2>
               </div>
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-2">{balance} qBTC</div>
-              <div className="text-sm sm:text-base text-muted-foreground">≈ $127,350 USD</div>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mt-4 sm:mt-6">
-                <Button className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white">
+              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-1 sm:mb-2">{balance} qBTC</div>
+              <div className="text-xs sm:text-sm md:text-base text-muted-foreground mb-4 sm:mb-6">≈ $127,350 USD</div>
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 justify-center">
+                <Button className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white text-sm sm:text-base">
                   <Send className="w-4 h-4 mr-2" />
                   Send
                 </Button>
-                <Button variant="outline">
+                <Button variant="outline" className="text-sm sm:text-base">
                   <ArrowDownLeft className="w-4 h-4 mr-2" />
                   Receive
                 </Button>
@@ -812,33 +812,64 @@ export default function Wallet() {
                         {recentTransactions.map((tx) => (
                           <div 
                             key={tx.id} 
-                            className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 border border-border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors space-y-2 sm:space-y-0"
+                            className="p-3 border border-border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors"
                             onClick={() => openTransactionModal(tx)}
                           >
-                            <div className="flex items-center space-x-3 sm:space-x-4">
-                              <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center ${
-                                tx.type === 'received' ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'
-                              }`}>
-                                {tx.type === 'received' ? <ArrowDownLeft className="w-4 h-4 sm:w-5 sm:h-5" /> : <Send className="w-4 h-4 sm:w-5 sm:h-5" />}
+                            {/* Mobile Layout */}
+                            <div className="block sm:hidden">
+                              <div className="flex items-start space-x-3 mb-2">
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                                  tx.type === 'received' ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'
+                                }`}>
+                                  {tx.type === 'received' ? <ArrowDownLeft className="w-4 h-4" /> : <Send className="w-4 h-4" />}
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="font-semibold text-sm">
+                                    {tx.type === 'received' ? '+' : '-'}{tx.amount} qBTC
+                                  </div>
+                                  <div className="text-xs text-muted-foreground">
+                                    {new Date(tx.timestamp).toLocaleDateString()} {new Date(tx.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                                  </div>
+                                </div>
+                                <Badge variant="outline" className={`text-xs flex-shrink-0 ${tx.status === 'confirmed' ? 
+                                  'bg-green-500/20 text-green-500 border-green-500/30' : 
+                                  'bg-yellow-500/20 text-yellow-500 border-yellow-500/30'
+                                }`}>
+                                  {tx.status}
+                                </Badge>
                               </div>
-                              <div>
-                                <div className="font-semibold text-sm sm:text-base">
-                                  {tx.type === 'received' ? '+' : '-'}{tx.amount} qBTC
-                                </div>
-                                <div className="text-xs sm:text-sm text-muted-foreground">
-                                  {new Date(tx.timestamp).toLocaleString()}
-                                </div>
+                              <div className="text-xs text-muted-foreground pl-11 truncate">
+                                {formatHash(tx.hash)}
                               </div>
                             </div>
-                            <div className="flex items-center justify-between sm:justify-end space-x-2 pl-11 sm:pl-0">
-                              <Badge variant="outline" className={`text-xs ${tx.status === 'confirmed' ? 
-                                'bg-green-500/20 text-green-500 border-green-500/30' : 
-                                'bg-yellow-500/20 text-yellow-500 border-yellow-500/30'
-                              }`}>
-                                {tx.status}
-                              </Badge>
-                              <div className="text-xs sm:text-sm text-muted-foreground">
-                                {formatHash(tx.hash)}
+
+                            {/* Desktop Layout */}
+                            <div className="hidden sm:flex sm:items-center sm:justify-between">
+                              <div className="flex items-center space-x-4">
+                                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                                  tx.type === 'received' ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'
+                                }`}>
+                                  {tx.type === 'received' ? <ArrowDownLeft className="w-5 h-5" /> : <Send className="w-5 h-5" />}
+                                </div>
+                                <div>
+                                  <div className="font-semibold">
+                                    {tx.type === 'received' ? '+' : '-'}{tx.amount} qBTC
+                                  </div>
+                                  <div className="text-sm text-muted-foreground">
+                                    {new Date(tx.timestamp).toLocaleString()}
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <Badge variant="outline" className={tx.status === 'confirmed' ? 
+                                  'bg-green-500/20 text-green-500 border-green-500/30' : 
+                                  'bg-yellow-500/20 text-yellow-500 border-yellow-500/30'
+                                }>
+                                  {tx.status}
+                                </Badge>
+                                <div className="text-sm text-muted-foreground">
+                                  {formatHash(tx.hash)}
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -875,10 +906,10 @@ export default function Wallet() {
                 <Dialog open={isTransactionModalOpen} onOpenChange={setIsTransactionModalOpen}>
                   <DialogContent className="max-w-2xl">
                     <DialogHeader>
-                      <DialogTitle className="flex items-center gap-2">
-                        <ExternalLink className="h-5 w-5" />
-                        Transaction Details
-                      </DialogTitle>
+                      <DialogTitle>Transaction Details</DialogTitle>
+                      <DialogDescription>
+                        View complete information about this qBTC transaction
+                      </DialogDescription>
                     </DialogHeader>
                     
                     {selectedTransaction && (
@@ -1058,6 +1089,11 @@ export default function Wallet() {
                         {sendStep === 2 && "Confirm Transaction"}
                         {sendStep === 3 && "Transaction Sent"}
                       </DialogTitle>
+                      <DialogDescription>
+                        {sendStep === 1 && "Enter recipient address and amount to send qBTC"}
+                        {sendStep === 2 && "Review transaction details before confirming"}
+                        {sendStep === 3 && "Your transaction has been successfully sent"}
+                      </DialogDescription>
                     </DialogHeader>
                     
                     {sendStep === 1 && (
