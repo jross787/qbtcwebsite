@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
-import { Wallet as WalletIcon, Send, ArrowDownLeft, Shield, Eye, Copy, ExternalLink, Plus, Link, Download, Upload, FileText, Key, AlertCircle, CheckCircle, ArrowLeftRight, Coins, History, Receipt, Power } from "lucide-react";
+import { Wallet as WalletIcon, Send, ArrowDownLeft, Shield, Eye, Copy, ExternalLink, Plus, Link, Download, Upload, FileText, Key, AlertCircle, CheckCircle, ArrowLeftRight, Coins, History, Receipt, Power, Globe } from "lucide-react";
 import QRCode from "qrcode";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 
 const mockTransactions = [
@@ -70,6 +71,7 @@ export default function Wallet() {
   const [bridgeAmount, setBridgeAmount] = useState("");
   const [bridgeAddress, setBridgeAddress] = useState("");
   const [bridgeStatus, setBridgeStatus] = useState<'input' | 'waiting' | 'confirming' | 'exchanging' | 'sent'>('input');
+  const [isTestnet, setIsTestnet] = useState(true);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
@@ -681,14 +683,34 @@ export default function Wallet() {
                   qBTC <span className="text-primary">Wallet</span>
                 </h1>
               </div>
-              <Button 
-                variant="outline" 
-                onClick={disconnectWallet}
-                className="text-red-500 border-red-500 hover:bg-red-500 hover:text-white p-2"
-                title="Disconnect Wallet"
-              >
-                <Power className="w-5 h-5" />
-              </Button>
+              <div className="flex items-center gap-3">
+                <div className="flex items-center space-x-2">
+                  <Globe className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-sm font-medium">{isTestnet ? 'Testnet' : 'Mainnet'}</span>
+                  <Switch 
+                    checked={!isTestnet}
+                    onCheckedChange={(checked) => {
+                      if (checked) {
+                        // Trying to switch to mainnet
+                        toast({
+                          title: "Mainnet Coming Soon",
+                          description: "Mainnet functionality is currently in development and will be available soon.",
+                        });
+                      } else {
+                        setIsTestnet(true);
+                      }
+                    }}
+                  />
+                </div>
+                <Button 
+                  variant="outline" 
+                  onClick={disconnectWallet}
+                  className="text-primary border-primary hover:bg-primary hover:text-white p-2"
+                  title="Disconnect Wallet"
+                >
+                  <Power className="w-5 h-5" />
+                </Button>
+              </div>
             </div>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Secure quantum-resistant wallet for managing your qBTC with post-quantum cryptography protection.
