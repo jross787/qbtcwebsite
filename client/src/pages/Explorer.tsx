@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Search, ExternalLink, Clock, CheckCircle, AlertCircle } from "lucide-react";
+import { Search, ExternalLink, Clock, CheckCircle, AlertCircle, FileText, Database } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -207,38 +207,78 @@ export default function Explorer() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {filteredTransactions.map((transaction) => (
-                        <TableRow 
-                          key={transaction.hash} 
-                          className="cursor-pointer hover:bg-muted/50"
-                          onClick={() => setSelectedTransaction(transaction)}
-                        >
-                          <TableCell className="font-mono">
-                            {truncateHash(transaction.hash)}
-                          </TableCell>
-                          <TableCell className="font-mono">
-                            {truncateAddress(transaction.from)}
-                          </TableCell>
-                          <TableCell className="font-mono">
-                            {truncateAddress(transaction.to)}
-                          </TableCell>
-                          <TableCell className="font-mono">
-                            {transaction.amount} qBTC
-                          </TableCell>
-                          <TableCell>
-                            {transaction.time}
-                          </TableCell>
-                          <TableCell>
-                            <Badge 
-                              variant="outline" 
-                              className={`${getStatusColor(transaction.status)} flex items-center gap-1`}
-                            >
-                              {getStatusIcon(transaction.status)}
-                              {transaction.status}
-                            </Badge>
+                      {filteredTransactions.length > 0 ? (
+                        filteredTransactions.map((transaction) => (
+                          <TableRow 
+                            key={transaction.hash} 
+                            className="cursor-pointer hover:bg-muted/50"
+                            onClick={() => setSelectedTransaction(transaction)}
+                          >
+                            <TableCell className="font-mono">
+                              {truncateHash(transaction.hash)}
+                            </TableCell>
+                            <TableCell className="font-mono">
+                              {truncateAddress(transaction.from)}
+                            </TableCell>
+                            <TableCell className="font-mono">
+                              {truncateAddress(transaction.to)}
+                            </TableCell>
+                            <TableCell className="font-mono">
+                              {transaction.amount} qBTC
+                            </TableCell>
+                            <TableCell>
+                              {transaction.time}
+                            </TableCell>
+                            <TableCell>
+                              <Badge 
+                                variant="outline" 
+                                className={`${getStatusColor(transaction.status)} flex items-center gap-1`}
+                              >
+                                {getStatusIcon(transaction.status)}
+                                {transaction.status}
+                              </Badge>
+                            </TableCell>
+                          </TableRow>
+                        ))
+                      ) : (
+                        <TableRow>
+                          <TableCell colSpan={6} className="h-96">
+                            <div className="flex flex-col items-center justify-center text-center space-y-4">
+                              {searchTerm ? (
+                                <>
+                                  <Search className="w-16 h-16 text-muted-foreground/50" />
+                                  <div>
+                                    <h3 className="text-lg font-semibold mb-2">No transactions found</h3>
+                                    <p className="text-muted-foreground max-w-md">
+                                      No transactions match your search criteria for "{searchTerm}". Try searching with a different transaction hash, address, or amount.
+                                    </p>
+                                  </div>
+                                  <Button 
+                                    variant="outline" 
+                                    onClick={() => setSearchTerm("")}
+                                    className="mt-4"
+                                  >
+                                    Clear Search
+                                  </Button>
+                                </>
+                              ) : (
+                                <>
+                                  <Database className="w-16 h-16 text-muted-foreground/50" />
+                                  <div>
+                                    <h3 className="text-lg font-semibold mb-2">No transactions yet</h3>
+                                    <p className="text-muted-foreground max-w-md">
+                                      The qBTC network is ready, but no transactions have been recorded yet. Be the first to make a transaction!
+                                    </p>
+                                  </div>
+                                  <Button className="mt-4 orange-gradient text-white">
+                                    Create Transaction
+                                  </Button>
+                                </>
+                              )}
+                            </div>
                           </TableCell>
                         </TableRow>
-                      ))}
+                      )}
                     </TableBody>
                   </Table>
                 </div>

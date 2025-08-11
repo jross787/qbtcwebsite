@@ -5,6 +5,8 @@ import {
   Twitter,
   ChevronDown,
   ChevronUp,
+  Users,
+  UserPlus,
 } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -175,11 +177,32 @@ export default function Team() {
       {/* Team Grid */}
       <section className="pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {teamMembers.map((member, index) => (
-              <MemberCard key={member.name} member={member} index={index} />
-            ))}
-          </div>
+          {teamMembers.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {teamMembers.map((member, index) => (
+                <MemberCard key={member.name} member={member} index={index} />
+              ))}
+            </div>
+          ) : (
+            <motion.div
+              className="flex flex-col items-center justify-center py-24 space-y-6 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <Users className="w-20 h-20 text-muted-foreground/50" />
+              <div>
+                <h3 className="text-2xl font-semibold mb-3">Team Information Coming Soon</h3>
+                <p className="text-muted-foreground max-w-md">
+                  We're assembling a world-class team of quantum cryptography experts and blockchain developers. Stay tuned for team announcements!
+                </p>
+              </div>
+              <Button className="orange-gradient text-white">
+                Join Our Team
+              </Button>
+            </motion.div>
+          )}
         </div>
       </section>
 
@@ -207,15 +230,36 @@ export default function Team() {
       {/* Advisory Board Grid */}
       <section className="pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {advisoryBoardMembers.map((advisor, index) => (
-              <MemberCard
-                key={advisor.name}
-                member={advisor}
-                index={index}
-              />
-            ))}
-          </div>
+          {advisoryBoardMembers.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {advisoryBoardMembers.map((advisor, index) => (
+                <MemberCard
+                  key={advisor.name}
+                  member={advisor}
+                  index={index}
+                />
+              ))}
+            </div>
+          ) : (
+            <motion.div
+              className="flex flex-col items-center justify-center py-24 space-y-6 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <UserPlus className="w-20 h-20 text-muted-foreground/50" />
+              <div>
+                <h3 className="text-2xl font-semibold mb-3">Advisory Board Forming</h3>
+                <p className="text-muted-foreground max-w-md">
+                  We're building relationships with industry leaders and experts in quantum cryptography, blockchain technology, and financial systems.
+                </p>
+              </div>
+              <Button className="orange-gradient text-white">
+                Become an Advisor
+              </Button>
+            </motion.div>
+          )}
         </div>
       </section>
 

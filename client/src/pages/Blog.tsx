@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Calendar, Clock, ArrowRight, BookOpen } from "lucide-react";
+import { Calendar, Clock, ArrowRight, BookOpen, FileText } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -104,46 +104,67 @@ function BlogList() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {otherPosts.map((post, index) => (
-              <motion.div
-                key={post.slug}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="glass-card hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 h-full">
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-2">
-                      <Badge variant="outline">{post.category}</Badge>
-                      <span className="text-sm text-muted-foreground">{post.date}</span>
-                    </div>
-                    <CardTitle className="text-xl">
-                      <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">
-                        {post.title}
-                      </Link>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4">{post.excerpt}</p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                        <Clock className="w-4 h-4" />
-                        <span>{post.readTime}</span>
+          {otherPosts.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {otherPosts.map((post, index) => (
+                <motion.div
+                  key={post.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="glass-card hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 h-full">
+                    <CardHeader>
+                      <div className="flex items-center justify-between mb-2">
+                        <Badge variant="outline">{post.category}</Badge>
+                        <span className="text-sm text-muted-foreground">{post.date}</span>
                       </div>
-                      <Button variant="ghost" size="sm" asChild>
-                        <Link href={`/blog/${post.slug}`}>
-                          Read More
-                          <ArrowRight className="w-4 h-4 ml-1" />
+                      <CardTitle className="text-xl">
+                        <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">
+                          {post.title}
                         </Link>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground mb-4">{post.excerpt}</p>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                          <Clock className="w-4 h-4" />
+                          <span>{post.readTime}</span>
+                        </div>
+                        <Button variant="ghost" size="sm" asChild>
+                          <Link href={`/blog/${post.slug}`}>
+                            Read More
+                            <ArrowRight className="w-4 h-4 ml-1" />
+                          </Link>
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            <motion.div
+              className="flex flex-col items-center justify-center py-24 space-y-6 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <FileText className="w-20 h-20 text-muted-foreground/50" />
+              <div>
+                <h3 className="text-2xl font-semibold mb-3">No additional posts yet</h3>
+                <p className="text-muted-foreground max-w-md">
+                  We're working on more insightful content about quantum-safe Bitcoin technology. Check back soon for more articles!
+                </p>
+              </div>
+              <Button className="orange-gradient text-white">
+                Subscribe for Updates
+              </Button>
+            </motion.div>
+          )}
         </div>
       </section>
     </div>

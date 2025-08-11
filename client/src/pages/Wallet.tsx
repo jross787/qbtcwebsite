@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
-import { Wallet as WalletIcon, Send, ArrowDownLeft, Shield, Eye, Copy, ExternalLink, Plus, Link, Download, Upload, FileText, Key, AlertCircle, CheckCircle, ArrowLeftRight, Coins } from "lucide-react";
+import { Wallet as WalletIcon, Send, ArrowDownLeft, Shield, Eye, Copy, ExternalLink, Plus, Link, Download, Upload, FileText, Key, AlertCircle, CheckCircle, ArrowLeftRight, Coins, History, Receipt } from "lucide-react";
 import QRCode from "qrcode";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -679,42 +679,67 @@ export default function Wallet() {
                     <CardTitle>Recent Transactions</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-4">
-                      {recentTransactions.map((tx) => (
-                        <div 
-                          key={tx.id} 
-                          className="flex items-center justify-between p-4 border border-border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors"
-                          onClick={() => openTransactionModal(tx)}
-                        >
-                          <div className="flex items-center space-x-4">
-                            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                              tx.type === 'received' ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'
-                            }`}>
-                              {tx.type === 'received' ? <ArrowDownLeft className="w-5 h-5" /> : <Send className="w-5 h-5" />}
-                            </div>
-                            <div>
-                              <div className="font-semibold">
-                                {tx.type === 'received' ? '+' : '-'}{tx.amount} qBTC
+                    {recentTransactions.length > 0 ? (
+                      <div className="space-y-4">
+                        {recentTransactions.map((tx) => (
+                          <div 
+                            key={tx.id} 
+                            className="flex items-center justify-between p-4 border border-border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors"
+                            onClick={() => openTransactionModal(tx)}
+                          >
+                            <div className="flex items-center space-x-4">
+                              <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                                tx.type === 'received' ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'
+                              }`}>
+                                {tx.type === 'received' ? <ArrowDownLeft className="w-5 h-5" /> : <Send className="w-5 h-5" />}
                               </div>
+                              <div>
+                                <div className="font-semibold">
+                                  {tx.type === 'received' ? '+' : '-'}{tx.amount} qBTC
+                                </div>
+                                <div className="text-sm text-muted-foreground">
+                                  {new Date(tx.timestamp).toLocaleString()}
+                                </div>
+                              </div>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Badge variant="outline" className={tx.status === 'confirmed' ? 
+                                'bg-green-500/20 text-green-500 border-green-500/30' : 
+                                'bg-yellow-500/20 text-yellow-500 border-yellow-500/30'
+                              }>
+                                {tx.status}
+                              </Badge>
                               <div className="text-sm text-muted-foreground">
-                                {new Date(tx.timestamp).toLocaleString()}
+                                {formatHash(tx.hash)}
                               </div>
                             </div>
                           </div>
-                          <div className="flex items-center space-x-2">
-                            <Badge variant="outline" className={tx.status === 'confirmed' ? 
-                              'bg-green-500/20 text-green-500 border-green-500/30' : 
-                              'bg-yellow-500/20 text-yellow-500 border-yellow-500/30'
-                            }>
-                              {tx.status}
-                            </Badge>
-                            <div className="text-sm text-muted-foreground">
-                              {formatHash(tx.hash)}
-                            </div>
-                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="flex flex-col items-center justify-center py-16 space-y-4 text-center">
+                        <History className="w-16 h-16 text-muted-foreground/50" />
+                        <div>
+                          <h3 className="text-lg font-semibold mb-2">No transactions yet</h3>
+                          <p className="text-muted-foreground max-w-md">
+                            Your transaction history will appear here once you start sending or receiving qBTC.
+                          </p>
                         </div>
-                      ))}
-                    </div>
+                        <div className="flex gap-2 mt-4">
+                          <Button 
+                            onClick={() => setIsSendModalOpen(true)}
+                            className="orange-gradient text-white"
+                          >
+                            <Send className="w-4 h-4 mr-2" />
+                            Send qBTC
+                          </Button>
+                          <Button variant="outline">
+                            <ArrowDownLeft className="w-4 h-4 mr-2" />
+                            Receive qBTC
+                          </Button>
+                        </div>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
 
@@ -1380,25 +1405,30 @@ export default function Wallet() {
                     <div className="space-y-3">
                       <h4 className="font-medium">Recent Faucet Requests</h4>
                       <div className="space-y-2">
-                        <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
-                          <div>
-                            <p className="font-medium">0.1 qBTC</p>
-                            <p className="text-sm text-muted-foreground">Today, 2:30 PM</p>
+                        {/* Mock data - replace with actual faucet requests */}
+                        {[].length > 0 ? (
+                          <div className="space-y-2">
+                            <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                              <div>
+                                <p className="font-medium">0.1 qBTC</p>
+                                <p className="text-sm text-muted-foreground">Today, 2:30 PM</p>
+                              </div>
+                              <Badge variant="outline" className="bg-green-500/20 text-green-500 border-green-500/30">
+                                Completed
+                              </Badge>
+                            </div>
                           </div>
-                          <Badge variant="outline" className="bg-green-500/20 text-green-500 border-green-500/30">
-                            Completed
-                          </Badge>
-                        </div>
-                        
-                        <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
-                          <div>
-                            <p className="font-medium">0.1 qBTC</p>
-                            <p className="text-sm text-muted-foreground">Yesterday, 11:45 AM</p>
+                        ) : (
+                          <div className="flex flex-col items-center justify-center py-8 space-y-3 text-center">
+                            <Receipt className="w-12 h-12 text-muted-foreground/50" />
+                            <div>
+                              <h4 className="font-medium mb-1">No faucet requests yet</h4>
+                              <p className="text-sm text-muted-foreground">
+                                Your faucet request history will appear here after you request test qBTC.
+                              </p>
+                            </div>
                           </div>
-                          <Badge variant="outline" className="bg-green-500/20 text-green-500 border-green-500/30">
-                            Completed
-                          </Badge>
-                        </div>
+                        )}
                       </div>
                     </div>
                   </CardContent>
