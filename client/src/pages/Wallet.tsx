@@ -904,7 +904,7 @@ export default function Wallet() {
 
                 {/* Transaction Detail Modal */}
                 <Dialog open={isTransactionModalOpen} onOpenChange={setIsTransactionModalOpen}>
-                  <DialogContent className="max-w-2xl">
+                  <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto mx-4 sm:mx-auto">
                     <DialogHeader>
                       <DialogTitle>Transaction Details</DialogTitle>
                       <DialogDescription>
