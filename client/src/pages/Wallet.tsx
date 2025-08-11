@@ -205,8 +205,8 @@ export default function Wallet() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               {/* Connect Wallet */}
-              <Card className="glass-card">
-                <CardHeader className="text-center">
+              <Card className="glass-card flex flex-col">
+                <CardHeader className="text-center flex-1">
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
                     <Upload className="w-8 h-8 text-primary" />
                   </div>
@@ -218,7 +218,7 @@ export default function Wallet() {
                 <CardContent className="text-center">
                   <Dialog open={isConnectDialogOpen} onOpenChange={setIsConnectDialogOpen}>
                     <DialogTrigger asChild>
-                      <Button className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white w-full">
+                      <Button className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white w-full h-12">
                         Upload Wallet File
                       </Button>
                     </DialogTrigger>
@@ -349,8 +349,8 @@ export default function Wallet() {
               </Card>
 
               {/* Create Wallet */}
-              <Card className="glass-card">
-                <CardHeader className="text-center">
+              <Card className="glass-card flex flex-col">
+                <CardHeader className="text-center flex-1">
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
                     <Plus className="w-8 h-8 text-primary" />
                   </div>
@@ -362,7 +362,7 @@ export default function Wallet() {
                 <CardContent className="text-center">
                   <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
                     <DialogTrigger asChild>
-                      <Button variant="outline" className="w-full">
+                      <Button variant="outline" className="w-full h-12">
                         Generate New Wallet
                       </Button>
                     </DialogTrigger>
