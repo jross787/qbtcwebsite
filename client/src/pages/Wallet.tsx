@@ -42,7 +42,14 @@ const mockTransactions = [
 export default function Wallet() {
   const [balance] = useState("2.47");
   const [showPrivateKey, setShowPrivateKey] = useState(false);
-  const [hasWallet, setHasWallet] = useState(false);
+  const [hasWallet, setHasWallet] = useState(() => {
+    try {
+      const stored = localStorage.getItem('qbtc_wallet_connected');
+      return stored === 'true';
+    } catch {
+      return false;
+    }
+  });
   const [walletName, setWalletName] = useState("");
   const [walletPassword, setWalletPassword] = useState("");
   const [connectPassword, setConnectPassword] = useState("");
@@ -65,6 +72,20 @@ export default function Wallet() {
   const [bridgeStatus, setBridgeStatus] = useState<'input' | 'waiting' | 'confirming' | 'exchanging' | 'sent'>('input');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
+
+  // Function to disconnect wallet
+  const disconnectWallet = () => {
+    setHasWallet(false);
+    // Clear localStorage
+    localStorage.removeItem('qbtc_wallet_connected');
+    localStorage.removeItem('qbtc_wallet_address');
+    localStorage.removeItem('qbtc_wallet_balance');
+    
+    toast({
+      title: "Wallet Disconnected",
+      description: "Your wallet has been safely disconnected.",
+    });
+  };
 
   const publicAddress = "qbtc1q4v8n2k3m9x7c2w1e5r6t8y9u0i2o4p6a8s1d3f5g7h9j2k4l6m8n0p2q4r6t8";
   const privateKey = "L5oLkf4jnhHg3fDsR8yE...mK9nQ2pX4vC6bN1mJ8kL7iO5pU3rY6sA";
@@ -257,6 +278,11 @@ export default function Wallet() {
     setTimeout(() => {
       // In a real implementation, this would decrypt the private key
       setHasWallet(true);
+      // Persist wallet connection in localStorage
+      localStorage.setItem('qbtc_wallet_connected', 'true');
+      localStorage.setItem('qbtc_wallet_address', publicAddress);
+      localStorage.setItem('qbtc_wallet_balance', balance);
+      
       setIsConnectDialogOpen(false);
       setSelectedFile(null);
       setWalletData(null);
@@ -649,9 +675,20 @@ export default function Wallet() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              qBTC <span className="text-primary">Wallet</span>
-            </h1>
+            <div className="flex justify-between items-start mb-6">
+              <div className="flex-1">
+                <h1 className="text-5xl md:text-6xl font-bold mb-6">
+                  qBTC <span className="text-primary">Wallet</span>
+                </h1>
+              </div>
+              <Button 
+                variant="outline" 
+                onClick={disconnectWallet}
+                className="text-red-500 border-red-500 hover:bg-red-500 hover:text-white"
+              >
+                Disconnect Wallet
+              </Button>
+            </div>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Secure quantum-resistant wallet for managing your qBTC with post-quantum cryptography protection.
             </p>
