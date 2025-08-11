@@ -102,36 +102,30 @@ export default function Wallet() {
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file && file.type === 'application/json') {
+    if (file) {
+      // Accept any file and try to parse as JSON
       setSelectedFile(file);
       const reader = new FileReader();
       reader.onload = (e) => {
         try {
           const content = JSON.parse(e.target?.result as string);
-          if (content.type === 'qBTC_Wallet') {
-            setWalletData(content);
-          } else {
-            toast({
-              title: "Invalid Wallet File",
-              description: "This doesn't appear to be a valid qBTC wallet file.",
-              variant: "destructive",
-            });
-          }
+          // Accept any valid JSON file, not just qBTC_Wallet type
+          setWalletData(content);
+          toast({
+            title: "File Loaded",
+            description: `Successfully loaded ${file.name}`,
+          });
         } catch (error) {
           toast({
-            title: "File Error",
-            description: "Unable to parse the wallet file. Please check the file format.",
+            title: "Invalid JSON File",
+            description: "Unable to parse the file. Please ensure it's a valid JSON format.",
             variant: "destructive",
           });
+          setSelectedFile(null);
+          setWalletData(null);
         }
       };
       reader.readAsText(file);
-    } else {
-      toast({
-        title: "Invalid File Type",
-        description: "Please select a valid JSON wallet file.",
-        variant: "destructive",
-      });
     }
   };
 
@@ -202,53 +196,126 @@ export default function Wallet() {
                         Upload Wallet File
                       </Button>
                     </DialogTrigger>
-                    <DialogContent>
+                    <DialogContent className="max-w-lg">
                       <DialogHeader>
-                        <DialogTitle>Connect Wallet</DialogTitle>
+                        <DialogTitle className="flex items-center gap-2">
+                          <Upload className="h-5 w-5 text-primary" />
+                          Connect Wallet
+                        </DialogTitle>
                         <DialogDescription>
-                          Select your qBTC wallet file and enter your password to decrypt it.
+                          Upload your wallet JSON file and enter your password to access your quantum-safe wallet.
                         </DialogDescription>
                       </DialogHeader>
-                      <div className="space-y-4">
-                        <div>
-                          <Label htmlFor="wallet-file">Wallet File</Label>
-                          <input
-                            ref={fileInputRef}
-                            type="file"
-                            accept=".json"
-                            onChange={handleFileUpload}
-                            className="w-full p-3 border border-border rounded-lg bg-background"
-                          />
-                          {selectedFile && (
-                            <Alert className="mt-2">
-                              <FileText className="h-4 w-4" />
-                              <AlertDescription>
-                                Selected: {selectedFile.name}
-                              </AlertDescription>
-                            </Alert>
+                      
+                      <div className="space-y-6">
+                        {/* File Upload Section */}
+                        <div className="space-y-3">
+                          <Label htmlFor="wallet-file" className="text-sm font-medium">
+                            Wallet File
+                          </Label>
+                          
+                          {!selectedFile ? (
+                            <div 
+                              className="border-2 border-dashed border-border rounded-lg p-8 text-center cursor-pointer hover:border-primary/50 transition-colors"
+                              onClick={() => fileInputRef.current?.click()}
+                            >
+                              <div className="flex flex-col items-center space-y-3">
+                                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                                  <Upload className="w-6 h-6 text-primary" />
+                                </div>
+                                <div>
+                                  <p className="font-medium">Click to upload wallet file</p>
+                                  <p className="text-sm text-muted-foreground">
+                                    Supports JSON format
+                                  </p>
+                                </div>
+                              </div>
+                              <input
+                                ref={fileInputRef}
+                                type="file"
+                                accept=".json,application/json,text/json"
+                                onChange={handleFileUpload}
+                                className="hidden"
+                              />
+                            </div>
+                          ) : (
+                            <div className="border border-border rounded-lg p-4">
+                              <div className="flex items-center space-x-3">
+                                <div className="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center">
+                                  <FileText className="w-5 h-5 text-green-500" />
+                                </div>
+                                <div className="flex-1">
+                                  <p className="font-medium">{selectedFile.name}</p>
+                                  <p className="text-sm text-muted-foreground">
+                                    {(selectedFile.size / 1024).toFixed(1)} KB
+                                  </p>
+                                </div>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => {
+                                    setSelectedFile(null);
+                                    setWalletData(null);
+                                    if (fileInputRef.current) fileInputRef.current.value = '';
+                                  }}
+                                >
+                                  Remove
+                                </Button>
+                              </div>
+                            </div>
                           )}
                         </div>
                         
+                        {/* Password Section */}
                         {walletData && (
-                          <div>
-                            <Label htmlFor="password">Wallet Password</Label>
-                            <Input
-                              id="password"
-                              type="password"
-                              placeholder="Enter your wallet password"
-                              value={connectPassword}
-                              onChange={(e) => setConnectPassword(e.target.value)}
-                            />
+                          <div className="space-y-3">
+                            <Label htmlFor="password" className="text-sm font-medium">
+                              Wallet Password
+                            </Label>
+                            <div className="relative">
+                              <Key className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                              <Input
+                                id="password"
+                                type="password"
+                                placeholder="Enter your wallet password"
+                                value={connectPassword}
+                                onChange={(e) => setConnectPassword(e.target.value)}
+                                className="pl-10"
+                              />
+                            </div>
+                            <Alert>
+                              <Shield className="h-4 w-4" />
+                              <AlertDescription>
+                                Your password is used to decrypt the wallet locally. We never store or transmit your password.
+                              </AlertDescription>
+                            </Alert>
                           </div>
                         )}
                         
-                        <Button 
-                          onClick={decryptWallet}
-                          disabled={!walletData || !connectPassword || isLoading}
-                          className="w-full orange-gradient text-white"
-                        >
-                          {isLoading ? "Decrypting..." : "Connect Wallet"}
-                        </Button>
+                        {/* Action Buttons */}
+                        <div className="flex gap-3">
+                          <Button
+                            variant="outline"
+                            onClick={() => setIsConnectDialogOpen(false)}
+                            className="flex-1"
+                          >
+                            Cancel
+                          </Button>
+                          <Button 
+                            onClick={decryptWallet}
+                            disabled={!walletData || !connectPassword || isLoading}
+                            className="flex-1 orange-gradient text-white"
+                          >
+                            {isLoading ? (
+                              <div className="flex items-center gap-2">
+                                <div className="w-4 h-4 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
+                                Connecting...
+                              </div>
+                            ) : (
+                              "Connect Wallet"
+                            )}
+                          </Button>
+                        </div>
                       </div>
                     </DialogContent>
                   </Dialog>
@@ -273,49 +340,111 @@ export default function Wallet() {
                         Generate New Wallet
                       </Button>
                     </DialogTrigger>
-                    <DialogContent>
+                    <DialogContent className="max-w-lg">
                       <DialogHeader>
-                        <DialogTitle>Create New Wallet</DialogTitle>
+                        <DialogTitle className="flex items-center gap-2">
+                          <Plus className="h-5 w-5 text-primary" />
+                          Create New Wallet
+                        </DialogTitle>
                         <DialogDescription>
-                          Generate a new quantum-safe wallet. The wallet file will be downloaded to your device.
+                          Generate a new quantum-safe wallet protected by post-quantum cryptography. The encrypted wallet file will be downloaded to your device.
                         </DialogDescription>
                       </DialogHeader>
-                      <div className="space-y-4">
-                        <div>
-                          <Label htmlFor="wallet-name">Wallet Name</Label>
-                          <Input
-                            id="wallet-name"
-                            placeholder="Enter wallet name"
-                            value={walletName}
-                            onChange={(e) => setWalletName(e.target.value)}
-                          />
+                      
+                      <div className="space-y-6">
+                        {/* Wallet Details */}
+                        <div className="space-y-4">
+                          <div>
+                            <Label htmlFor="wallet-name" className="text-sm font-medium">
+                              Wallet Name
+                            </Label>
+                            <div className="relative mt-2">
+                              <WalletIcon className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                              <Input
+                                id="wallet-name"
+                                placeholder="My qBTC Wallet"
+                                value={walletName}
+                                onChange={(e) => setWalletName(e.target.value)}
+                                className="pl-10"
+                              />
+                            </div>
+                          </div>
+                          
+                          <div>
+                            <Label htmlFor="wallet-password" className="text-sm font-medium">
+                              Encryption Password
+                            </Label>
+                            <div className="relative mt-2">
+                              <Key className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                              <Input
+                                id="wallet-password"
+                                type="password"
+                                placeholder="Enter a strong password"
+                                value={walletPassword}
+                                onChange={(e) => setWalletPassword(e.target.value)}
+                                className="pl-10"
+                              />
+                            </div>
+                          </div>
                         </div>
                         
-                        <div>
-                          <Label htmlFor="wallet-password">Wallet Password</Label>
-                          <Input
-                            id="wallet-password"
-                            type="password"
-                            placeholder="Enter a strong password"
-                            value={walletPassword}
-                            onChange={(e) => setWalletPassword(e.target.value)}
-                          />
+                        {/* Security Features */}
+                        <div className="bg-muted/50 rounded-lg p-4 space-y-3">
+                          <h4 className="font-medium flex items-center gap-2">
+                            <Shield className="h-4 w-4 text-primary" />
+                            Quantum-Safe Security
+                          </h4>
+                          <div className="space-y-2 text-sm text-muted-foreground">
+                            <div className="flex items-center gap-2">
+                              <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                              CRYSTALS-Kyber1024 encryption
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                              CRYSTALS-Dilithium3 signatures
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                              Client-side encryption
+                            </div>
+                          </div>
                         </div>
                         
-                        <Alert>
-                          <AlertCircle className="h-4 w-4" />
-                          <AlertDescription>
-                            Make sure to remember your password. It cannot be recovered if lost.
+                        {/* Warning */}
+                        <Alert className="border-amber-200 bg-amber-50 dark:bg-amber-950/20">
+                          <AlertCircle className="h-4 w-4 text-amber-600" />
+                          <AlertDescription className="text-amber-800 dark:text-amber-200">
+                            <strong>Important:</strong> Store your password safely. It cannot be recovered if lost, and your wallet will be permanently inaccessible.
                           </AlertDescription>
                         </Alert>
                         
-                        <Button 
-                          onClick={generateWalletFile}
-                          disabled={!walletName || !walletPassword || isLoading}
-                          className="w-full orange-gradient text-white"
-                        >
-                          {isLoading ? "Generating..." : "Create Wallet"}
-                        </Button>
+                        {/* Action Buttons */}
+                        <div className="flex gap-3">
+                          <Button
+                            variant="outline"
+                            onClick={() => setIsCreateDialogOpen(false)}
+                            className="flex-1"
+                          >
+                            Cancel
+                          </Button>
+                          <Button 
+                            onClick={generateWalletFile}
+                            disabled={!walletName || !walletPassword || isLoading}
+                            className="flex-1 orange-gradient text-white"
+                          >
+                            {isLoading ? (
+                              <div className="flex items-center gap-2">
+                                <div className="w-4 h-4 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
+                                Generating...
+                              </div>
+                            ) : (
+                              <div className="flex items-center gap-2">
+                                <Download className="w-4 h-4" />
+                                Create Wallet
+                              </div>
+                            )}
+                          </Button>
+                        </div>
                       </div>
                     </DialogContent>
                   </Dialog>

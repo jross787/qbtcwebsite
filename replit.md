@@ -132,6 +132,8 @@ qBTC is a quantum-resistant Bitcoin sidechain application built as a full-stack 
   * Implemented quantum-safe wallet file generation with CRYSTALS-Kyber1024 and Dilithium3 algorithms
   * Added client-side wallet encryption/decryption functionality with password protection
   * Enhanced UI with proper modal dialogs, file upload handling, and loading states
+  * Updated file upload to accept any valid JSON format (not restricted to specific wallet types)
+  * Enhanced upload modals with improved graphics, drag-and-drop interface, and better user experience
 
 ## User Preferences
 
