@@ -817,29 +817,31 @@ export default function Wallet() {
                           >
                             {/* Mobile Layout */}
                             <div className="block sm:hidden">
-                              <div className="flex items-start space-x-3 mb-2">
+                              <div className="flex items-start space-x-3 mb-3">
                                 <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                                   tx.type === 'received' ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'
                                 }`}>
                                   {tx.type === 'received' ? <ArrowDownLeft className="w-4 h-4" /> : <Send className="w-4 h-4" />}
                                 </div>
-                                <div className="flex-1 min-w-0">
-                                  <div className="font-semibold text-sm">
-                                    {tx.type === 'received' ? '+' : '-'}{tx.amount} qBTC
+                                <div className="flex-1 min-w-0 space-y-1">
+                                  <div className="flex items-center justify-between">
+                                    <div className="font-semibold text-sm">
+                                      {tx.type === 'received' ? '+' : '-'}{tx.amount} qBTC
+                                    </div>
+                                    <Badge variant="outline" className={`text-xs ml-2 ${tx.status === 'confirmed' ? 
+                                      'bg-green-500/20 text-green-500 border-green-500/30' : 
+                                      'bg-yellow-500/20 text-yellow-500 border-yellow-500/30'
+                                    }`}>
+                                      {tx.status}
+                                    </Badge>
                                   </div>
                                   <div className="text-xs text-muted-foreground">
                                     {new Date(tx.timestamp).toLocaleDateString()} {new Date(tx.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                                   </div>
+                                  <div className="text-xs text-muted-foreground truncate">
+                                    {formatHash(tx.hash)}
+                                  </div>
                                 </div>
-                                <Badge variant="outline" className={`text-xs flex-shrink-0 ${tx.status === 'confirmed' ? 
-                                  'bg-green-500/20 text-green-500 border-green-500/30' : 
-                                  'bg-yellow-500/20 text-yellow-500 border-yellow-500/30'
-                                }`}>
-                                  {tx.status}
-                                </Badge>
-                              </div>
-                              <div className="text-xs text-muted-foreground pl-11 truncate">
-                                {formatHash(tx.hash)}
                               </div>
                             </div>
 
