@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
-import { Wallet as WalletIcon, Send, ArrowDownLeft, Shield, Eye, Copy, ExternalLink, Plus, Link, Download, Upload, FileText, Key, AlertCircle, CheckCircle, ArrowLeftRight, Coins, History, Receipt } from "lucide-react";
+import { Wallet as WalletIcon, Send, ArrowDownLeft, Shield, Eye, Copy, ExternalLink, Plus, Link, Download, Upload, FileText, Key, AlertCircle, CheckCircle, ArrowLeftRight, Coins, History, Receipt, Power } from "lucide-react";
 import QRCode from "qrcode";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -684,9 +684,10 @@ export default function Wallet() {
               <Button 
                 variant="outline" 
                 onClick={disconnectWallet}
-                className="text-red-500 border-red-500 hover:bg-red-500 hover:text-white"
+                className="text-red-500 border-red-500 hover:bg-red-500 hover:text-white p-2"
+                title="Disconnect Wallet"
               >
-                Disconnect Wallet
+                <Power className="w-5 h-5" />
               </Button>
             </div>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
