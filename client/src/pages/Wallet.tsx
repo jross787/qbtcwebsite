@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
-import { Wallet as WalletIcon, Send, ArrowDownLeft, Shield, Eye, Copy, ExternalLink, Plus, Link, Download, Upload, FileText, Key, AlertCircle, CheckCircle, ArrowLeftRight, Coins, History, Receipt, Power, Globe } from "lucide-react";
+import { Wallet as WalletIcon, Send, ArrowDownLeft, Shield, Eye, Copy, ExternalLink, Plus, Link, Download, Upload, FileText, Key, AlertCircle, CheckCircle, ArrowLeftRight, Coins, History, Receipt, Power, Globe, Maximize2, X } from "lucide-react";
 import QRCode from "qrcode";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -72,6 +72,7 @@ export default function Wallet() {
   const [bridgeAddress, setBridgeAddress] = useState("");
   const [bridgeStatus, setBridgeStatus] = useState<'input' | 'waiting' | 'confirming' | 'exchanging' | 'sent'>('input');
   const [isTestnet, setIsTestnet] = useState(true);
+  const [isQRModalOpen, setIsQRModalOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
@@ -1289,13 +1290,24 @@ export default function Wallet() {
                     <div className="flex flex-col items-center space-y-4">
                       <div className="bg-white p-4 rounded-lg shadow-lg">
                         {qrCodeDataUrl ? (
-                          <img 
-                            src={qrCodeDataUrl} 
-                            alt="qBTC Address QR Code"
-                            className="w-64 h-64"
-                          />
+                          <div className="relative">
+                            <img 
+                              src={qrCodeDataUrl} 
+                              alt="qBTC Address QR Code"
+                              className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 cursor-pointer"
+                              onClick={() => setIsQRModalOpen(true)}
+                            />
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="absolute top-2 right-2 bg-white/90 hover:bg-white"
+                              onClick={() => setIsQRModalOpen(true)}
+                            >
+                              <Maximize2 className="w-4 h-4" />
+                            </Button>
+                          </div>
                         ) : (
-                          <div className="w-64 h-64 bg-muted rounded flex items-center justify-center">
+                          <div className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-muted rounded flex items-center justify-center">
                             <div className="text-center">
                               <div className="w-8 h-8 animate-spin rounded-full border-2 border-primary/30 border-t-primary mx-auto mb-2"></div>
                               <p className="text-sm text-muted-foreground">Generating QR Code...</p>
@@ -1309,6 +1321,13 @@ export default function Wallet() {
                         <p className="text-sm text-muted-foreground">
                           Scan this QR code with any qBTC wallet to send payments to your address
                         </p>
+                        <Button 
+                          variant="link" 
+                          className="text-primary mt-2 sm:hidden"
+                          onClick={() => setIsQRModalOpen(true)}
+                        >
+                          View Full Size QR Code
+                        </Button>
                       </div>
                     </div>
 
@@ -1660,6 +1679,74 @@ export default function Wallet() {
           </motion.div>
         </div>
       </section>
+
+      {/* Full-Screen QR Code Modal */}
+      <Dialog open={isQRModalOpen} onOpenChange={setIsQRModalOpen}>
+        <DialogContent className="max-w-lg max-h-[90vh] mx-4 sm:mx-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <WalletIcon className="h-5 w-5 text-primary" />
+              QR Code - Full Size
+            </DialogTitle>
+            <DialogDescription>
+              Scan this QR code with any qBTC wallet to send payments to your address
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="flex flex-col items-center space-y-4 p-4">
+            <div className="bg-white p-4 rounded-lg shadow-lg">
+              {qrCodeDataUrl && (
+                <img 
+                  src={qrCodeDataUrl} 
+                  alt="qBTC Address QR Code - Full Size"
+                  className="w-80 h-80 max-w-full"
+                />
+              )}
+            </div>
+            
+            <div className="text-center max-w-md">
+              <p className="text-sm text-muted-foreground mb-4">
+                Your qBTC Address:
+              </p>
+              <code className="text-xs bg-muted p-2 rounded block break-all">
+                {publicAddress}
+              </code>
+            </div>
+            
+            <div className="flex gap-3 w-full">
+              <Button 
+                variant="outline" 
+                className="flex-1"
+                onClick={() => {
+                  navigator.clipboard.writeText(publicAddress);
+                  toast({
+                    title: "Address Copied",
+                    description: "qBTC address copied to clipboard.",
+                  });
+                }}
+              >
+                <Copy className="w-4 h-4 mr-2" />
+                Copy Address
+              </Button>
+              <Button 
+                variant="outline" 
+                className="flex-1"
+                onClick={() => {
+                  if (qrCodeDataUrl) {
+                    const link = document.createElement('a');
+                    link.download = 'qbtc-address-qr.png';
+                    link.href = qrCodeDataUrl;
+                    link.click();
+                  }
+                }}
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Save QR
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
