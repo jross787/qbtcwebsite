@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
-import { Wallet as WalletIcon, Send, ArrowDownLeft, Shield, Eye, Copy, ExternalLink, Plus, Link, Download, Upload, FileText, Key, AlertCircle } from "lucide-react";
+import { Wallet as WalletIcon, Send, ArrowDownLeft, Shield, Eye, Copy, ExternalLink, Plus, Link, Download, Upload, FileText, Key, AlertCircle, CheckCircle, ArrowLeftRight, Coins } from "lucide-react";
 import QRCode from "qrcode";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -42,8 +42,6 @@ const mockTransactions = [
 export default function Wallet() {
   const [balance] = useState("2.47");
   const [showPrivateKey, setShowPrivateKey] = useState(false);
-  const [sendAmount, setSendAmount] = useState("");
-  const [sendAddress, setSendAddress] = useState("");
   const [hasWallet, setHasWallet] = useState(false);
   const [walletName, setWalletName] = useState("");
   const [walletPassword, setWalletPassword] = useState("");
@@ -56,6 +54,15 @@ export default function Wallet() {
   const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string>("");
   const [selectedTransaction, setSelectedTransaction] = useState<any>(null);
   const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
+  const [isSendModalOpen, setIsSendModalOpen] = useState(false);
+  const [sendAddress, setSendAddress] = useState("");
+  const [sendAmount, setSendAmount] = useState("");
+  const [sendPassword, setSendPassword] = useState("");
+  const [sendStep, setSendStep] = useState(1); // 1: details, 2: password, 3: confirmation
+  const [bridgeType, setBridgeType] = useState<'btc-to-qbtc' | 'qbtc-to-btc'>('btc-to-qbtc');
+  const [bridgeAmount, setBridgeAmount] = useState("");
+  const [bridgeAddress, setBridgeAddress] = useState("");
+  const [bridgeStatus, setBridgeStatus] = useState<'input' | 'waiting' | 'confirming' | 'exchanging' | 'sent'>('input');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
@@ -214,16 +221,15 @@ export default function Wallet() {
   };
 
   const decryptWallet = () => {
-    if (!walletData || !connectPassword) return;
+    if (!walletData) return;
     
     setIsLoading(true);
     
     // Simulate decryption process
     setTimeout(() => {
-      // In a real implementation, this would decrypt the private key using the password
+      // In a real implementation, this would decrypt the private key
       setHasWallet(true);
       setIsConnectDialogOpen(false);
-      setConnectPassword("");
       setSelectedFile(null);
       setWalletData(null);
       setIsLoading(false);
@@ -233,6 +239,54 @@ export default function Wallet() {
         description: "Your quantum-safe wallet has been successfully loaded.",
       });
     }, 1500);
+  };
+
+  const handleSendTransaction = () => {
+    if (!sendAddress || !sendAmount || !sendPassword) return;
+    
+    setIsLoading(true);
+    
+    // Simulate transaction processing
+    setTimeout(() => {
+      setSendStep(3); // Go to confirmation screen
+      setIsLoading(false);
+      
+      toast({
+        title: "Transaction Sent",
+        description: `Successfully sent ${sendAmount} qBTC to ${sendAddress.slice(0, 8)}...${sendAddress.slice(-8)}`,
+      });
+    }, 2000);
+  };
+
+  const resetSendModal = () => {
+    setSendAddress("");
+    setSendAmount("");
+    setSendPassword("");
+    setSendStep(1);
+    setIsSendModalOpen(false);
+  };
+
+  const handleBridgeTransaction = () => {
+    setBridgeStatus('waiting');
+    
+    // Simulate bridge process
+    const statuses = ['waiting', 'confirming', 'exchanging', 'sent'];
+    let currentIndex = 0;
+    
+    const interval = setInterval(() => {
+      currentIndex++;
+      if (currentIndex < statuses.length) {
+        setBridgeStatus(statuses[currentIndex] as any);
+      } else {
+        clearInterval(interval);
+        toast({
+          title: "Bridge Complete",
+          description: bridgeType === 'btc-to-qbtc' 
+            ? `Successfully received ${bridgeAmount} qBTC`
+            : `Successfully sent ${bridgeAmount} BTC to your address`,
+        });
+      }
+    }, 2000);
   };
 
   // If no wallet is connected, show wallet setup options
@@ -350,31 +404,7 @@ export default function Wallet() {
                           )}
                         </div>
                         
-                        {/* Password Section */}
-                        {walletData && (
-                          <div className="space-y-3">
-                            <Label htmlFor="password" className="text-sm font-medium">
-                              Wallet Password
-                            </Label>
-                            <div className="relative">
-                              <Key className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                              <Input
-                                id="password"
-                                type="password"
-                                placeholder="Enter your wallet password"
-                                value={connectPassword}
-                                onChange={(e) => setConnectPassword(e.target.value)}
-                                className="pl-10"
-                              />
-                            </div>
-                            <Alert>
-                              <Shield className="h-4 w-4" />
-                              <AlertDescription>
-                                Your password is used to decrypt the wallet locally. We never store or transmit your password.
-                              </AlertDescription>
-                            </Alert>
-                          </div>
-                        )}
+
                         
                         {/* Action Buttons */}
                         <div className="flex gap-3">
@@ -387,7 +417,7 @@ export default function Wallet() {
                           </Button>
                           <Button 
                             onClick={decryptWallet}
-                            disabled={!walletData || !connectPassword || isLoading}
+                            disabled={!walletData || isLoading}
                             className="flex-1 orange-gradient text-white"
                           >
                             {isLoading ? (
@@ -634,10 +664,12 @@ export default function Wallet() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Tabs defaultValue="transactions" className="w-full">
-              <TabsList className="grid w-full grid-cols-4">
+              <TabsList className="grid w-full grid-cols-6">
                 <TabsTrigger value="transactions">Transactions</TabsTrigger>
                 <TabsTrigger value="send">Send</TabsTrigger>
                 <TabsTrigger value="receive">Receive</TabsTrigger>
+                <TabsTrigger value="bridge">Bridge</TabsTrigger>
+                <TabsTrigger value="faucet">Faucet</TabsTrigger>
                 <TabsTrigger value="security">Security</TabsTrigger>
               </TabsList>
 
@@ -844,36 +876,210 @@ export default function Wallet() {
               <TabsContent value="send" className="mt-8">
                 <Card className="glass-card">
                   <CardHeader>
-                    <CardTitle>Send qBTC</CardTitle>
+                    <CardTitle className="flex items-center gap-2">
+                      <Send className="h-5 w-5" />
+                      Send qBTC
+                    </CardTitle>
+                    <p className="text-muted-foreground">
+                      Send qBTC to another quantum-safe wallet
+                    </p>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div>
-                      <Label htmlFor="send-address">Recipient Address</Label>
-                      <Input
-                        id="send-address"
-                        placeholder="qbtc1q..."
-                        value={sendAddress}
-                        onChange={(e) => setSendAddress(e.target.value)}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="send-amount">Amount (qBTC)</Label>
-                      <Input
-                        id="send-amount"
-                        placeholder="0.00"
-                        type="number"
-                        value={sendAmount}
-                        onChange={(e) => setSendAmount(e.target.value)}
-                      />
-                      <div className="text-sm text-muted-foreground mt-1">
-                        Available: {balance} qBTC
-                      </div>
-                    </div>
-                    <Button className="w-full orange-gradient text-white">
-                      Send Transaction
+                  <CardContent>
+                    <Button 
+                      onClick={() => setIsSendModalOpen(true)}
+                      className="w-full orange-gradient text-white h-12"
+                    >
+                      <Send className="w-4 h-4 mr-2" />
+                      Send qBTC
                     </Button>
                   </CardContent>
                 </Card>
+
+                {/* Send Transaction Modal */}
+                <Dialog open={isSendModalOpen} onOpenChange={setIsSendModalOpen}>
+                  <DialogContent className="max-w-lg">
+                    <DialogHeader>
+                      <DialogTitle className="flex items-center gap-2">
+                        <Send className="h-5 w-5" />
+                        {sendStep === 1 && "Send qBTC"}
+                        {sendStep === 2 && "Confirm Transaction"}
+                        {sendStep === 3 && "Transaction Sent"}
+                      </DialogTitle>
+                    </DialogHeader>
+                    
+                    {sendStep === 1 && (
+                      <div className="space-y-4">
+                        <div>
+                          <Label htmlFor="recipient" className="text-sm font-medium">
+                            Recipient Address
+                          </Label>
+                          <Input
+                            id="recipient"
+                            placeholder="qbtc1q..."
+                            value={sendAddress}
+                            onChange={(e) => setSendAddress(e.target.value)}
+                            className="font-mono mt-2"
+                          />
+                        </div>
+                        
+                        <div>
+                          <Label htmlFor="amount" className="text-sm font-medium">
+                            Amount (qBTC)
+                          </Label>
+                          <Input
+                            id="amount"
+                            type="number"
+                            placeholder="0.00000000"
+                            step="0.00000001"
+                            value={sendAmount}
+                            onChange={(e) => setSendAmount(e.target.value)}
+                            className="mt-2"
+                          />
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Available: {balance} qBTC
+                          </p>
+                        </div>
+                        
+                        <div className="bg-muted/50 rounded-lg p-3">
+                          <div className="flex justify-between text-sm">
+                            <span>Network Fee:</span>
+                            <span>0.0001 qBTC</span>
+                          </div>
+                          <div className="flex justify-between text-sm font-medium mt-1">
+                            <span>Total:</span>
+                            <span>{sendAmount ? (parseFloat(sendAmount) + 0.0001).toFixed(8) : '0.00000000'} qBTC</span>
+                          </div>
+                        </div>
+                        
+                        <div className="flex gap-3">
+                          <Button
+                            variant="outline"
+                            onClick={() => setIsSendModalOpen(false)}
+                            className="flex-1"
+                          >
+                            Cancel
+                          </Button>
+                          <Button
+                            onClick={() => setSendStep(2)}
+                            disabled={!sendAddress || !sendAmount}
+                            className="flex-1 orange-gradient text-white"
+                          >
+                            Continue
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {sendStep === 2 && (
+                      <div className="space-y-4">
+                        <div className="bg-muted/50 rounded-lg p-4 space-y-2">
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">To:</span>
+                            <span className="font-mono text-sm">{sendAddress.slice(0, 8)}...{sendAddress.slice(-8)}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Amount:</span>
+                            <span className="font-semibold">{sendAmount} qBTC</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Fee:</span>
+                            <span>0.0001 qBTC</span>
+                          </div>
+                          <hr className="border-border" />
+                          <div className="flex justify-between font-semibold">
+                            <span>Total:</span>
+                            <span>{(parseFloat(sendAmount) + 0.0001).toFixed(8)} qBTC</span>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <Label htmlFor="send-password" className="text-sm font-medium">
+                            Wallet Password
+                          </Label>
+                          <div className="relative mt-2">
+                            <Key className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                            <Input
+                              id="send-password"
+                              type="password"
+                              placeholder="Enter your wallet password"
+                              value={sendPassword}
+                              onChange={(e) => setSendPassword(e.target.value)}
+                              className="pl-10"
+                            />
+                          </div>
+                        </div>
+                        
+                        <Alert>
+                          <Shield className="h-4 w-4" />
+                          <AlertDescription>
+                            Your password is required to sign this transaction with your private key.
+                          </AlertDescription>
+                        </Alert>
+                        
+                        <div className="flex gap-3">
+                          <Button
+                            variant="outline"
+                            onClick={() => setSendStep(1)}
+                            className="flex-1"
+                          >
+                            Back
+                          </Button>
+                          <Button
+                            onClick={handleSendTransaction}
+                            disabled={!sendPassword || isLoading}
+                            className="flex-1 orange-gradient text-white"
+                          >
+                            {isLoading ? (
+                              <div className="flex items-center gap-2">
+                                <div className="w-4 h-4 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
+                                Sending...
+                              </div>
+                            ) : (
+                              "Send Transaction"
+                            )}
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {sendStep === 3 && (
+                      <div className="space-y-6 text-center">
+                        <div className="w-16 h-16 mx-auto rounded-full bg-green-500/20 flex items-center justify-center">
+                          <CheckCircle className="w-8 h-8 text-green-500" />
+                        </div>
+                        
+                        <div>
+                          <h3 className="text-xl font-semibold mb-2">Transaction Sent!</h3>
+                          <p className="text-muted-foreground">
+                            Your transaction has been broadcast to the qBTC network
+                          </p>
+                        </div>
+                        
+                        <div className="bg-muted/50 rounded-lg p-4 space-y-2 text-left">
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Amount:</span>
+                            <span className="font-semibold">{sendAmount} qBTC</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">To:</span>
+                            <span className="font-mono text-sm">{sendAddress.slice(0, 8)}...{sendAddress.slice(-8)}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Status:</span>
+                            <span className="text-yellow-500">Pending</span>
+                          </div>
+                        </div>
+                        
+                        <Button
+                          onClick={resetSendModal}
+                          className="w-full orange-gradient text-white"
+                        >
+                          Close
+                        </Button>
+                      </div>
+                    )}
+                  </DialogContent>
+                </Dialog>
               </TabsContent>
 
               <TabsContent value="receive" className="mt-8">
@@ -982,6 +1188,218 @@ export default function Wallet() {
                         <Download className="w-4 h-4 mr-2" />
                         Save QR Code
                       </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="bridge" className="mt-8">
+                <Card className="glass-card">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <ArrowLeftRight className="h-5 w-5" />
+                      qBTC Bridge
+                    </CardTitle>
+                    <p className="text-muted-foreground">
+                      Convert between Bitcoin and qBTC using the quantum-safe bridge
+                    </p>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="grid grid-cols-2 gap-4">
+                      <Button
+                        variant={bridgeType === 'btc-to-qbtc' ? 'default' : 'outline'}
+                        onClick={() => setBridgeType('btc-to-qbtc')}
+                        className={bridgeType === 'btc-to-qbtc' ? 'orange-gradient text-white' : ''}
+                      >
+                        BTC → qBTC
+                      </Button>
+                      <Button
+                        variant={bridgeType === 'qbtc-to-btc' ? 'default' : 'outline'}
+                        onClick={() => setBridgeType('qbtc-to-btc')}
+                        className={bridgeType === 'qbtc-to-btc' ? 'orange-gradient text-white' : ''}
+                      >
+                        qBTC → BTC
+                      </Button>
+                    </div>
+                    
+                    {bridgeStatus === 'input' && (
+                      <div className="space-y-4">
+                        {bridgeType === 'btc-to-qbtc' ? (
+                          <>
+                            <div>
+                              <Label className="text-sm font-medium">
+                                Bitcoin Deposit Address
+                              </Label>
+                              <div className="mt-2 p-3 bg-muted rounded-lg">
+                                <code className="text-sm font-mono">
+                                  bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
+                                </code>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="ml-2"
+                                  onClick={() => {
+                                    navigator.clipboard.writeText('bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh');
+                                    toast({
+                                      title: "Copied",
+                                      description: "Bitcoin address copied to clipboard.",
+                                    });
+                                  }}
+                                >
+                                  <Copy className="w-4 h-4" />
+                                </Button>
+                              </div>
+                              <p className="text-xs text-muted-foreground mt-1">
+                                Send Bitcoin to this address to receive qBTC
+                              </p>
+                            </div>
+                            
+                            <div>
+                              <Label htmlFor="bridge-amount">Amount (BTC)</Label>
+                              <Input
+                                id="bridge-amount"
+                                type="number"
+                                placeholder="0.00000000"
+                                step="0.00000001"
+                                value={bridgeAmount}
+                                onChange={(e) => setBridgeAmount(e.target.value)}
+                              />
+                            </div>
+                            
+                            <Button
+                              onClick={handleBridgeTransaction}
+                              disabled={!bridgeAmount}
+                              className="w-full orange-gradient text-white"
+                            >
+                              Start Bridge Process
+                            </Button>
+                          </>
+                        ) : (
+                          <>
+                            <div>
+                              <Label htmlFor="btc-address">Bitcoin Receive Address</Label>
+                              <Input
+                                id="btc-address"
+                                placeholder="bc1q..."
+                                value={bridgeAddress}
+                                onChange={(e) => setBridgeAddress(e.target.value)}
+                                className="font-mono"
+                              />
+                            </div>
+                            
+                            <div>
+                              <Label htmlFor="bridge-amount">Amount (qBTC)</Label>
+                              <Input
+                                id="bridge-amount"
+                                type="number"
+                                placeholder="0.00000000"
+                                step="0.00000001"
+                                value={bridgeAmount}
+                                onChange={(e) => setBridgeAmount(e.target.value)}
+                              />
+                              <p className="text-xs text-muted-foreground mt-1">
+                                Available: {balance} qBTC
+                              </p>
+                            </div>
+                            
+                            <Button
+                              onClick={handleBridgeTransaction}
+                              disabled={!bridgeAmount || !bridgeAddress}
+                              className="w-full orange-gradient text-white"
+                            >
+                              Bridge to Bitcoin
+                            </Button>
+                          </>
+                        )}
+                      </div>
+                    )}
+                    
+                    {bridgeStatus !== 'input' && (
+                      <div className="space-y-4">
+                        <div className="text-center">
+                          <div className="w-16 h-16 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                            <ArrowLeftRight className="w-8 h-8 text-primary animate-pulse" />
+                          </div>
+                          <h3 className="text-xl font-semibold mb-2">Bridge in Progress</h3>
+                          <p className="text-muted-foreground capitalize">
+                            Status: {bridgeStatus.replace('-', ' ')}
+                          </p>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          {['waiting', 'confirming', 'exchanging', 'sent'].map((status, index) => (
+                            <div key={status} className="flex items-center space-x-3">
+                              <div className={`w-4 h-4 rounded-full ${
+                                bridgeStatus === status || 
+                                ['waiting', 'confirming', 'exchanging', 'sent'].indexOf(bridgeStatus) > index
+                                  ? 'bg-primary' 
+                                  : 'bg-muted'
+                              }`} />
+                              <span className="capitalize">{status.replace('-', ' ')}</span>
+                            </div>
+                          ))}
+                        </div>
+                        
+                        {bridgeStatus === 'sent' && (
+                          <Button
+                            onClick={() => setBridgeStatus('input')}
+                            className="w-full orange-gradient text-white"
+                          >
+                            Start New Bridge
+                          </Button>
+                        )}
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="faucet" className="mt-8">
+                <Card className="glass-card">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Coins className="h-5 w-5" />
+                      qBTC Faucet
+                    </CardTitle>
+                    <p className="text-muted-foreground">
+                      Get free test qBTC for development and testing purposes
+                    </p>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="text-center p-6 border border-dashed border-border rounded-lg">
+                      <Coins className="w-12 h-12 mx-auto mb-4 text-primary" />
+                      <h3 className="text-lg font-semibold mb-2">Test Network Faucet</h3>
+                      <p className="text-muted-foreground mb-4">
+                        Receive 0.1 qBTC every 24 hours for testing
+                      </p>
+                      <Button className="orange-gradient text-white">
+                        Request Test qBTC
+                      </Button>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <h4 className="font-medium">Recent Faucet Requests</h4>
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                          <div>
+                            <p className="font-medium">0.1 qBTC</p>
+                            <p className="text-sm text-muted-foreground">Today, 2:30 PM</p>
+                          </div>
+                          <Badge variant="outline" className="bg-green-500/20 text-green-500 border-green-500/30">
+                            Completed
+                          </Badge>
+                        </div>
+                        
+                        <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                          <div>
+                            <p className="font-medium">0.1 qBTC</p>
+                            <p className="text-sm text-muted-foreground">Yesterday, 11:45 AM</p>
+                          </div>
+                          <Badge variant="outline" className="bg-green-500/20 text-green-500 border-green-500/30">
+                            Completed
+                          </Badge>
+                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
