@@ -827,17 +827,15 @@ export default function Wallet() {
                                   <div className="font-semibold text-sm">
                                     {tx.type === 'received' ? '+' : '-'}{tx.amount} qBTC
                                   </div>
-                                  <div className="flex items-center gap-2">
-                                    <Badge variant="outline" className={`text-xs ${tx.status === 'confirmed' ? 
-                                      'bg-green-500/20 text-green-500 border-green-500/30' : 
-                                      'bg-yellow-500/20 text-yellow-500 border-yellow-500/30'
-                                    }`}>
-                                      {tx.status}
-                                    </Badge>
-                                    <div className="text-xs text-muted-foreground">
-                                      {new Date(tx.timestamp).toLocaleDateString()} {new Date(tx.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
-                                    </div>
+                                  <div className="text-xs text-muted-foreground">
+                                    {new Date(tx.timestamp).toLocaleDateString()} {new Date(tx.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                                   </div>
+                                  <Badge variant="outline" className={`text-xs w-fit ${tx.status === 'confirmed' ? 
+                                    'bg-green-500/20 text-green-500 border-green-500/30' : 
+                                    'bg-yellow-500/20 text-yellow-500 border-yellow-500/30'
+                                  }`}>
+                                    {tx.status}
+                                  </Badge>
                                   <div className="text-xs text-muted-foreground truncate">
                                     {formatHash(tx.hash)}
                                   </div>
