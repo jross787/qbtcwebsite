@@ -691,12 +691,16 @@ export default function Wallet() {
                     checked={!isTestnet}
                     onCheckedChange={(checked) => {
                       if (checked) {
-                        // Trying to switch to mainnet
+                        // Trying to switch to mainnet - show alert and don't change state
                         toast({
                           title: "Mainnet Coming Soon",
                           description: "Mainnet functionality is currently in development and will be available soon.",
+                          variant: "destructive"
                         });
+                        // Keep it on testnet
+                        return;
                       } else {
+                        // Allow switching back to testnet
                         setIsTestnet(true);
                       }
                     }}
@@ -705,7 +709,7 @@ export default function Wallet() {
                 <Button 
                   variant="outline" 
                   onClick={disconnectWallet}
-                  className="text-primary border-primary hover:bg-primary hover:text-white p-2"
+                  className="text-[#FF9500] border-[#FF9500] hover:bg-[#FF9500] hover:text-white p-2"
                   title="Disconnect Wallet"
                 >
                   <Power className="w-5 h-5" />
