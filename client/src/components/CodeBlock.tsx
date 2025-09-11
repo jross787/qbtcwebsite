@@ -15,9 +15,7 @@ export function CodeBlock({ title, code, language = "javascript" }: CodeBlockPro
   
   // Strip HTML tags for character counting
   const stripHtml = (html: string) => {
-    const div = document.createElement("div");
-    div.innerHTML = html;
-    return div.textContent || div.innerText || "";
+    return html.replace(/<[^>]*>/g, '');
   };
 
   useEffect(() => {
