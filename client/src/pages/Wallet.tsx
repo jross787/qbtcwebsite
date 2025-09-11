@@ -231,14 +231,21 @@ export default function Wallet() {
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
 
+      // Automatically connect the wallet after creation
+      setHasWallet(true);
+      // Persist wallet connection in localStorage
+      localStorage.setItem('qbtc_wallet_connected', 'true');
+      localStorage.setItem('qbtc_wallet_address', publicAddress);
+      localStorage.setItem('qbtc_wallet_balance', balance);
+
       setIsLoading(false);
       setIsCreateDialogOpen(false);
       setWalletName("");
       setWalletPassword("");
       
       toast({
-        title: "Wallet Created",
-        description: "Your quantum-safe wallet has been generated and downloaded.",
+        title: "Wallet Created & Connected",
+        description: "Your quantum-safe wallet has been generated, downloaded, and automatically connected.",
       });
     }, 2000);
   };
