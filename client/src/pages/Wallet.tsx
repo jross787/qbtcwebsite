@@ -73,6 +73,7 @@ export default function Wallet() {
   const [bridgeStatus, setBridgeStatus] = useState<'input' | 'waiting' | 'confirming' | 'exchanging' | 'sent'>('input');
   const [isTestnet, setIsTestnet] = useState(true);
   const [isQRModalOpen, setIsQRModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("transactions");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
@@ -780,11 +781,18 @@ export default function Wallet() {
               <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-1 sm:mb-2">{balance} qBTC</div>
               <div className="text-xs sm:text-sm md:text-base text-muted-foreground mb-4 sm:mb-6">≈ $127,350 USD</div>
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 justify-center">
-                <Button className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white text-sm sm:text-base">
+                <Button 
+                  onClick={() => setActiveTab("send")}
+                  className="orange-gradient hover:shadow-lg hover:shadow-primary/25 text-white text-sm sm:text-base"
+                >
                   <Send className="w-4 h-4 mr-2" />
                   Send
                 </Button>
-                <Button variant="outline" className="text-sm sm:text-base">
+                <Button 
+                  onClick={() => setActiveTab("receive")}
+                  variant="outline" 
+                  className="text-sm sm:text-base"
+                >
                   <ArrowDownLeft className="w-4 h-4 mr-2" />
                   Receive
                 </Button>
@@ -799,7 +807,7 @@ export default function Wallet() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <Tabs defaultValue="transactions" className="w-full">
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               <div className="overflow-x-auto">
                 <TabsList className="flex w-max min-w-full gap-1">
                   <TabsTrigger value="transactions" className="text-xs sm:text-sm flex-shrink-0">Transactions</TabsTrigger>
