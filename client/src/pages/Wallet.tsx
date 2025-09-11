@@ -1080,40 +1080,17 @@ export default function Wallet() {
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Send className="h-5 w-5" />
-                      Send qBTC
+                      {sendStep === 1 && "Send qBTC"}
+                      {sendStep === 2 && "Confirm Transaction"}
+                      {sendStep === 3 && "Transaction Sent"}
                     </CardTitle>
                     <p className="text-muted-foreground">
-                      Send qBTC to another quantum-safe wallet
+                      {sendStep === 1 && "Enter recipient address and amount to send qBTC"}
+                      {sendStep === 2 && "Review transaction details before confirming"}
+                      {sendStep === 3 && "Your transaction has been successfully sent"}
                     </p>
                   </CardHeader>
                   <CardContent>
-                    <Button 
-                      onClick={() => setIsSendModalOpen(true)}
-                      className="w-full orange-gradient text-white h-12"
-                    >
-                      <Send className="w-4 h-4 mr-2" />
-                      Send qBTC
-                    </Button>
-                  </CardContent>
-                </Card>
-
-                {/* Send Transaction Modal */}
-                <Dialog open={isSendModalOpen} onOpenChange={setIsSendModalOpen}>
-                  <DialogContent className="max-w-lg">
-                    <DialogHeader>
-                      <DialogTitle className="flex items-center gap-2">
-                        <Send className="h-5 w-5" />
-                        {sendStep === 1 && "Send qBTC"}
-                        {sendStep === 2 && "Confirm Transaction"}
-                        {sendStep === 3 && "Transaction Sent"}
-                      </DialogTitle>
-                      <DialogDescription>
-                        {sendStep === 1 && "Enter recipient address and amount to send qBTC"}
-                        {sendStep === 2 && "Review transaction details before confirming"}
-                        {sendStep === 3 && "Your transaction has been successfully sent"}
-                      </DialogDescription>
-                    </DialogHeader>
-                    
                     {sendStep === 1 && (
                       <div className="space-y-4">
                         <div>
@@ -1161,10 +1138,15 @@ export default function Wallet() {
                         <div className="flex gap-3">
                           <Button
                             variant="outline"
-                            onClick={() => setIsSendModalOpen(false)}
+                            onClick={() => {
+                              setSendAddress("");
+                              setSendAmount("");
+                              setSendPassword("");
+                              setSendStep(1);
+                            }}
                             className="flex-1"
                           >
-                            Cancel
+                            Clear Form
                           </Button>
                           <Button
                             onClick={() => setSendStep(2)}
@@ -1278,15 +1260,20 @@ export default function Wallet() {
                         </div>
                         
                         <Button
-                          onClick={resetSendModal}
+                          onClick={() => {
+                            setSendAddress("");
+                            setSendAmount("");
+                            setSendPassword("");
+                            setSendStep(1);
+                          }}
                           className="w-full orange-gradient text-white"
                         >
-                          Close
+                          Send Another Transaction
                         </Button>
                       </div>
                     )}
-                  </DialogContent>
-                </Dialog>
+                  </CardContent>
+                </Card>
               </TabsContent>
 
               <TabsContent value="receive" className="mt-8">
