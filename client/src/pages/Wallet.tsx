@@ -74,6 +74,8 @@ export default function Wallet() {
   const [isTestnet, setIsTestnet] = useState(true);
   const [isQRModalOpen, setIsQRModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("transactions");
+  const [faucetStep, setFaucetStep] = useState(1); // 1: request, 2: confirm, 3: success
+  const [isFaucetLoading, setIsFaucetLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
@@ -352,6 +354,26 @@ export default function Wallet() {
         });
       }
     }, 2000);
+  };
+
+  const handleFaucetRequest = () => {
+    setIsFaucetLoading(true);
+    
+    // Simulate faucet request processing
+    setTimeout(() => {
+      setFaucetStep(3); // Go to success screen
+      setIsFaucetLoading(false);
+      
+      toast({
+        title: "Test qBTC Received",
+        description: "0.1 qBTC has been added to your wallet for testing",
+      });
+    }, 2000);
+  };
+
+  const resetFaucetRequest = () => {
+    setFaucetStep(1);
+    setIsFaucetLoading(false);
   };
 
   // If no wallet is connected, show wallet setup options
@@ -1562,61 +1584,175 @@ export default function Wallet() {
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Coins className="h-5 w-5" />
-                      qBTC Faucet
+                      {faucetStep === 1 && "qBTC Faucet"}
+                      {faucetStep === 2 && "Confirm Faucet Request"}
+                      {faucetStep === 3 && "Test qBTC Received"}
                     </CardTitle>
                     <p className="text-muted-foreground">
-                      Get free test qBTC for development and testing purposes
+                      {faucetStep === 1 && "Get free test qBTC for development and testing purposes"}
+                      {faucetStep === 2 && "Confirm your request for test qBTC from the faucet"}
+                      {faucetStep === 3 && "Your test qBTC has been successfully added to your wallet"}
                     </p>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    <div className="text-center p-6 border border-dashed border-border rounded-lg">
-                      <Coins className="w-12 h-12 mx-auto mb-4 text-primary" />
-                      <h3 className="text-lg font-semibold mb-2">Test Network Faucet</h3>
-                      <p className="text-muted-foreground mb-4">
-                        Receive 0.1 qBTC every 24 hours for testing
-                      </p>
-                      <Button className="orange-gradient text-white">
-                        Request Test qBTC
-                      </Button>
-                    </div>
-                    
-                    <div className="space-y-3">
-                      <h4 className="font-medium">Recent Faucet Requests</h4>
-                      <div className="space-y-2">
-                        {/* Mock data - replace with actual faucet requests */}
-                        {mockFaucetRequests.length > 0 ? (
+                    {faucetStep === 1 && (
+                      <>
+                        <div className="text-center p-6 border border-dashed border-border rounded-lg">
+                          <Coins className="w-12 h-12 mx-auto mb-4 text-primary" />
+                          <h3 className="text-lg font-semibold mb-2">Test Network Faucet</h3>
+                          <p className="text-muted-foreground mb-4">
+                            Receive 0.1 qBTC every 24 hours for testing
+                          </p>
+                          <Button 
+                            onClick={() => setFaucetStep(2)}
+                            className="orange-gradient text-white"
+                          >
+                            Request Test qBTC
+                          </Button>
+                        </div>
+                        
+                        <div className="space-y-3">
+                          <h4 className="font-medium">Recent Faucet Requests</h4>
                           <div className="space-y-2">
-                            {mockFaucetRequests.map((request, index) => (
-                              <div key={index} className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
-                                <div>
-                                  <p className="font-medium">{request.amount} qBTC</p>
-                                  <p className="text-sm text-muted-foreground">{request.timestamp}</p>
-                                </div>
-                                <Badge variant="outline" className={
-                                  request.status === 'completed' 
-                                    ? 'bg-green-500/20 text-green-500 border-green-500/30'
-                                    : request.status === 'pending'
-                                    ? 'bg-yellow-500/20 text-yellow-500 border-yellow-500/30'
-                                    : 'bg-red-500/20 text-red-500 border-red-500/30'
-                                }>
-                                  {request.status}
-                                </Badge>
+                            {/* Mock data - replace with actual faucet requests */}
+                            {mockFaucetRequests.length > 0 ? (
+                              <div className="space-y-2">
+                                {mockFaucetRequests.map((request, index) => (
+                                  <div key={index} className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                                    <div>
+                                      <p className="font-medium">{request.amount} qBTC</p>
+                                      <p className="text-sm text-muted-foreground">{request.timestamp}</p>
+                                    </div>
+                                    <Badge variant="outline" className={
+                                      request.status === 'completed' 
+                                        ? 'bg-green-500/20 text-green-500 border-green-500/30'
+                                        : request.status === 'pending'
+                                        ? 'bg-yellow-500/20 text-yellow-500 border-yellow-500/30'
+                                        : 'bg-red-500/20 text-red-500 border-red-500/30'
+                                    }>
+                                      {request.status}
+                                    </Badge>
+                                  </div>
+                                ))}
                               </div>
-                            ))}
+                            ) : (
+                              <div className="flex flex-col items-center justify-center py-8 space-y-3 text-center">
+                                <Receipt className="w-12 h-12 text-muted-foreground/50" />
+                                <div>
+                                  <h4 className="font-medium mb-1">No faucet requests yet</h4>
+                                  <p className="text-sm text-muted-foreground">
+                                    Your faucet request history will appear here after you request test qBTC.
+                                  </p>
+                                </div>
+                              </div>
+                            )}
                           </div>
-                        ) : (
-                          <div className="flex flex-col items-center justify-center py-8 space-y-3 text-center">
-                            <Receipt className="w-12 h-12 text-muted-foreground/50" />
-                            <div>
-                              <h4 className="font-medium mb-1">No faucet requests yet</h4>
-                              <p className="text-sm text-muted-foreground">
-                                Your faucet request history will appear here after you request test qBTC.
-                              </p>
-                            </div>
+                        </div>
+                      </>
+                    )}
+
+                    {faucetStep === 2 && (
+                      <div className="space-y-6">
+                        <div className="text-center p-6 border border-border rounded-lg">
+                          <Coins className="w-16 h-16 mx-auto mb-4 text-primary" />
+                          <h3 className="text-xl font-semibold mb-2">Confirm Faucet Request</h3>
+                          <p className="text-muted-foreground mb-4">
+                            You are about to request 0.1 qBTC from the test network faucet
+                          </p>
+                        </div>
+
+                        <div className="bg-muted/50 rounded-lg p-4 space-y-2">
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Amount:</span>
+                            <span className="font-semibold">0.1 qBTC</span>
                           </div>
-                        )}
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Network:</span>
+                            <span>qBTC Testnet</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Recipient:</span>
+                            <span className="font-mono text-sm">{publicAddress.slice(0, 8)}...{publicAddress.slice(-8)}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Cooldown:</span>
+                            <span>24 hours</span>
+                          </div>
+                        </div>
+
+                        <Alert>
+                          <Coins className="h-4 w-4" />
+                          <AlertDescription>
+                            Test qBTC has no real value and is only for development and testing purposes.
+                          </AlertDescription>
+                        </Alert>
+
+                        <div className="flex gap-3">
+                          <Button
+                            variant="outline"
+                            onClick={() => setFaucetStep(1)}
+                            className="flex-1"
+                          >
+                            Cancel
+                          </Button>
+                          <Button
+                            onClick={handleFaucetRequest}
+                            disabled={isFaucetLoading}
+                            className="flex-1 orange-gradient text-white"
+                          >
+                            {isFaucetLoading ? (
+                              <div className="flex items-center gap-2">
+                                <div className="w-4 h-4 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
+                                Processing...
+                              </div>
+                            ) : (
+                              "Confirm Request"
+                            )}
+                          </Button>
+                        </div>
                       </div>
-                    </div>
+                    )}
+
+                    {faucetStep === 3 && (
+                      <div className="space-y-6 text-center">
+                        <div className="w-16 h-16 mx-auto rounded-full bg-green-500/20 flex items-center justify-center">
+                          <CheckCircle className="w-8 h-8 text-green-500" />
+                        </div>
+                        
+                        <div>
+                          <h3 className="text-xl font-semibold mb-2">Test qBTC Received!</h3>
+                          <p className="text-muted-foreground">
+                            0.1 qBTC has been successfully added to your wallet
+                          </p>
+                        </div>
+                        
+                        <div className="bg-muted/50 rounded-lg p-4 space-y-2 text-left">
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Amount:</span>
+                            <span className="font-semibold">0.1 qBTC</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Network:</span>
+                            <span>qBTC Testnet</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Status:</span>
+                            <span className="text-green-500">Completed</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Next Request:</span>
+                            <span>Available in 24 hours</span>
+                          </div>
+                        </div>
+                        
+                        <Button
+                          onClick={resetFaucetRequest}
+                          className="w-full orange-gradient text-white"
+                        >
+                          Request Again Tomorrow
+                        </Button>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </TabsContent>
